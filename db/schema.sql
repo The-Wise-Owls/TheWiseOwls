@@ -8,8 +8,6 @@ CREATE TABLE staff (
   staff_id INT AUTO_INCREMENT,
   fullName VARCHAR(30) NOT NULL,
   email VARCHAR(30) NOT NULL,
-  automate TINYINT(1) DEFAULT 1,
-  findRoom TINYINT(1) DEFAULT 1,
   PRIMARY KEY (staff_id)
 );
 
@@ -39,9 +37,9 @@ CREATE TABLE office_hours (
   date DATE NOT NULL,
   start TIME NOT NULL,
   end TIME NOT NULL,
-  topic VARCHAR(255) NOT NULL,
-  room VARCHAR(30),
-  status VARCHAR(10) NOT NULL,
+  topic VARCHAR(255) NOT NULL
+  requested TINYINT(1) DEFAULT 0,
+  completed TINYINT(1) DEFAULT 0,
   PRIMARY KEY (oh_id),
   FOREIGN KEY (student_id)
     REFERENCES students (student_id),
