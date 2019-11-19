@@ -37,7 +37,7 @@ CREATE TABLE office_hours (
   date DATE NOT NULL,
   start TIME NOT NULL,
   end TIME NOT NULL,
-  topic VARCHAR(255) NOT NULL
+  topic VARCHAR(255) NOT NULL,
   requested TINYINT(1) DEFAULT 0,
   completed TINYINT(1) DEFAULT 0,
   PRIMARY KEY (oh_id),
