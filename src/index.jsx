@@ -1,5 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from'./App.jsx';
+import RouteManager from './Router.jsx';
 
-ReactDOM.render(<App />, document.getElementById('root'));
+ReactDOM.render(<RouteManager />, document.getElementById('root'));
