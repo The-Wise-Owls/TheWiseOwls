@@ -4,7 +4,7 @@
   "description": "donuts, cats, react, and such",
   "main": "app.js",
   "scripts": {
-    "build": "webpack -d",
+    "build": "webpack -d -w",
     "compile": "webpack-dev-server -d",
     "cypress": "cypress run",
     "cypress:open": "cypress open",
