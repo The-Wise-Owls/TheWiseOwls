@@ -7,7 +7,7 @@ const Splash = () => {
     <div>
       <p>Hello from app.jsx!!</p>
       <NavLink to='/template'>
-        <button>change</button>
+        <button id="testButton">change</button>
       </NavLink>
     </div>
   );
