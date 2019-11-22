@@ -3,15 +3,21 @@ describe('The Wise Owls', function () {
     cy.visit('/');
   })
 
-  it('should navigate to template page on click', function() {
-    cy.get('#testButton').click()
-    cy.url().should('match', /template/)
+  it('Should navigate to login page on click', function () {
+    cy.get('#loginButton').click()
+    cy.url().should('match', /login/)
   })
 
-  it('should reload the /template page and still have content served', function() {
+  it('should navigate to request page on click', function() {
+    cy.visit('/');
+    cy.get('#requestButton').click()
+    cy.url().should('match', /request/)
+  })
+
+  it('should reload the request page and still have content served', function() {
     cy.reload()
-    cy.url().should('match', /template/)
-    cy.get('#templateTest').should('contain', 'Should Route to this page')
+    cy.url().should('match', /request/)
+    cy.get('#requestTest').should('contain', 'Request Office Hours')
   } )
 
 })

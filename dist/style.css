@@ -2,6 +2,11 @@ body {
   background-color: #102A49;
 }
 
+#root {
+  display: flex;
+  flex-direction: column;
+}
+
 h1 {
   font-family: Helvetica Neue, Helvetica;
   color: #EE882C;
@@ -13,9 +18,16 @@ a {
   text-decoration: none;
 }
 
+#splashHeader {
+  align-self: center;
+  justify-content: flex-start;
+  width: 345px;
+}
+
 .buttonContainer {
   display: flex;
   justify-content: center;
   width: 100vw;
-  height: 63px
+  height: 63px;
+  margin: 20px 0;
 }

@@ -4,7 +4,7 @@ import { withRouter } from 'react-router-dom';
 const Template = () => {
 
   return (
-    <div id="templateTest">Should Route to this page</div>
+    <div style={{color: 'white', fontSize: '50px'}} id="templateTest">Template</div>
   );
 
 }
