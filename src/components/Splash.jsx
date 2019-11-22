@@ -1,19 +1,24 @@
-import React, { useState, useContext } from 'react';
+import React, { useContext } from 'react';
 import { withRouter, NavLink } from 'react-router-dom';
 import Fab from '@material-ui/core/Fab';
-import Theme from '../ThemeContext.js';
+import gobalTheme from '../ThemeContext.js';
 
 const Splash = (props) => {
-  const globalTheme = useContext(Theme)
+  const theme = useContext(gobalTheme);
 
   return (
     <div>
-      <p>Hello from app.jsx!!</p>
-      <NavLink to='/template'>
-        <Fab variant="extended" aria-label="add" className={globalTheme.classes.whiteButton}>
-            Request Office Hours
-        </Fab>
-      </NavLink>
+      <h1>The<br/>
+          Wise<br/>
+          Owls
+      </h1>
+      <div className="buttonContainer">
+        <NavLink to='/template'>
+          <Fab id="button" variant="extended" aria-label="add" className={theme.material_ui.whiteButton}>
+              Request Office Hours
+          </Fab>
+        </NavLink>
+      </div>
     </div>
   );
 }

@@ -1,0 +1,21 @@
+body {
+  background-color: #102A49;
+}
+
+h1 {
+  font-family: Helvetica Neue, Helvetica;
+  color: #EE882C;
+  font-weight: bold;
+  font-size: 60px;
+}
+
+a {
+  text-decoration: none;
+}
+
+.buttonContainer {
+  display: flex;
+  justify-content: center;
+  width: 100vw;
+  height: 63px
+}

@@ -11,16 +11,20 @@ import { makeStyles } from '@material-ui/core/styles';
       color: 'black',
       height: 48,
       padding: '0 30px',
-    },
-  })
+      width: 345,
+      height: 63,
+      fontSize: 24,
+      fontWeight: "bold",
+      fontFamily: 'Helvetica',
+      textTransform: "none",
+  }})
 
 const GlobalTheme = (props) => {
   const makeStyles = useStyles();
 
   return (
     <ThemeContext.Provider value={{
-      classes: makeStyles,
-      message: 'hello'
+      material_ui: makeStyles
     }}>
       {props.children}
     </ThemeContext.Provider>
