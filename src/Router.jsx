@@ -5,6 +5,11 @@ import Request from './components/Request.jsx';
 import Login from './components/Login.jsx';
 import AdminSplash from './components/AdminSplash.jsx'
 import AdminOptions from './components/AdminOptions.jsx'
+import Availability from './components/Availability.jsx'
+import Students from './components/Students.jsx'
+import Staff from './components/Staff.jsx'
+import Classes from './components/Classes.jsx'
+import History from './components/History.jsx'
 import GlobalTheme from './GlobalTheme.jsx';
 
 function RouteManager(props) {
@@ -16,6 +21,11 @@ function RouteManager(props) {
         <Route exact path="/login" component={Login} />
         <Route exact path="/adminsplash" component={AdminSplash} />
         <Route exact path="/adminoptions" component={AdminOptions} />
+        <Route exact path="/availability" component={Availability} />
+        <Route exact path="/staff" component={Staff} />
+        <Route exact path="/students" component={Students} />
+        <Route exact path="/classes" component={Classes} />
+        <Route exact path="/history" component={History} />
 
       </Router>
     </GlobalTheme>

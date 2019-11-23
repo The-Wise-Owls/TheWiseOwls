@@ -1,9 +1,9 @@
 import React, { useState, useContext, useEffect } from 'react';
-import { withRouter, NavLink } from 'react-router-dom';
-import Fab from '@material-ui/core/Fab';
-import Drawer from '@material-ui/core/Drawer';
+import { withRouter, NavLink, useHistory } from 'react-router-dom';
 import gobalTheme from '../ThemeContext.js';
 
+import Fab from '@material-ui/core/Fab';
+import Drawer from '@material-ui/core/Drawer';
 import Divider from '@material-ui/core/Divider';
 import IconButton from '@material-ui/core/IconButton';
 import MenuOpenIcon from '@material-ui/icons/MenuOpen';
@@ -22,6 +22,7 @@ const AdminSplash = () => {
   const [open, setOpen] = React.useState(false);
   const [userName, setState] = useState('Jeff');
   const theme = useContext(gobalTheme);
+  const history = useHistory()
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -32,7 +33,7 @@ const AdminSplash = () => {
   };
 
   useEffect(() => {
-    //axios request to fetch class names
+    //axios request to fetch class names and user name
   }),[]
 
   return (
@@ -64,22 +65,71 @@ const AdminSplash = () => {
           <p>{`Hello, ${userName}!`}</p>
           </IconButton>
         </div>
-      <Divider />
+        <Divider />
         <List>
-            <ListItem button>
-
-              <ListItemText primary={'Home'} />
-            </ListItem>
+          <ListItem button onClick={() => {
+            setOpen(false)
+            history.replace('/adminsplash')
+          }}>
+            <ListItemText primary={'Home'} />
+          </ListItem>
         </List>
         <Divider />
         <List>
-          {['All mail', 'Trash', 'Spam'].map((text, index) => (
-            <ListItem button key={text}>
-              <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItem>
-          ))}
+          <ListItem button onClick={() => {
+            setOpen(false)
+            history.push('/availability')
+          }}>
+            <ListItemText primary={'Availability'} />
+          </ListItem>
         </List>
+        <Divider />
+        <List>
+          <ListItem button onClick={() => {
+            setOpen(false)
+            history.push('/staff')
+          }}>
+            <ListItemText primary={'Staff'} />
+          </ListItem>
+        </List>
+        <Divider />
+        <List>
+          <ListItem button onClick={() => {
+            setOpen(false)
+            history.push('/students')
+          }}>
+            <ListItemText primary={'Students'} />
+          </ListItem>
+        </List>
+        <Divider />
+        <List>
+          <ListItem button onClick={() => {
+            setOpen(false)
+            history.push('/classes')
+          }}>
+            <ListItemText primary={'Classes'} />
+          </ListItem>
+        </List>
+        <Divider />
+        <List>
+          <ListItem button onClick={() => {
+            setOpen(false)
+            history.push('/history')
+          }}>
+            <ListItemText primary={'History'} />
+          </ListItem>
+        </List>
+        <Divider />
+        <List>
+          <ListItem button onClick={() => {
+            setOpen(false)
+            history.push('/')
+          }}>
+            <ListItemText primary={'Logout'} />
+          </ListItem>
+        </List>
+        <Divider />
+
       </Drawer>
       {classes.map((className, index) => {
         return (
