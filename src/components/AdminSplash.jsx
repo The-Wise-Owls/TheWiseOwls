@@ -17,10 +17,6 @@ const AdminSplash = () => {
     //axios request to fetch class names and user name
   }),[]
 
-  const handleClose = () => {
-    setOpen(false);
-  }
-
   return (
     <>
     <div className="menuContainer">
@@ -37,7 +33,7 @@ const AdminSplash = () => {
     <Menu 
       open={open}
       userName={userName}
-      setOpen={handleClose}
+      setOpen={() => setOpen(false)}
     />
       
       {classes.map((className, index) => {
@@ -54,6 +50,6 @@ const AdminSplash = () => {
       })}
     </>
   );
-}
+};
 
 export default withRouter(AdminSplash);

@@ -12,7 +12,7 @@ import Classes from './components/Classes.jsx'
 import History from './components/History.jsx'
 import GlobalTheme from './GlobalTheme.jsx';
 
-function RouteManager(props) {
+const RouteManager = (props) => {
   return (
     <GlobalTheme>
       <Router>
@@ -30,6 +30,6 @@ function RouteManager(props) {
       </Router>
     </GlobalTheme>
   );
-}
+};
 
 export default RouteManager;

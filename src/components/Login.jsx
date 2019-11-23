@@ -10,7 +10,7 @@ const Login = (props) => {
   
   const authenticate = () => {
     setAuth(true)
-  }
+  };
 
   useEffect(() =>{
     if (isAuth) history.replace({ pathname: "/adminsplash" })
@@ -18,7 +18,6 @@ const Login = (props) => {
 
   return (
     <>
-    {/* <div style={{ color: 'white', fontSize: '50px' }} id="loginTest">Staff Login</div> */}
       <div className="buttonContainer">
         <Fab id="requestButton" onClick={authenticate} variant="extended" aria-label="add" className={theme.material_ui.loginButton}>
           Login
@@ -26,7 +25,6 @@ const Login = (props) => {
       </div>
     </>
   );
-
-}
+};
 
 export default withRouter(Login);

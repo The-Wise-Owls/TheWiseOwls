@@ -78,54 +78,6 @@ const Menu = (props) => {
         )
       })}
 
-
-      {/* <List>
-        <ListItem button onClick={() => {
-          props.setOpen(false)
-          history.push('/availability')
-        }}>
-          <ListItemText primary={'Availability'} />
-        </ListItem>
-      </List>
-      <Divider />
-      <List>
-        <ListItem button onClick={() => {
-          props.setOpen(false)
-          history.push('/staff')
-        }}>
-          <ListItemText primary={'Staff'} />
-        </ListItem>
-      </List>
-      <Divider />
-      <List>
-        <ListItem button onClick={() => {
-          props.setOpen(false)
-          history.push('/students')
-        }}>
-          <ListItemText primary={'Students'} />
-        </ListItem>
-      </List>
-      <Divider />
-      <List>
-        <ListItem button onClick={() => {
-          props.setOpen(false)
-          history.push('/classes')
-        }}>
-          <ListItemText primary={'Classes'} />
-        </ListItem>
-      </List>
-      <Divider />
-      <List>
-        <ListItem button onClick={() => {
-          props.setOpen(false)
-          history.push('/history')
-        }}>
-          <ListItemText primary={'History'} />
-        </ListItem>
-      </List>
-      <Divider /> */}
-
-
       <List>
         <ListItem button onClick={() => {
           history.push('/')
@@ -136,7 +88,6 @@ const Menu = (props) => {
       <Divider />
     </Drawer>
   );
-
-}
+};
 
 export default withRouter(Menu);

@@ -6,7 +6,6 @@ const Request = () => {
   return (
     <div style={{color: 'white', fontSize: '50px'}} id="requestTest">Request Office Hours</div>
   );
-
-}
+};
 
 export default withRouter(Request);

@@ -12,10 +12,6 @@ const Availability = () => {
   const [userName, setState] = useState('Jeff');
   const history = useHistory();
 
-  const handleClose = () => {
-    setOpen(false);
-  }
-
   return (
     <>
       <div className="menuContainer">
@@ -25,10 +21,9 @@ const Availability = () => {
           edge="start"
           className={`${theme.material_ui.menuButton} leftMenuIconButton`}
         >
-          <ChevronLeftIcon style={{ margin: '0' }} className={`${theme.material_ui.menuIcon} leftMenuIcon`} />
+          <ChevronLeftIcon style={{ margin: '0' }} className={`${theme.material_ui.menuIcon} menuIcon`} />
         </IconButton>
-        
-        
+
         <IconButton
           aria-label="open drawer"
           onClick={() => setOpen(true)}
@@ -37,16 +32,16 @@ const Availability = () => {
         >
           <MenuIcon className={`${theme.material_ui.menuIcon} menuIcon`} />
         </IconButton>
-        
+
         <h2>Availability</h2>
       </div>
       <Menu
         open={open}
         userName={userName}
-        setOpen={handleClose}
+        setOpen={() => setOpen(false)}
       />
     </>
   );
-}
+};
 
 export default withRouter(Availability);
