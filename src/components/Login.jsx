@@ -19,7 +19,7 @@ const Login = (props) => {
   return (
     <>
       <div className="buttonContainer">
-        <Fab id="requestButton" onClick={authenticate} variant="extended" aria-label="add" className={theme.material_ui.loginButton}>
+        <Fab id="testLoginButton2" onClick={authenticate} variant="extended" aria-label="add" className={theme.material_ui.loginButton}>
           Login
         </Fab>
       </div>

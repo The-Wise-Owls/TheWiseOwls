@@ -42,6 +42,7 @@ const Menu = (props) => {
 
   return (
     <Drawer
+      id="testDrawer"
       className={theme.material_ui.drawer}
       variant="persistent"
       anchor="left"
@@ -50,11 +51,11 @@ const Menu = (props) => {
         paper: theme.material_ui.drawerPaper,
       }}
     >
-      <div className={theme.material_ui.drawerHeader}>
-        <IconButton onClick={() => props.setOpen(false)}>
+      <div id="testClose" className={theme.material_ui.drawerHeader} onClick={() => props.setOpen(false)}>
+        <IconButton>
           <MenuOpenIcon style={{ margin: '0 20 0 0 0', padding: '0' }} className={theme.material_ui.menuIcon} />
-          <p>{`Hello, ${props.userName}!`}</p>
         </IconButton>
+        <p>{`Hello, ${props.userName}!`}</p>
       </div>
       <Divider />
 
@@ -62,7 +63,7 @@ const Menu = (props) => {
         return (
           <div key={index}>
             <List>
-              <ListItem button onClick={() => {
+              <ListItem button id={`test${menuList.name}`} onClick={() => {
                 if (location.pathname === menuList.url) {
                   props.setOpen(false)
                   history.replace(menuList.url)
@@ -79,7 +80,7 @@ const Menu = (props) => {
       })}
 
       <List>
-        <ListItem button onClick={() => {
+        <ListItem button id="testLogout" onClick={() => {
           history.push('/')
         }}>
           <ListItemText primary={'Logout'} />

@@ -12,6 +12,7 @@ const AdminSplash = () => {
   const theme = useContext(gobalTheme);
   const [open, setOpen] = React.useState(false);
   const [userName, setState] = useState('Jeff');
+  window.testOpen = open
 
   useEffect(() => {
     //axios request to fetch class names and user name
@@ -21,6 +22,7 @@ const AdminSplash = () => {
     <>
     <div className="menuContainer">
       <IconButton
+        id="testMenuAdminSplash"
         aria-label="open drawer"
         onClick={() => setOpen(true)}
         edge="start"

@@ -11,11 +11,13 @@ const Availability = () => {
   const [open, setOpen] = React.useState(false);
   const [userName, setState] = useState('Jeff');
   const history = useHistory();
+  window.testOpen = open
 
   return (
     <>
       <div className="menuContainer">
         <IconButton
+          id="testBackAvailability"
           aria-label="open drawer"
           onClick={() => history.goBack()}
           edge="start"
@@ -25,6 +27,7 @@ const Availability = () => {
         </IconButton>
 
         <IconButton
+          id="testMenuAvailability"
           aria-label="open drawer"
           onClick={() => setOpen(true)}
           edge="start"

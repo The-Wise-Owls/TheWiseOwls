@@ -16,14 +16,14 @@ const Splash = (props) => {
       </div>
       <div className="buttonContainer">
         <NavLink to='/request'>
-          <Fab id="requestButton" variant="extended" aria-label="add" className={theme.material_ui.whiteButton}>
+          <Fab id="testRequestButton" variant="extended" aria-label="add" className={theme.material_ui.whiteButton}>
               Request Office Hours
           </Fab>
         </NavLink>
       </div>
       <div className="buttonContainer">
         <NavLink to='/login'>
-          <Fab id="loginButton" variant="extended" aria-label="add" className={theme.material_ui.whiteButton}>
+          <Fab id="testLoginButton" variant="extended" aria-label="add" className={theme.material_ui.whiteButton}>
             Staff Login
           </Fab>
         </NavLink>
