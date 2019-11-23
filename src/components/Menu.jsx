@@ -1,5 +1,5 @@
 import React, { useState, useContext, useEffect } from 'react';
-import { withRouter, useHistory } from 'react-router-dom';
+import { withRouter, useHistory, useLocation } from 'react-router-dom';
 import Drawer from '@material-ui/core/Drawer';
 import Divider from '@material-ui/core/Divider';
 import MenuOpenIcon from '@material-ui/icons/MenuOpen';
@@ -10,8 +10,35 @@ import IconButton from '@material-ui/core/IconButton';
 import gobalTheme from '../ThemeContext.js';
 
 const Menu = (props) => {
-  const history = useHistory()
+  const history = useHistory();
+  const location = useLocation();
   const theme = useContext(gobalTheme);
+  const menuListObj = [
+    {
+      name: 'Home',
+      url: '/adminsplash'
+    }, 
+    {
+      name: 'Availability',
+      url: '/availability'
+    },
+    {
+      name: 'Staff',
+      url: '/staff'
+    },
+    {
+      name: 'Students',
+      url: '/students'
+    },
+    {
+      name: 'Classes',
+      url: '/classes'
+    },
+    {
+      name: 'History',
+      url: '/history'
+    }
+  ];
 
   return (
     <Drawer
@@ -30,16 +57,29 @@ const Menu = (props) => {
         </IconButton>
       </div>
       <Divider />
-      <List>
-        <ListItem button onClick={() => {
-          props.setOpen(false)
-          history.replace('/adminsplash')
-        }}>
-          <ListItemText primary={'Home'} />
-        </ListItem>
-      </List>
-      <Divider />
-      <List>
+
+      {menuListObj.map((menuList, index) => {
+        return (
+          <div key={index}>
+            <List>
+              <ListItem button onClick={() => {
+                if (location.pathname === menuList.url) {
+                  props.setOpen(false)
+                  history.replace(menuList.url)
+                } else {
+                  history.push(menuList.url)
+                }
+              }}>
+                <ListItemText primary={menuList.name} />
+              </ListItem>
+            </List>
+            <Divider />
+          </div>
+        )
+      })}
+
+
+      {/* <List>
         <ListItem button onClick={() => {
           props.setOpen(false)
           history.push('/availability')
@@ -83,10 +123,11 @@ const Menu = (props) => {
           <ListItemText primary={'History'} />
         </ListItem>
       </List>
-      <Divider />
+      <Divider /> */}
+
+
       <List>
         <ListItem button onClick={() => {
-          props.setOpen(false)
           history.push('/')
         }}>
           <ListItemText primary={'Logout'} />
