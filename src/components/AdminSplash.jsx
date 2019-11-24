@@ -57,7 +57,7 @@ const AdminSplash = () => {
       {classes.map((classObj, index) => {
         return (
           <div key={index} className="buttonContainer">
-            <NavLink to='/adminoptions'>
+            <NavLink to='/adminOptions'>
               <Fab id="requestButton" onClick={() => setCookie(classObj)} variant="extended" aria-label="add" className={theme.material_ui.whiteButton}>
                 {classObj.course}
               </Fab>

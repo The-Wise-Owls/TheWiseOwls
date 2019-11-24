@@ -16,7 +16,7 @@ const Menu = (props) => {
   const menuListObj = [
     {
       name: 'Home',
-      url: '/adminsplash'
+      url: '/adminSplash'
     }, 
     {
       name: 'Availability',
@@ -55,7 +55,7 @@ const Menu = (props) => {
         <IconButton>
           <MenuOpenIcon style={{ margin: '0 20 0 0 0', padding: '0' }} className={theme.material_ui.menuIcon} />
         </IconButton>
-        <p>{`Hello, ${props.userName}!`}</p>
+        <p>{`Hello, ${props.username}!`}</p>
       </div>
       <Divider />
 

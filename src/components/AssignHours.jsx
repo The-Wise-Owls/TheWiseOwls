@@ -7,7 +7,7 @@ import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import globalTheme from '../ThemeContext.js';
 import Menu from './Menu.jsx';
 
-const AdminOptions = () => {
+const AssignHours = () => {
   const [course, setCourse] = useState('');
   const [username, setUsername] = useState('');
   const [open, setOpen] = React.useState(false);
@@ -18,16 +18,17 @@ const AdminOptions = () => {
     const newCourse = 'MCSP 02';
     const newUser = 'Jeff';
     //get course and name from cookie
+    //get all student names from course
 
     setCourse(newCourse);
     setUsername(newUser);
-  },[]);
+  }, []);
 
   return (
     <>
       <div className="menuContainer">
         <IconButton
-          id="testBackAdminOptions"
+          id="testBackAssignHours"
           aria-label="open drawer"
           onClick={() => history.goBack()}
           edge="start"
@@ -37,7 +38,7 @@ const AdminOptions = () => {
         </IconButton>
 
         <IconButton
-          id="testMenuAdminOptions"
+          id="testMenuAssignHours"
           aria-label="open drawer"
           onClick={() => setOpen(true)}
           edge="start"
@@ -53,23 +54,8 @@ const AdminOptions = () => {
         username={username}
         setOpen={() => setOpen(false)}
       />
-
-      <div className="buttonContainer">
-        <NavLink to='/assignHours'>
-          <Fab id="requestButton" variant="extended" aria-label="add" className={theme.material_ui.whiteButton}>
-            Assign Office Hours
-          </Fab>
-        </NavLink>
-      </div>
-      <div className="buttonContainer">
-        <NavLink to='/classHistory'>
-          <Fab id="requestButton" variant="extended" aria-label="add" className={theme.material_ui.whiteButton}>
-            View History
-          </Fab>
-        </NavLink>
-      </div>
     </>
   );
 };
 
-export default withRouter(AdminOptions);
+export default withRouter(AssignHours);

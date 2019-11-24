@@ -4,7 +4,7 @@ import { withRouter } from 'react-router-dom';
 const History = () => {
 
   return (
-    <div style={{ color: 'white', fontSize: '50px' }} id="templateTest">History</div>
+    <div style={{ color: 'white', fontSize: '50px' }} id="testHistory">History Comming Soon!</div>
   );
 };
 
