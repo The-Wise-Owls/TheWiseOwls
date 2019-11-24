@@ -48,7 +48,7 @@ const Menu = (props) => {
       anchor="left"
       open={props.open}
       classes={{
-        paper: theme.material_ui.drawerPaper,
+        paper: theme.material_ui.drawerPaper
       }}
     >
       <div id="testClose" className={theme.material_ui.drawerHeader} onClick={() => props.setOpen(false)}>
@@ -65,10 +65,10 @@ const Menu = (props) => {
             <List>
               <ListItem button id={`test${menuList.name}`} onClick={() => {
                 if (location.pathname === menuList.url) {
-                  props.setOpen(false)
-                  history.replace(menuList.url)
+                  props.setOpen(false);
+                  history.replace(menuList.url);
                 } else {
-                  history.push(menuList.url)
+                  history.push(menuList.url);
                 }
               }}>
                 <ListItemText primary={menuList.name} />
@@ -80,9 +80,7 @@ const Menu = (props) => {
       })}
 
       <List>
-        <ListItem button id="testLogout" onClick={() => {
-          history.push('/')
-        }}>
+        <ListItem button id="testLogout" onClick={() => {history.push('/')}}>
           <ListItemText primary={'Logout'} />
         </ListItem>
       </List>

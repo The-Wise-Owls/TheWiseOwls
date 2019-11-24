@@ -6,7 +6,6 @@ const Classes = () => {
   return (
     <div style={{color: 'white', fontSize: '50px'}} id="templateTest">Class Management Coming Soon</div>
   );
-
-}
+};
 
 export default withRouter(Classes);

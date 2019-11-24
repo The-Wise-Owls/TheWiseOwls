@@ -6,7 +6,6 @@ const History = () => {
   return (
     <div style={{ color: 'white', fontSize: '50px' }} id="templateTest">History</div>
   );
-
-}
+};
 
 export default withRouter(History);

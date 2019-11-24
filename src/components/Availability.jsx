@@ -4,14 +4,14 @@ import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import globalTheme from '../ThemeContext.js';
-import Menu from './Menu.jsx'
+import Menu from './Menu.jsx';
 
 const Availability = () => {
   const theme = useContext(globalTheme);
   const [open, setOpen] = React.useState(false);
   const [userName, setState] = useState('Jeff');
   const history = useHistory();
-  window.testOpen = open
+  window.testOpen = open;
 
   return (
     <>

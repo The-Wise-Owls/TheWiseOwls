@@ -4,17 +4,17 @@ import { withRouter, useHistory } from 'react-router-dom';
 import gobalTheme from '../ThemeContext.js';
 
 const Login = (props) => {
-  const theme = useContext(gobalTheme)
-  const [isAuth, setAuth] = useState(false)
-  const history = useHistory()
+  const theme = useContext(gobalTheme);
+  const [isAuth, setAuth] = useState(false);
+  const history = useHistory();
   
   const authenticate = () => {
-    setAuth(true)
+    setAuth(true);
   };
 
   useEffect(() =>{
     if (isAuth) history.replace({ pathname: "/adminsplash" })
-  }),[isAuth]
+  }, [isAuth]);
 
   return (
     <>

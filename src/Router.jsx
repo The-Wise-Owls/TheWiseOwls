@@ -3,13 +3,13 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 import Splash from './components/Splash.jsx';
 import Request from './components/Request.jsx';
 import Login from './components/Login.jsx';
-import AdminSplash from './components/AdminSplash.jsx'
-import AdminOptions from './components/AdminOptions.jsx'
-import Availability from './components/Availability.jsx'
-import Students from './components/Students.jsx'
-import Staff from './components/Staff.jsx'
-import Classes from './components/Classes.jsx'
-import History from './components/History.jsx'
+import AdminSplash from './components/AdminSplash.jsx';
+import AdminOptions from './components/AdminOptions.jsx';
+import Availability from './components/Availability.jsx';
+import Students from './components/Students.jsx';
+import Staff from './components/Staff.jsx';
+import Classes from './components/Classes.jsx';
+import History from './components/History.jsx';
 import GlobalTheme from './GlobalTheme.jsx';
 
 const RouteManager = (props) => {

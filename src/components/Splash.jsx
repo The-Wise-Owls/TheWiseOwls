@@ -30,6 +30,6 @@ const Splash = (props) => {
       </div>
     </>
   );
-}
+};
 
 export default withRouter(Splash);

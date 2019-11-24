@@ -4,19 +4,19 @@ import Fab from '@material-ui/core/Fab';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import globalTheme from '../ThemeContext.js';
-import Menu from './Menu.jsx'
+import Menu from './Menu.jsx';
 
 const AdminSplash = () => {
   const tempClasses = ['MCSP 02', 'MCSP 03', 'HRATX 44', 'HRATX 45'];
-  const [classes, setClasses] = useState(tempClasses)
+  const [classes, setClasses] = useState(tempClasses);
   const theme = useContext(globalTheme);
   const [open, setOpen] = React.useState(false);
   const [userName, setState] = useState('Jeff');
-  window.testOpen = open
+  window.testOpen = open;
 
   useEffect(() => {
     //axios request to fetch class names and user name
-  }),[]
+  }, []);
 
   return (
     <>

@@ -6,7 +6,6 @@ const Template = () => {
   return (
     <div style={{color: 'white', fontSize: '50px'}} id="templateTest">Template</div>
   );
-
-}
+};
 
 export default withRouter(Template);
