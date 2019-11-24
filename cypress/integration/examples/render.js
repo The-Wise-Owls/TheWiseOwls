@@ -45,9 +45,6 @@ describe('The Wise Owls', function () {
     cy.get('#testMenuAvailability').click()
     cy.window().its('testOpen').should('equal', true)
   })
-  
-
-
 
   it('should navigate to request page on click', function() {
     cy.visit('/');

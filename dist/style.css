@@ -1,5 +1,6 @@
 body {
   background-color: #102A49;
+  font-family: Helvetica Neue, Helvetica;
 }
 
 #root {
@@ -31,14 +32,12 @@ body {
 }
 
 h1 {
-  font-family: Helvetica Neue, Helvetica;
   color: #EE882C;
   font-weight: bold;
   font-size: 60px;
 }
 
 h2 {
-  font-family: Helvetica Neue, Helvetica;
   color: #EE882C;
   font-weight: bold;
   font-size: 35px;

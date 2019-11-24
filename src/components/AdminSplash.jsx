@@ -3,13 +3,13 @@ import { withRouter, NavLink, useLocation } from 'react-router-dom';
 import Fab from '@material-ui/core/Fab';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
-import gobalTheme from '../ThemeContext.js';
+import globalTheme from '../ThemeContext.js';
 import Menu from './Menu.jsx'
 
 const AdminSplash = () => {
   const tempClasses = ['MCSP 02', 'MCSP 03', 'HRATX 44', 'HRATX 45'];
   const [classes, setClasses] = useState(tempClasses)
-  const theme = useContext(gobalTheme);
+  const theme = useContext(globalTheme);
   const [open, setOpen] = React.useState(false);
   const [userName, setState] = useState('Jeff');
   window.testOpen = open

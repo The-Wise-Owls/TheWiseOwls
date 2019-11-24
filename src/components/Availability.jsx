@@ -3,11 +3,11 @@ import { withRouter, useHistory } from 'react-router-dom';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
-import gobalTheme from '../ThemeContext.js';
+import globalTheme from '../ThemeContext.js';
 import Menu from './Menu.jsx'
 
 const Availability = () => {
-  const theme = useContext(gobalTheme);
+  const theme = useContext(globalTheme);
   const [open, setOpen] = React.useState(false);
   const [userName, setState] = useState('Jeff');
   const history = useHistory();
