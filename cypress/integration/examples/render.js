@@ -1,6 +1,6 @@
 describe('The Wise Owls', function () {
   it('Should render The Wise Owls splash page', function() {
-    cy.visit('/');
+    cy.visit('/')
   })
 
   it('Should navigate to login page on click', function () {
@@ -41,13 +41,13 @@ describe('The Wise Owls', function () {
   })
 
   it('Should open menu on availability page', function () {
-    cy.visit('/availability');
+    cy.visit('/availability')
     cy.get('#testMenuAvailability').click()
     cy.window().its('testOpen').should('equal', true)
   })
 
   it('should navigate to request page on click', function() {
-    cy.visit('/');
+    cy.visit('/')
     cy.get('#testRequestButton').click()
     cy.url().should('match', /request/)
   })
