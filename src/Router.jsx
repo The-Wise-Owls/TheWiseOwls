@@ -12,6 +12,7 @@ import Classes from './components/Classes.jsx';
 import History from './components/History.jsx';
 import ClassHistory from './components/ClassHistory.jsx';
 import AssignHours from './components/AssignHours.jsx';
+import Assigned from './components/Assigned.jsx';
 import GlobalTheme from './GlobalTheme.jsx';
 
 const RouteManager = (props) => {
@@ -30,6 +31,7 @@ const RouteManager = (props) => {
         <Route exact path="/history" component={History} />
         <Route exact path="/classHistory" component={ClassHistory} />
         <Route exact path="/assignHours" component={AssignHours} />
+        <Route exact path="/assigned" component={Assigned} />
 
       </Router>
     </GlobalTheme>

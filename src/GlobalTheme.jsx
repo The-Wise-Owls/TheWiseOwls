@@ -17,6 +17,20 @@ const useStyles = makeStyles({
     fontFamily: 'Helvetica',
     textTransform: "none"
   },
+  orangeButton: {
+    background: '#EA882C',
+    border: 0,
+    borderRadius: 20,
+    boxShadow: '0 0 0 0 #000000',
+    color: 'black',
+    padding: '0 30px',
+    width: 345,
+    height: 63,
+    fontSize: 24,
+    fontWeight: "bold",
+    fontFamily: 'Helvetica',
+    textTransform: "none"
+  },
   loginButton: {
     background: '#EA882C',
     border: 0,
@@ -52,6 +66,9 @@ const useStyles = makeStyles({
     fontSize: '66px',
     color: '#EA882C',
     margin: 'auto 20px',
+  },
+  formControl: {
+    margin: 0,
   }
 });
 
