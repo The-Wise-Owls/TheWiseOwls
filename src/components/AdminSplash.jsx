@@ -13,7 +13,7 @@ const AdminSplash = () => {
   const [classes, setClasses] = useState(tempClasses);
   const theme = useContext(globalTheme);
   const [open, setOpen] = React.useState(false);
-  const [userName, setState] = useState('Jeff'); 
+  const [username, setUsername] = useState('Jeff'); 
   window.testOpen = open;
 
   useEffect(() => {
@@ -50,7 +50,7 @@ const AdminSplash = () => {
     </div>
     <Menu 
       open={open}
-      userName={userName}
+      username={username}
       setOpen={() => setOpen(false)}
     />
       

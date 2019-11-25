@@ -13,7 +13,7 @@ const Login = (props) => {
   };
 
   useEffect(() =>{
-    if (isAuth) history.replace({ pathname: "/adminsplash" })
+    if (isAuth) history.replace({ pathname: "/adminSplash" })
   }, [isAuth]);
 
   return (
