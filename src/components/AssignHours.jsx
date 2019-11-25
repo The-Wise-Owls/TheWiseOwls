@@ -20,6 +20,8 @@ const AssignHours = () => {
   const [students, setStudents] = useState([])
   const [open, setOpen] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [assessmentName, setAssessmentName] = useState('');
+  const [assessmentDate, setAssessmentDate] = useState('');
   const theme = useContext(globalTheme);
   const history = useHistory();
   
@@ -55,11 +57,14 @@ const AssignHours = () => {
 
     Axios.get('/assigned', {
       params: {
-        studentIds: scheduledStudents
+        studentIds: scheduledStudents,
+        assessmentName: assessmentName,
+        assessmentDate: assessmentDate
       }
     })
     .then(({data}) => {
       //set data into local cookie
+      //set students object in local cookie
     })
     .then(() => {
       history.push('/assigned');
