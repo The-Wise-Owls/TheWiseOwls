@@ -4,9 +4,10 @@
   "description": "donuts, cats, react, and such",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "webpack -d",
+    "build": "webpack -d -w",
     "compile": "webpack-dev-server -d",
+    "cypress": "cypress run",
+    "cypress:open": "cypress open",
     "start": "nodemon server/server.js"
   },
   "author": "Salinas",
@@ -20,9 +21,12 @@
     "react": "^16.8.6",
     "webpack": "^4.38.0",
     "webpack-cli": "^3.3.6",
-    "webpack-dev-server": "^3.8.2"
+    "webpack-dev-server": "^3.8.2",
+    "cypress": "^3.6.1"
   },
   "dependencies": {
+    "@material-ui/core": "^4.6.1",
+    "@material-ui/icons": "^4.5.1",
     "axios": "^0.19.0",
     "body-parser": "^1.19.0",
     "express": "^4.17.1",

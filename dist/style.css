@@ -1,0 +1,85 @@
+body {
+  background-color: #102A49;
+  font-family: Helvetica Neue, Helvetica;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+}
+
+/* --- Headers --- */
+.menuContainer {
+  display: flex;
+  justify-content: flex-start;
+  width: 100vw;
+  min-height: 65px;
+  margin: 10px 0 30px 0;
+}
+
+.leftMenuIconButton {
+  right: 20px;
+}
+
+.menuIconButton {
+  right: 60px;
+}
+
+.menuIcon {
+  position: relative;
+  bottom: 12px;
+  z-index: -1;
+}
+
+h1 {
+  color: #EE882C;
+  font-weight: bold;
+  font-size: 60px;
+}
+
+h2 {
+  color: #EE882C;
+  font-weight: bold;
+  font-size: 35px;
+  margin: 10.8px 0 0 0;
+  width: 100%;
+}
+
+@media all and (min-width: 38em) {
+  h2 {
+  position: absolute;
+  text-align: center;
+  z-index: -1;
+  }
+}
+
+#splashHeader {
+  align-self: center;
+  justify-content: flex-start;
+  width: 345px;
+}
+
+.buttonContainer {
+  display: flex;
+  justify-content: center;
+  width: 100vw;
+  height: 63px;
+  margin: 20px 0;
+}
+
+.radioButtonContainer {
+  display: flex;
+  justify-content: center;
+  width: 100vw;
+}
+
+#scheduleLoading {
+  width: 50px;
+  height: 50px;
+}
+
+a {
+  text-decoration: none;
+}
+
+

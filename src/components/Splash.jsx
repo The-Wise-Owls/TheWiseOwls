@@ -1,22 +1,35 @@
-import React, { Component } from 'react';
+import React, { useContext } from 'react';
 import { withRouter, NavLink } from 'react-router-dom';
+import Fab from '@material-ui/core/Fab';
+import gobalTheme from '../ThemeContext.js';
 
-class Splash extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {};
-  }
+const Splash = (props) => {
+  const theme = useContext(gobalTheme);
 
-  render() {
-    return (
-      <div>
-        <p>Hello from app.jsx!!</p>
-        <NavLink to='/template'>
-          <button>change</button>
+  return (
+    <>
+      <div id="splashHeader">
+        <h1>The<br/>
+            Wise<br/>
+            Owls
+        </h1>
+      </div>
+      <div className="buttonContainer">
+        <NavLink to='/request'>
+          <Fab id="testRequestButton" variant="extended" aria-label="add" className={theme.material_ui.whiteButton}>
+              Request Office Hours
+          </Fab>
         </NavLink>
       </div>
-    );
-  }
-}
+      <div className="buttonContainer">
+        <NavLink to='/login'>
+          <Fab id="testLoginButton" variant="extended" aria-label="add" className={theme.material_ui.whiteButton}>
+            Staff Login
+          </Fab>
+        </NavLink>
+      </div>
+    </>
+  );
+};
 
 export default withRouter(Splash);
