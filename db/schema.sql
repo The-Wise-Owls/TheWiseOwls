@@ -8,6 +8,7 @@ CREATE TABLE staff (
   staff_id INT AUTO_INCREMENT,
   fullName VARCHAR(30) NOT NULL,
   email VARCHAR(30) NOT NULL,
+  active TINYINT DEFAULT 1,
   PRIMARY KEY (staff_id)
 );
 
@@ -61,9 +62,10 @@ CREATE TABLE staff_programs (
 
 CREATE TABLE office_hours (
   oh_id INT AUTO_INCREMENT,
-  staff_id INT NOT NULL,
+  staff_id INT,
   student_id INT NOT NULL,
-  date DATE NOT NULL,
+  date_assigned DATE NOT NULL,
+  date_scheduled DATE NOT NULL,
   start TIME NOT NULL,
   end TIME NOT NULL,
   topic VARCHAR(255) NOT NULL,
