@@ -10,7 +10,7 @@ import Menu from './Menu.jsx';
 const AdminSplash = () => {
   const [classes, setClasses] = useState([]);
   const theme = useContext(globalTheme);
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = useState(false);
   const [username, setUsername] = useState('Jeff'); 
   window.testOpen = open;
 

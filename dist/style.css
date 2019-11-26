@@ -78,8 +78,80 @@ h2 {
   height: 50px;
 }
 
+.MuiTypography-body1 {
+  font-size: 20px !important ;
+  font-weight: bold !important;
+}
+
 a {
   text-decoration: none;
 }
 
+/* Assign Hours Inputs */
+
+#assignHoursInputs {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  margin: 0 0 20px 0;
+}
+
+#standard-basic-label {
+  color: #EE882C;
+  font-size: 15px;
+}
+#standard-basic {
+  color: #f4f4f5;
+  font-size: 20px;
+}
+
+#assignemntInputContainer {
+  display: flex;
+  flex-direction: row;
+  min-width: 50%;
+  justify-content: flex-end ;
+  align-items: flex-end;
+}
+
+#assessmentNameInput {
+  width: 165px;
+  margin: 0 20px 8px 0;
+}
+
+#calendarInputContainer {
+  min-width: 50%;
+  margin: 0 0 0 20px; 
+}
+
+/* Calendar */
+
+#calendar {
+  width: 109px;
+  color: #F4F4F5;  
+  font-size: 20px;
+}
+
+#calendar-label {
+  color: #EE882C;  
+}
+
+.assignHoursRadioLables {
+  color: #F4F4F5;
+}
+
+.MuiPickersDay-daySelected:hover {
+    background-color: #EE882C !important;
+}
+
+.MuiPickersDay-daySelected {
+    background-color: #EE882C !important;
+}
+
+.MuiPickersDay-current {
+  color: rgba(0, 0, 0, 0.87) !important;
+}
+
+.MuiInput-underline:after {
+  border-bottom: 2px solid #F4F4F5 !important;
+}
 

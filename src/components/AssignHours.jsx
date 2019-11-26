@@ -11,8 +11,24 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
 import RadioButtonUncheckedIcon from '@material-ui/icons/RadioButtonUnchecked';
 import RadioButtonCheckedIcon from '@material-ui/icons/RadioButtonChecked';
+import { withStyles } from "@material-ui/core/styles";
+import { amber } from "@material-ui/core/colors";
+import DateFnsUtils from '@date-io/date-fns';
+import { MuiPickersUtilsProvider, KeyboardDatePicker } from '@material-ui/pickers';
+import 'date-fns';
+import TextField from '@material-ui/core/TextField';
 import globalTheme from '../ThemeContext.js';
 import Menu from './Menu.jsx';
+
+const OrangeCheckbox = withStyles({
+  root: {
+    color: amber[800],
+    "&$checked": {
+      color: amber[800]
+    }
+  },
+  checked: {}
+})(props => <Checkbox color="default" {...props} />);
 
 const AssignHours = () => {
   const [course, setCourse] = useState('');
@@ -21,7 +37,7 @@ const AssignHours = () => {
   const [open, setOpen] = useState(false);
   const [loading, setLoading] = useState(false);
   const [assessmentName, setAssessmentName] = useState('');
-  const [assessmentDate, setAssessmentDate] = useState('');
+  const [assessmentDate, setAssessmentDate] = useState(new Date());
   const theme = useContext(globalTheme);
   const history = useHistory();
   
@@ -104,20 +120,48 @@ const AssignHours = () => {
         username={username}
         setOpen={() => setOpen(false)}
       />
+
+    <div id="assignHoursInputs">
+      <div id="assignemntInputContainer">
+        <form id="assessmentNameInput" noValidate autoComplete="off">
+          <TextField id="standard-basic" label="Assessment Name" onChange={(e) => setAssessmentName(e.target.value)} value={assessmentName}/>
+        </form>
+      </div>
+      <div id="calendarInputContainer">
+        <MuiPickersUtilsProvider utils={DateFnsUtils}>
+          <KeyboardDatePicker
+              id="calendar"
+              disableToolbar
+              variant="inline"
+              format="MM/dd/yyyy"
+              margin="normal"
+              label="Assessment Date"
+              value={assessmentDate}
+              onChange={(date) => setAssessmentDate(date)}
+              KeyboardButtonProps={{
+                'aria-label': 'change date',
+              }}
+            />
+        </MuiPickersUtilsProvider>
+      </div>
+    </div>
       <div className="radioButtonContainer">
         <FormControl component="fieldset" className={theme.material_ui.formControl}>
           <FormGroup>
             {students.map((student, index) => {
               return (
                 <FormControlLabel
+                  className="assignHoursRadioLables"
                   key={student.name}
                   label={student.name}
                   control={
-                    <Checkbox icon={<RadioButtonUncheckedIcon />} 
-                    checkedIcon={<RadioButtonCheckedIcon />} 
-                    checked={student.checked} 
-                    onChange={() => handleCheck(index)} 
-                    value={student.name} />
+                    <OrangeCheckbox 
+                      icon={<RadioButtonUncheckedIcon fontSize="large" />} 
+                      checkedIcon={<RadioButtonCheckedIcon fontSize="large" />} 
+                      checked={student.checked} 
+                      onChange={() => handleCheck(index)} 
+                      value={student.name} 
+                    />
                   }
                 />
               );

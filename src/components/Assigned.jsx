@@ -10,7 +10,7 @@ import Menu from './Menu.jsx';
 const Assigned = () => {
   const [course, setCourse] = useState('');
   const [username, setUsername] = useState('');
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = useState(false);
   const theme = useContext(globalTheme);
   const history = useHistory();
 
