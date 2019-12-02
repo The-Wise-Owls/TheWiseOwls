@@ -8,7 +8,7 @@ INSERT INTO staff (fullName, email) VALUES ('Nik Mentakis', 'nm@galvanize.com');
 INSERT INTO staff (fullName, email) VALUES ('Zubair Desai', 'zd@galvanize.com');
 
 -- Populate programs table
-INSERT INTO programs (name) VALUES ('Hack Reactor');
+INSERT INTO programs (name) VALUES ('HRATX');
 INSERT INTO programs (name) VALUES ('MCSP');
 
 -- Populate classes table
