@@ -8,25 +8,19 @@ import globalTheme from '../ThemeContext.js';
 import Menu from './Menu.jsx';
 
 const AdminSplash = () => {
-  const tempClasses = [{ course: 'MCSP 02', id: 1 }, { course: 'MCSP 03', id: 2 }, 
-    { course: 'HRATX 44', id: 3 }, { course: 'HRATX 45', id: 4 }];
-  const [classes, setClasses] = useState(tempClasses);
+  const [classes, setClasses] = useState([]);
   const theme = useContext(globalTheme);
   const [open, setOpen] = React.useState(false);
   const [username, setUsername] = useState('Jeff'); 
   window.testOpen = open;
 
   useEffect(() => {
-    // const userEmail = //fetch email from cookie
+    const userEmail = 'kk@galvanize.com'
 
-    // Axios.get('/adminsplash', {
-    //   params: {
-    //     email: userEmail
-    //   }
-    // })
-    // .then(({data}) => {
-    //   setClasses(data)
-    // })
+    Axios.get(`/admin/${userEmail}/classes`)
+    .then(({ data }) => {
+      setClasses(data);
+    })
   }, []);
 
   const setCookie = (obj) => {
