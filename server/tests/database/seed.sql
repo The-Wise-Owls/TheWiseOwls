@@ -12,24 +12,48 @@ INSERT INTO programs (name) VALUES ('HRATX');
 INSERT INTO programs (name) VALUES ('MCSP');
 
 -- Populate classes table
-INSERT INTO classes (program, cohort) VALUES (1, 44);
 INSERT INTO classes (program, cohort) VALUES (1, 45);
+INSERT INTO classes (program, cohort) VALUES (1, 46);
 INSERT INTO classes (program, cohort) VALUES (2, 2);
 INSERT INTO classes (program, cohort) VALUES (2, 3);
 
 -- Populate students table
-INSERT INTO students (fullName, email, class) VALUES ('Gbenga Olu', 'go@gmail.com', 3);
-INSERT INTO students (fullName, email, class) VALUES ('Herman W', 'hw@gmail.com', 3);
-INSERT INTO students (fullName, email, class) VALUES ('Julius Fry', 'jf@gmail.com', 3);
-INSERT INTO students (fullName, email, class) VALUES ('Bob Bob', 'bb@gmail.com', 4);
-INSERT INTO students (fullName, email, class) VALUES ('Alice Alice', 'aa@gmail.com', 4);
-INSERT INTO students (fullName, email, class) VALUES ('Happy Happy', 'hh@gmail.com', 4);
-INSERT INTO students (fullName, email, class) VALUES ('John Conolly', 'jc@gmail.com', 2);
-INSERT INTO students (fullName, email, class) VALUES ('Mark Mark', 'mm@gmail.com', 2);
-INSERT INTO students (fullName, email, class) VALUES ('Martin Ramos', 'mr@gmail.com', 2);
-INSERT INTO students (fullName, email, class) VALUES ('Zach Zach', 'zz@gmail.com', 1);
-INSERT INTO students (fullName, email, class) VALUES ('Pony Pony', 'pp@gmail.com', 1);
-INSERT INTO students (fullName, email, class) VALUES ('Help Me', 'hm@gmail.com', 1);
+INSERT INTO students (fullName, email, class) VALUES ('Gabriel Anderson', 'gla.ander@gmail.com', 1);
+INSERT INTO students (fullName, email, class) VALUES ('Tom Chandler', 'chandlertom71@gmail.com', 1);
+INSERT INTO students (fullName, email, class) VALUES ('Jonathan Diaz', 'jcdiaz1201@gmail.com', 1);
+INSERT INTO students (fullName, email, class) VALUES ('Bruce Ferguson', 'bruce.ferguson3@gmail.com', 1);
+INSERT INTO students (fullName, email, class) VALUES ('Mark Fuechec', 'fuechec.mark@gmail.com', 1);
+INSERT INTO students (fullName, email, class) VALUES ('Benjamin Hong', 'benjaminhong@live.com', 1);
+INSERT INTO students (fullName, email, class) VALUES ('Sam Lawson', 'slawson355@gmail.com', 1);
+INSERT INTO students (fullName, email, class) VALUES ('Matt Lucas', 'mattyshiloh23@gmail.com ', 1);
+INSERT INTO students (fullName, email, class) VALUES ('Natalia Malesa', 'nmalesa@gmail.com', 1);
+INSERT INTO students (fullName, email, class) VALUES ('Kytra Murphee', 'kytracupcake@gmail.com', 1);
+INSERT INTO students (fullName, email, class) VALUES ('Tim Sanderson', 'twsand11@gmail.com', 1);
+INSERT INTO students (fullName, email, class) VALUES ('David Silva', 'davidsilva525@outlook.com', 1);
+INSERT INTO students (fullName, email, class) VALUES ('Collin Snyder', 'collinjacobsnyder@gmail.com', 1);
+INSERT INTO students (fullName, email, class) VALUES ('Ish Tahir', 'tahirismaeel@gmail.com', 1);
+INSERT INTO students (fullName, email, class) VALUES ('Alyssa Wadley', 'wadley.alyssa@gmail.com', 1);
+INSERT INTO students (fullName, email, class) VALUES ('Marco Aliaga', 'cerasta81@gmail.com', 3);
+INSERT INTO students (fullName, email, class) VALUES ('Angel Alvarado', 'alvarado399061@gmail.com', 3);
+INSERT INTO students (fullName, email, class) VALUES ('Shaun Carr', 'shauncarr2010@hotmail.com', 3);
+INSERT INTO students (fullName, email, class) VALUES ('Sujan Dahal', 'dahalsujanusa@gmail.com', 3);
+INSERT INTO students (fullName, email, class) VALUES ('DJ Djinadou', 'nourenidjinadou@yahoo.com', 3);
+INSERT INTO students (fullName, email, class) VALUES ('Ray Dunning', 'dunningray@gmail.com', 3);
+INSERT INTO students (fullName, email, class) VALUES ('Julius Fry', 'fryjulius@gmail.com', 3);
+INSERT INTO students (fullName, email, class) VALUES ('Josh Halsey', 'halseyjt@yahoo.com', 3);
+INSERT INTO students (fullName, email, class) VALUES ('Franky Leyva', 'surefirefjl@gmail.com', 3);
+INSERT INTO students (fullName, email, class) VALUES ('Gbenga Olufemi', 'Phemmylincon27@gmail.com', 3);
+INSERT INTO students (fullName, email, class) VALUES ('Noah Smith', 'fortycreeek24@yahoo.com', 3);
+INSERT INTO students (fullName, email, class) VALUES ('Rodney Spears', 'rodneyspears03@gmail.com', 3);
+INSERT INTO students (fullName, email, class) VALUES ('Herman Wambugu', 'Hkw875@hotmail.com', 3);
+INSERT INTO students (fullName, email, class) VALUES ('Milo Castaneda', 'milo.work.school@gmail.com', 4);
+INSERT INTO students (fullName, email, class) VALUES ('Aaron Evans', 'aaronmevans14@gmail.com', 4);
+INSERT INTO students (fullName, email, class) VALUES ('Laura Evans', 'lauraevans0218@gmail.com', 4);
+INSERT INTO students (fullName, email, class) VALUES ('Poli Gonzalez', 'gonzalezpoli10@gmail.com', 4);
+INSERT INTO students (fullName, email, class) VALUES ('Ellis Griffin', 'ellisjr.griffin@gmail.com', 4);
+INSERT INTO students (fullName, email, class) VALUES ('Emery Mitchell', 'emery_m@yahoo.com', 4);
+INSERT INTO students (fullName, email, class) VALUES ('Martin Ramos', 'ramosmartin.14.mr@gmail.com', 4);
+INSERT INTO students (fullName, email, class) VALUES ('Zach Yusuf', 'zachyusuf@aol.com', 4);
 
 -- Populate staff_availability table
 INSERT INTO staff_availability (day, start, end, staff_id) VALUES (1, '14:30', '17:00', 1);
