@@ -1,5 +1,7 @@
 .DS_Store
 node_modules
 dist/bundle.js
+server/models/config.js
+server/tests/database/config.js
 cypress/videos
 cypress/screenshots
