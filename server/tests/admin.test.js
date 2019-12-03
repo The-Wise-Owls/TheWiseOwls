@@ -29,7 +29,10 @@ describe('Admin Features', function() {
         .get('/admin/kk@galvanize.com/classes')
         .expect(200)
         .expect('Content-Type', /json/)
-        .expect([{"course": "HRATX 44"}, {"course": "HRATX 45"}, {"course": "MCSP 02"}, {"course": "MCSP 03"}])
+        .expect({
+          "name": "Kim Kost",
+          "classes": [{"id": 1, "course": "HRATX 45"}, {"id": 2, "course": "HRATX 46"}, {"id": 3, "course": "MCSP 02"}, {"id": 4, "course": "MCSP 03"}]
+        })
         .end((err, res) => {
           if (err) {
             return done(err);
