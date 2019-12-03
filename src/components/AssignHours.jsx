@@ -28,15 +28,20 @@ const AssignHours = () => {
   useEffect(() => {
     const newCourse = 'MCSP 02';
     const newUser = 'Jeff';
-    const newStudents = [{ id: 1, name: 'Alice McMac', checked: false }, { id: 2, name: '2quack', checked: false}, 
-    {id:3, name: 'Bob The Builder', checked: false}, {id: 4, name: 'The Green Power Ranger', checked: false}, 
-    {id: 5, name: 'Tom Andjerry', checked: false}]
+    const classID = 3;
+
+    Axios.get(`/admin/classes/${classID}/students`)
+      .then(({ data }) => {
+        data.forEach(student => student.checked = false);
+        setStudents(data);
+      })
+      .catch(err => console.log(err));
+
     //get course and name from cookie
     //get all student names from course
-    
+
     setCourse(newCourse);
     setUsername(newUser);
-    setStudents(newStudents);
   }, []);
 
   const handleCheck = (index) => {
