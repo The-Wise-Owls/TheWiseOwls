@@ -3,8 +3,10 @@ const path = require('path');
 const app = express();
 const port = 3000;
 
+const adminRouter = require('./routes/admin.js');
 
 app.use(express.static('dist'));
+app.use('/admin', adminRouter);
 
 app.get('/*', function (req, res) {
   res.sendFile(path.join(__dirname, '../dist/index.html'), function (err) {
@@ -14,4 +16,6 @@ app.get('/*', function (req, res) {
   });
 });
 
-app.listen(port, () => console.log(`listening from port: ${port}`));
+const server = app.listen(port, () => console.log(`Listening from port: ${port}`));
+
+module.exports = server;
