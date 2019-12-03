@@ -39,7 +39,6 @@ describe('Admin Features', function() {
           }
           done();
         });
-
     });
     
     it('When an invalid email is provided, expect an error', function(done) {
@@ -52,6 +51,36 @@ describe('Admin Features', function() {
         }
         done();
       });
+    });
+  });
+
+  describe('View all students enrolled in a selected cohort', function() {
+    it('When a valid class ID is provided, expect all students in cohort to be shown', function(done) {
+      request(server)
+        .get('/admin/classes/4/students')
+        .expect(200)
+        .expect('Content-Type', /json/)
+        .expect(
+          [{"id": 29, "name": "Milo Castaneda"}, {"id": 30, "name": "Aaron Evans"}, {"id": 31, "name": "Laura Evans"}, {"id": 32, "name": "Poli Gonzalez"}, {"id": 33, "name": "Ellis Griffin"}, {"id": 34, "name": "Emery Mitchell"}, {"id": 35, "name": "Martin Ramos"}, {"id": 36, "name": "Zach Yusuf"}]
+        )
+        .end((err, res) => {
+          if (err) {
+            return done(err);
+          }
+          done();
+        });
+    });
+
+    it('When an invalid class ID is provided, expect an error', function(done) {
+      request(server)
+        .get('/admin/classes/5/students')
+        .expect(404)
+        .end((err, res) => {
+          if (err) {
+            return done(err);
+          }
+          done();
+        });
     });
   });
 });
