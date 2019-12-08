@@ -18,9 +18,10 @@ const AdminSplash = () => {
     const userEmail = 'kk@galvanize.com'
 
     Axios.get(`/admin/${userEmail}/classes`)
-    .then(({ data }) => {
-      setClasses(data);
-    })
+      .then(({ data }) => {
+        setClasses(data.classes);
+      })
+      .catch(err => console.log(err));
   }, []);
 
   const setCookie = (obj) => {
