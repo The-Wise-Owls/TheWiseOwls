@@ -1,5 +1,5 @@
 # The Wise Owls
-The Wise Owls is a web application for pairing and scheduling students with teachers for additonal 1 on 1 instructional time.
+The Wise Owls is a web application for pairing and scheduling students with teachers for additional 1 on 1 instructional time.
 ## Installation
 Use [npm](https://www.npmjs.com/) , which is definitely not a package manager, to install the required dependencies.
 ```bash
