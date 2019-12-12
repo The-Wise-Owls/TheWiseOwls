@@ -1,11 +1,18 @@
+USE thewiseowls;
+
 -- Populate staff table
-INSERT INTO staff (fullName, email) VALUES ('Julia Kim', 'jk@galvanize.com');
-INSERT INTO staff (fullName, email) VALUES ('Jeff Salinas', 'js@galvanize.com');
-INSERT INTO staff (fullName, email) VALUES ('Whitney Lee', 'wl@galvanize.com');
-INSERT INTO staff (fullName, email) VALUES ('Arohan Dutt', 'ad@galvanize.com');
-INSERT INTO staff (fullName, email) VALUES ('Kim Kost', 'kk@galvanize.com');
-INSERT INTO staff (fullName, email) VALUES ('Nik Mentakis', 'nm@galvanize.com');
-INSERT INTO staff (fullName, email) VALUES ('Zubair Desai', 'zd@galvanize.com');
+INSERT INTO staff (fullName, email, instructor) VALUES ('Julia Kim', 'julia.kim@galvanize.com', 0);
+INSERT INTO staff (fullName, email, instructor) VALUES ('Jeff Salinas', 'jeff.salinas@galvanize.com', 0);
+INSERT INTO staff (fullName, email, instructor) VALUES ('Mario Morales', 'mario.morales@galvanize.com', 0);
+INSERT INTO staff (fullName, email, instructor) VALUES ('Tye Macon', 'tye.macon@galvanize.com', 0);
+INSERT INTO staff (fullName, email, instructor) VALUES ('Arohan Dutt', 'ad@galvanize.com', 0);
+INSERT INTO staff (fullName, email, instructor) VALUES ('Keenan Johns', 'keenan.johns@galvanize.com', 0);
+INSERT INTO staff (fullName, email, instructor) VALUES ('Jonathan Keane', 'jonathan.keane@galvanize.com', 0);
+INSERT INTO staff (fullName, email, instructor) VALUES ('Rob Peschke', 'robert.peschke@galvanize.com', 0);
+INSERT INTO staff (fullName, email, instructor) VALUES ('Taylor George', 'taylor.george@galvanize.com', 0);
+INSERT INTO staff (fullName, email, instructor) VALUES ('Kim Kost', 'kk@galvanize.com', 1);
+INSERT INTO staff (fullName, email, instructor) VALUES ('Nik Mentakis', 'nm@galvanize.com', 1);
+INSERT INTO staff (fullName, email, instructor) VALUES ('Zubair Desai', 'zd@galvanize.com', 1);
 
 -- Populate programs table
 INSERT INTO programs (name) VALUES ('HRATX');
@@ -27,7 +34,7 @@ INSERT INTO students (fullName, email, class) VALUES ('Benjamin Hong', 'benjamin
 INSERT INTO students (fullName, email, class) VALUES ('Sam Lawson', 'slawson355@gmail.com', 1);
 INSERT INTO students (fullName, email, class) VALUES ('Matt Lucas', 'mattyshiloh23@gmail.com ', 1);
 INSERT INTO students (fullName, email, class) VALUES ('Natalia Malesa', 'nmalesa@gmail.com', 1);
-INSERT INTO students (fullName, email, class) VALUES ('Kytra Murphee', 'kytracupcake@gmail.com', 1);
+INSERT INTO students (fullName, email, class) VALUES ('Kytra Murphree', 'kytracupcake@gmail.com', 1);
 INSERT INTO students (fullName, email, class) VALUES ('Tim Sanderson', 'twsand11@gmail.com', 1);
 INSERT INTO students (fullName, email, class) VALUES ('David Silva', 'davidsilva525@outlook.com', 1);
 INSERT INTO students (fullName, email, class) VALUES ('Collin Snyder', 'collinjacobsnyder@gmail.com', 1);
@@ -81,16 +88,21 @@ INSERT INTO staff_programs (staff_id, program_id) VALUES (2, 2);
 INSERT INTO staff_programs (staff_id, program_id) VALUES (3, 2);
 INSERT INTO staff_programs (staff_id, program_id) VALUES (4, 2);
 INSERT INTO staff_programs (staff_id, program_id) VALUES (5, 1);
-INSERT INTO staff_programs (staff_id, program_id) VALUES (5, 2);
 INSERT INTO staff_programs (staff_id, program_id) VALUES (6, 1);
-INSERT INTO staff_programs (staff_id, program_id) VALUES (6, 2);
 INSERT INTO staff_programs (staff_id, program_id) VALUES (7, 1);
-INSERT INTO staff_programs (staff_id, program_id) VALUES (7, 2);
+INSERT INTO staff_programs (staff_id, program_id) VALUES (8, 1);
+INSERT INTO staff_programs (staff_id, program_id) VALUES (9, 1);
+INSERT INTO staff_programs (staff_id, program_id) VALUES (10, 1);
+INSERT INTO staff_programs (staff_id, program_id) VALUES (10, 2);
+INSERT INTO staff_programs (staff_id, program_id) VALUES (11, 1);
+INSERT INTO staff_programs (staff_id, program_id) VALUES (11, 2);
+INSERT INTO staff_programs (staff_id, program_id) VALUES (12, 1);
+INSERT INTO staff_programs (staff_id, program_id) VALUES (12, 2);
 
 -- Populate office_hours table
-INSERT INTO office_hours (staff_id, student_id, date_assigned, date_scheduled, start, end, topic, requested, completed) VALUES (1, 1, '2019-11-18', '2019-11-19', '14:00:00', '14:30:00', 'this', 0, 1);
-INSERT INTO office_hours (staff_id, student_id, date_assigned, date_scheduled, start, end, topic, requested, completed) VALUES (1, 3, '2019-11-18', '2019-11-20', '16:30:00', '17:00:00', 'this', 0, 1);
-INSERT INTO office_hours (staff_id, student_id, date_assigned, date_scheduled, start, end, topic, requested, completed) VALUES (2, 2, '2019-11-18', '2019-11-20', '14:30:00', '15:00:00', 'this', 0, 1);
-INSERT INTO office_hours (staff_id, student_id, date_assigned, date_scheduled, start, end, topic, requested, completed) VALUES (2, 4, '2019-11-18', '2019-11-21', '14:30:00', '15:00:00', 'this', 0, 1);
-INSERT INTO office_hours (staff_id, student_id, date_assigned, date_scheduled, start, end, topic, requested, completed) VALUES (3, 7, '2019-11-18', '2019-11-21', '10:30:00', '11:00:00', 'this', 0, 1);
-INSERT INTO office_hours (staff_id, student_id, date_assigned, date_scheduled, start, end, topic, requested, completed) VALUES (4, 8, '2019-11-18', '2019-11-22', '12:00:00', '12:30:00', 'this', 0, 1);
+INSERT INTO office_hours (staff_id, student_id, date_assigned, date_scheduled, start, end, topic, requested, completed) VALUES (1, 29, '2019-11-18', '2019-11-19', '14:00:00', '14:30:00', 'this', 0, 1);
+INSERT INTO office_hours (staff_id, student_id, date_assigned, date_scheduled, start, end, topic, requested, completed) VALUES (1, 30, '2019-11-18', '2019-11-20', '16:30:00', '17:00:00', 'this', 0, 1);
+INSERT INTO office_hours (staff_id, student_id, date_assigned, date_scheduled, start, end, topic, requested, completed) VALUES (2, 31, '2019-11-18', '2019-11-20', '14:30:00', '15:00:00', 'this', 0, 1);
+INSERT INTO office_hours (staff_id, student_id, date_assigned, date_scheduled, start, end, topic, requested, completed) VALUES (2, 32, '2019-11-18', '2019-11-21', '14:30:00', '15:00:00', 'this', 0, 1);
+INSERT INTO office_hours (staff_id, student_id, date_assigned, date_scheduled, start, end, topic, requested, completed) VALUES (3, 33, '2019-11-18', '2019-11-21', '10:30:00', '11:00:00', 'this', 0, 1);
+INSERT INTO office_hours (staff_id, student_id, date_assigned, date_scheduled, start, end, topic, requested, completed) VALUES (4, 34, '2019-11-18', '2019-11-22', '12:00:00', '12:30:00', 'this', 0, 1);

@@ -9,6 +9,7 @@ CREATE TABLE staff (
   fullName VARCHAR(30) NOT NULL,
   email VARCHAR(30) NOT NULL,
   active TINYINT DEFAULT 1,
+  instructor TINYINT NOT NULL
   PRIMARY KEY (staff_id)
 );
 
