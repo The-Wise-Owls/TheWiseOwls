@@ -101,24 +101,6 @@ a {
   width: 300px;
 }
 
-.assignRightSelectContainer {
-  display: flex;
-  flex-direction: row;
-  min-width: 50%;
-  justify-content: flex-start;
-  align-items: flex-end;
-  /* padding: 0 0 0 20px; */
-}
-
-.assignLeftSelectContainer {
-  display: flex;
-  flex-direction: row;
-  min-width: 50%;
-  justify-content: flex-end;
-  align-items: flex-end;
-  padding: 0 30px 0 0;
-}
-
 
 #assignHoursStudentSelect {
   width: 150px;

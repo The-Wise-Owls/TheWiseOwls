@@ -20,12 +20,16 @@ import CancelIcon from '@material-ui/icons/Cancel';
 const AssignHours = () => {
   const [course, setCourse] = useState('');
   const [username, setUsername] = useState('');
+
   const [students, setStudents] = useState([])
+  const [studentSelected, setStudentSelected] = useState([{ id: 1, name: 'Student Name' }]);
+  const [instructors, setInstructors] = useState([])
+  const [instructorSelected, setInstructorSelected] = useState([{ id: 1, name: 'Instructor Name' }]);
+
   const [open, setOpen] = useState(false);
   const [loading, setLoading] = useState(false);
   const [assessmentName, setAssessmentName] = useState('');
   const [assessmentDate, setAssessmentDate] = useState(new Date());
-  const [studentSelected, setStudentSelected] = useState('');
   const theme = useContext(globalTheme);
   const history = useHistory();
   
@@ -40,18 +44,17 @@ const AssignHours = () => {
       })
       .catch(err => console.log(err));
 
-    //get course and name from cookie
-    //get all student names from course
+    // Axios.get()
+    // .then(({data}) => {
+      let data = [{id: 1, name: 'Jeff Salinas'}, {id: 2, name: 'Julia Kim'}];
+      setInstructors(data);
+    // })
 
+    
+    //get course and name from cookie
     setCourse(newCourse);
     setUsername(newUser);
   }, []);
-
-  const handleCheck = (index) => {
-    let studentsCopy = students.slice();
-    studentsCopy[index].checked = !studentsCopy[index].checked;
-    setStudents(studentsCopy);
-  };
 
   const schedule = () => {
     let scheduledStudents = [];
@@ -78,6 +81,20 @@ const AssignHours = () => {
       history.push('/assigned');
     })
   };
+
+  const addStudentToList = (e, index) => {
+    let tempStudentArray = studentSelected.slice();
+    tempStudentArray[index] = e.target.value;
+
+    setStudentSelected(tempStudentArray);
+  }
+  const addInstructorToList = (e, index) => {
+    let tempInstructorArray = instructorSelected.slice();
+    tempInstructorArray[index] = e.target.value;
+
+    
+    setInstructorSelected(tempInstructorArray);
+  }
 
   return (
     <>
@@ -133,45 +150,50 @@ const AssignHours = () => {
       </div>
     </div>
 
-      <div className="assignHoursInputs"> 
-        {/* <div className="assignLeftSelectContainer"> */}
-        <div className="assignemntInputContainer">
-          <CancelIcon className="cancelAssignment" onClick={() => console.log('click')}/>
-          <FormControl component="fieldset" className={theme.material_ui.formControl}>
-            <InputLabel id="demo-simple-select-label">Select Student</InputLabel>
-            <Select
-              labelId="demo-simple-select-label"
-              id="assignHoursStudentSelect"
-              value={studentSelected}
-              onChange={(e) => setStudentSelected(e.target.value)}
-            >
-              {students.map((el) => {
-                return (
-                  <MenuItem key={el.name} value={el}>{el.name}</MenuItem>
-                )
-              })}
-            </Select>
-          </FormControl>
+    {studentSelected.map((studentObj, index) => {
+      return (
+        <div key={index} className="assignHoursInputs"> 
+          <div className="assignemntInputContainer">
+            <CancelIcon className="cancelAssignment" onClick={() => console.log('click')}/>
+            <FormControl component="fieldset" className={theme.material_ui.formControl}>
+              <InputLabel id="demo-simple-select-label">Select Student</InputLabel>
+              <Select
+                labelId="demo-simple-select-label"
+                id="assignHoursStudentSelect"
+                value={studentSelected[index]}
+                onChange={(e) => addStudentToList(e, index)}
+              >
+                {students.map((el) => {
+                  return (
+                    <MenuItem key={el.name} value={el}>{el.name}</MenuItem>
+                  )
+                })}
+              </Select>
+            </FormControl>
+          </div>
+          <div className="calendarInputContainer">
+            <FormControl component="fieldset" className={theme.material_ui.formControl}>
+              <InputLabel id="demo-simple-select-label">Select Instructor</InputLabel>
+              <Select
+                labelId="demo-simple-select-label"
+                id="assignHoursInstructorSelect"
+                value={instructorSelected[index]}
+                onChange={(e) => addInstructorToList(e, index)}
+              >
+                {instructors.map((el) => {
+                  return (
+                    <MenuItem key={el.name} value={el}>{el.name}</MenuItem>
+                  )
+                })}
+              </Select>
+            </FormControl>
+          </div>
         </div>
-        {/* <div className="assignRightSelectContainer"> */}
-        <div className="calendarInputContainer">
-          <FormControl component="fieldset" className={theme.material_ui.formControl}>
-            <InputLabel id="demo-simple-select-label">Select Instructor</InputLabel>
-            <Select
-              labelId="demo-simple-select-label"
-              id="assignHoursInstructorSelect"
-              value={studentSelected}
-              onChange={(e) => setStudentSelected(e.target.value)}
-            >
-              {students.map((el) => {
-                return (
-                  <MenuItem key={el.name} value={el}>{el.name}</MenuItem>
-                )
-              })}
-            </Select>
-          </FormControl>
-        </div>
-      </div>
+      )
+    })}
+
+
+
 
 
       <div className="buttonContainer">
