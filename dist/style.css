@@ -89,6 +89,19 @@ a {
 
 /* Assign Hours Inputs */
 
+.MuiFormLabel-root {
+  color:  #EE882C !important;
+}
+
+.MuiInputBase-input {
+  color: #f4f4f5 !important;
+}
+
+.RequestFormInput {
+  width: 300px;
+}
+
+
 #assignHoursInputs {
   display: flex;
   flex-direction: row;
@@ -124,7 +137,6 @@ a {
 }
 
 /* Calendar */
-
 #calendar {
   width: 109px;
   color: #F4F4F5;  

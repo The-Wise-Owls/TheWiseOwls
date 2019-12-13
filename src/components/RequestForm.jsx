@@ -71,7 +71,7 @@ const RequestForm = () => {
         <InputLabel id="demo-simple-select-label">Select Student</InputLabel>
         <Select
           labelId="demo-simple-select-label"
-          id="demo-simple-select"
+          id="requestStudentSelect"
           value={student}
           onChange={(e) => setStudent(e.target.value)}
         >
@@ -83,9 +83,9 @@ const RequestForm = () => {
         </Select>
       </FormControl>
 
-      <form id="assessmentNameInput" noValidate autoComplete="off">
+      <form className="RequestFormInput" noValidate autoComplete="off">
         <TextField 
-          id="standard-basic" 
+          id="requestTopicInput" 
           label="General Topic" 
           multiline={true} 
           onChange={(e) => setTopic(e.target.value)} 
@@ -95,7 +95,7 @@ const RequestForm = () => {
       
       <form noValidate autoComplete="off">
         <TextField 
-          id="standard-basic" 
+          id="requestDetailsInput" 
           label="Additional Details" 
           multiline={true} 
           onChange={(e) => setDetails(e.target.value)} 
@@ -116,8 +116,8 @@ const RequestForm = () => {
               <MenuItem key={el.name} value={el}>{el.name}</MenuItem>
             )
           })}
-        </Select>
-      </FormControl>  
+        </ Select>
+      </FormControl>
 
       <div className="buttonContainer">
         <NavLink to='/requestSubmitted'>

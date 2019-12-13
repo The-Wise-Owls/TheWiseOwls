@@ -33,7 +33,7 @@ const Request = () => {
           <ChevronLeftIcon style={{ margin: '0' }} className={`${theme.material_ui.menuIcon} menuIcon`} />
         </IconButton>
       </div>
-      <div>
+      <div >
         <p>Request Submitted</p>
         <p>You should receive an email shortly with a Google Calendar Invitation</p>
       </div>
