@@ -103,8 +103,17 @@ const AssignHours = () => {
     
     setStudentSelected(tempStudentArray);
     setInstructorSelected(tempInstructorArray);
-    console.log('click');
   };
+
+  const removeSelectComponent = (index) => {
+    let tempStudentArray = studentSelected.slice();
+    let tempInstructorArray = instructorSelected.slice();
+    tempInstructorArray.splice(index, 1);
+    tempStudentArray.splice(index, 1);
+
+    setStudentSelected(tempStudentArray);
+    setInstructorSelected(tempInstructorArray);
+  }
 
   return (
     <>
@@ -164,7 +173,7 @@ const AssignHours = () => {
         return (
           <div key={index} className="assignHoursInputs"> 
             <div className="assignemntInputContainer">
-              <CancelIcon className="cancelAssignment" onClick={() => console.log('click')}/>
+              <CancelIcon className="cancelAssignment" onClick={() => {removeSelectComponent(index)}}/>
               <FormControl component="fieldset" className={theme.material_ui.formControl}>
                 <InputLabel id="demo-simple-select-label">Select Student</InputLabel>
                 <Select
