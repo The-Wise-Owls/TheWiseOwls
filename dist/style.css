@@ -124,10 +124,31 @@ a {
 .cancelAssignment:hover {
   margin: 4px 10px;
   color: #f4f4f5;
+  cursor: pointer;
+}
+
+.addButtonColor {
+  display: flex;
+  flex-direction: row;
+    height:24px;
+  color: #f4f4f5;
+}
+
+.addButtonColor:hover {
+  color: #EE882C;
+  cursor: pointer;
+}
+
+.addAssignmentTitle {
+  height:24px;
+  margin: 0;
+}
+
+.addButton {
+  margin: 0 8px;
 }
 
 #standard-basic-label {
-
   font-size: 15px;
 }
 #standard-basic {

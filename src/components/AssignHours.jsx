@@ -16,20 +16,19 @@ import TextField from '@material-ui/core/TextField';
 import globalTheme from '../ThemeContext.js';
 import Menu from './Menu.jsx';
 import CancelIcon from '@material-ui/icons/Cancel';
+import AddCircleIcon from '@material-ui/icons/AddCircle';
 
 const AssignHours = () => {
-  const [course, setCourse] = useState('');
-  const [username, setUsername] = useState('');
-
-  const [students, setStudents] = useState([])
+  const [ course, setCourse ] = useState('');
+  const [ username, setUsername ] = useState('');
+  const [ students, setStudents ] = useState([])
   const [studentSelected, setStudentSelected] = useState([{ id: 1, name: 'Student Name' }]);
-  const [instructors, setInstructors] = useState([])
-  const [instructorSelected, setInstructorSelected] = useState([{ id: 1, name: 'Instructor Name' }]);
-
-  const [open, setOpen] = useState(false);
-  const [loading, setLoading] = useState(false);
-  const [assessmentName, setAssessmentName] = useState('');
-  const [assessmentDate, setAssessmentDate] = useState(new Date());
+  const [ instructors, setInstructors ] = useState([])
+  const [ instructorSelected, setInstructorSelected ] = useState([{ id: 1, name: 'Instructor Name' }]);
+  const [ open, setOpen ] = useState(false);
+  const [ loading, setLoading ] = useState(false);
+  const [ assessmentName, setAssessmentName ] = useState('');
+  const [ assessmentDate, setAssessmentDate ] = useState(new Date());
   const theme = useContext(globalTheme);
   const history = useHistory();
   
@@ -87,14 +86,25 @@ const AssignHours = () => {
     tempStudentArray[index] = e.target.value;
 
     setStudentSelected(tempStudentArray);
-  }
+  };
+
   const addInstructorToList = (e, index) => {
     let tempInstructorArray = instructorSelected.slice();
     tempInstructorArray[index] = e.target.value;
 
-    
     setInstructorSelected(tempInstructorArray);
-  }
+  };
+
+  const addSelectComponent = () => {
+    let tempStudentArray = studentSelected.slice();
+    let tempInstructorArray = instructorSelected.slice();
+    tempInstructorArray.push({ id: 0, name: '' });
+    tempStudentArray.push({ id: 0, name: '' });
+    
+    setStudentSelected(tempStudentArray);
+    setInstructorSelected(tempInstructorArray);
+    console.log('click');
+  };
 
   return (
     <>
@@ -126,76 +136,78 @@ const AssignHours = () => {
       />
 
       <div className="assignHoursInputs">
-      <div className="assignemntInputContainer">
-        <form id="assessmentNameInput" noValidate autoComplete="off">
-          <TextField id="standard-basic" label="Assessment Name" onChange={(e) => setAssessmentName(e.target.value)} value={assessmentName}/>
-        </form>
-      </div>
-      <div className="calendarInputContainer">
-        <MuiPickersUtilsProvider utils={DateFnsUtils}>
-          <KeyboardDatePicker
-              id="calendar"
-              disableToolbar
-              variant="inline"
-              format="MM/dd/yyyy"
-              margin="normal"
-              label="Assessment Date"
-              value={assessmentDate}
-              onChange={(date) => setAssessmentDate(date)}
-              KeyboardButtonProps={{
-                'aria-label': 'change date',
-              }}
-            />
-        </MuiPickersUtilsProvider>
-      </div>
-    </div>
-
-    {studentSelected.map((studentObj, index) => {
-      return (
-        <div key={index} className="assignHoursInputs"> 
-          <div className="assignemntInputContainer">
-            <CancelIcon className="cancelAssignment" onClick={() => console.log('click')}/>
-            <FormControl component="fieldset" className={theme.material_ui.formControl}>
-              <InputLabel id="demo-simple-select-label">Select Student</InputLabel>
-              <Select
-                labelId="demo-simple-select-label"
-                id="assignHoursStudentSelect"
-                value={studentSelected[index]}
-                onChange={(e) => addStudentToList(e, index)}
-              >
-                {students.map((el) => {
-                  return (
-                    <MenuItem key={el.name} value={el}>{el.name}</MenuItem>
-                  )
-                })}
-              </Select>
-            </FormControl>
-          </div>
-          <div className="calendarInputContainer">
-            <FormControl component="fieldset" className={theme.material_ui.formControl}>
-              <InputLabel id="demo-simple-select-label">Select Instructor</InputLabel>
-              <Select
-                labelId="demo-simple-select-label"
-                id="assignHoursInstructorSelect"
-                value={instructorSelected[index]}
-                onChange={(e) => addInstructorToList(e, index)}
-              >
-                {instructors.map((el) => {
-                  return (
-                    <MenuItem key={el.name} value={el}>{el.name}</MenuItem>
-                  )
-                })}
-              </Select>
-            </FormControl>
-          </div>
+        <div className="assignemntInputContainer">
+          <form id="assessmentNameInput" noValidate autoComplete="off">
+            <TextField id="standard-basic" label="Assessment Name" onChange={(e) => setAssessmentName(e.target.value)} value={assessmentName}/>
+          </form>
         </div>
-      )
-    })}
+        <div className="calendarInputContainer">
+          <MuiPickersUtilsProvider utils={DateFnsUtils}>
+            <KeyboardDatePicker
+                id="calendar"
+                disableToolbar
+                variant="inline"
+                format="MM/dd/yyyy"
+                margin="normal"
+                label="Assessment Date"
+                value={assessmentDate}
+                onChange={(date) => setAssessmentDate(date)}
+                KeyboardButtonProps={{
+                  'aria-label': 'change date',
+                }}
+              />
+          </MuiPickersUtilsProvider>
+        </div>
+      </div>
 
+      {studentSelected.map((studentObj, index) => {
+        return (
+          <div key={index} className="assignHoursInputs"> 
+            <div className="assignemntInputContainer">
+              <CancelIcon className="cancelAssignment" onClick={() => console.log('click')}/>
+              <FormControl component="fieldset" className={theme.material_ui.formControl}>
+                <InputLabel id="demo-simple-select-label">Select Student</InputLabel>
+                <Select
+                  labelId="demo-simple-select-label"
+                  id="assignHoursStudentSelect"
+                  value={studentSelected[index]}
+                  onChange={(e) => addStudentToList(e, index)}
+                >
+                  {students.map((el) => {
+                    return (
+                      <MenuItem key={el.name} value={el}>{el.name}</MenuItem>
+                    )
+                  })}
+                </Select>
+              </FormControl>
+            </div>
+            <div className="calendarInputContainer">
+              <FormControl component="fieldset" className={theme.material_ui.formControl}>
+                <InputLabel id="demo-simple-select-label">Select Instructor</InputLabel>
+                <Select
+                  labelId="demo-simple-select-label"
+                  id="assignHoursInstructorSelect"
+                  value={instructorSelected[index]}
+                  onChange={(e) => addInstructorToList(e, index)}
+                >
+                  {instructors.map((el) => {
+                    return (
+                      <MenuItem key={el.name} value={el}>{el.name}</MenuItem>
+                    )
+                  })}
+                </Select>
+              </FormControl>
+            </div>
+          </div>
+        )
+      })}
 
-
-
-
+      <div className="buttonContainer" onClick={addSelectComponent}>
+        <div className="addButtonColor">
+          <AddCircleIcon className="addButton" />
+          <h3 className="addAssignmentTitle">Add Assignment</h3>
+        </div>
+      </div>
       <div className="buttonContainer">
         <Fab id="testScheduleButton" onClick={() => schedule()} variant="extended" aria-label="add" className={theme.material_ui.orangeButton}>
           {!loading ? 'Schedule' : <img id="scheduleLoading" src="./images/loadingTrans.gif"></img>}
