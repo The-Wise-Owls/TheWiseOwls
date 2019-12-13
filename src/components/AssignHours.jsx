@@ -1,33 +1,35 @@
+import Axios from 'axios';
 import React, { useState, useEffect, useContext } from 'react';
 import { withRouter, useHistory } from 'react-router-dom';
-import Axios from 'axios';
-import IconButton from '@material-ui/core/IconButton';
-import MenuIcon from '@material-ui/icons/Menu';
-import MenuItem from '@material-ui/core/MenuItem';
-import Fab from '@material-ui/core/Fab';
-import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
-import FormControl from '@material-ui/core/FormControl';
-import Select from '@material-ui/core/Select';
-import InputLabel from '@material-ui/core/InputLabel';
-import DateFnsUtils from '@date-io/date-fns';
-import { MuiPickersUtilsProvider, KeyboardDatePicker } from '@material-ui/pickers';
-import 'date-fns';
-import TextField from '@material-ui/core/TextField';
 import globalTheme from '../ThemeContext.js';
 import Menu from './Menu.jsx';
-import CancelIcon from '@material-ui/icons/Cancel';
+
+/* Material UI */
+import 'date-fns';
 import AddCircleIcon from '@material-ui/icons/AddCircle';
+import CancelIcon from '@material-ui/icons/Cancel';
+import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
+import DateFnsUtils from '@date-io/date-fns';
+import Fab from '@material-ui/core/Fab';
+import FormControl from '@material-ui/core/FormControl';
+import IconButton from '@material-ui/core/IconButton';
+import InputLabel from '@material-ui/core/InputLabel';
+import { KeyboardDatePicker, MuiPickersUtilsProvider } from '@material-ui/pickers';
+import MenuIcon from '@material-ui/icons/Menu';
+import MenuItem from '@material-ui/core/MenuItem';
+import Select from '@material-ui/core/Select';
+import TextField from '@material-ui/core/TextField';
 
 const AssignHours = () => {
   const [ course, setCourse ] = useState('');
   const [ username, setUsername ] = useState('');
   const [ students, setStudents ] = useState([])
-  const [studentSelected, setStudentSelected] = useState([{ id: 1, name: 'Student Name' }]);
+  const [ studentSelected, setStudentSelected ] = useState([{ id: 1, name: 'Student Name' }]);
   const [ instructors, setInstructors ] = useState([])
-  const [ instructorSelected, setInstructorSelected ] = useState([{ id: 1, name: 'Instructor Name' }]);
+  const [ instructorsSelected, setInstructorsSelected ] = useState([{ id: 1, name: 'Instructor Name' }]);
   const [ open, setOpen ] = useState(false);
   const [ loading, setLoading ] = useState(false);
-  const [ assessmentName, setAssessmentName ] = useState('');
+  const [ topic, setTopic ] = useState('');
   const [ assessmentDate, setAssessmentDate ] = useState(new Date());
   const theme = useContext(globalTheme);
   const history = useHistory();
@@ -56,20 +58,34 @@ const AssignHours = () => {
   }, []);
 
   const schedule = () => {
-    let scheduledStudents = [];
-    setLoading(true);
+    let classID = 1 //fill
+    let pairs = [];
 
-    students.forEach((studentObj) => {
-      if (studentObj.checked) {
-        scheduledStudents.push(studentObj.id);
+    setLoading(true);
+    //grab class id from cookie
+
+    let staffAssignments = {};
+
+    for (let i = 0; i < studentSelected.length; i++) {
+      if (!staffAssignments[instructorsSelected[i].id]) {
+        staffAssignments[instructorsSelected[i].id] = [studentSelected[i].id];
+      } else {
+        staffAssignments[instructorsSelected[i].id].push(studentSelected[i].id)
       }
-    });
+    }
+
+    for (let staffID in staffAssignments) {
+      pairs.push({ staff: Number(staffID), students: staffAssignments[staffID]});
+    }
+
+    console.log(pairs);
 
     Axios.get('/assigned', {
       params: {
-        studentIds: scheduledStudents,
-        assessmentName: assessmentName,
-        assessmentDate: assessmentDate
+        topic: topic,
+        assessmentDate: assessmentDate,
+        classID: classID, 
+        pairs: pairs
       }
     })
     .then(({data}) => {
@@ -89,30 +105,30 @@ const AssignHours = () => {
   };
 
   const addInstructorToList = (e, index) => {
-    let tempInstructorArray = instructorSelected.slice();
+    let tempInstructorArray = instructorsSelected.slice();
     tempInstructorArray[index] = e.target.value;
 
-    setInstructorSelected(tempInstructorArray);
+    setInstructorsSelected(tempInstructorArray);
   };
 
   const addSelectComponent = () => {
     let tempStudentArray = studentSelected.slice();
-    let tempInstructorArray = instructorSelected.slice();
+    let tempInstructorArray = instructorsSelected.slice();
     tempInstructorArray.push({ id: 0, name: '' });
     tempStudentArray.push({ id: 0, name: '' });
     
     setStudentSelected(tempStudentArray);
-    setInstructorSelected(tempInstructorArray);
+    setInstructorsSelected(tempInstructorArray);
   };
 
   const removeSelectComponent = (index) => {
     let tempStudentArray = studentSelected.slice();
-    let tempInstructorArray = instructorSelected.slice();
+    let tempInstructorArray = instructorsSelected.slice();
     tempInstructorArray.splice(index, 1);
     tempStudentArray.splice(index, 1);
 
     setStudentSelected(tempStudentArray);
-    setInstructorSelected(tempInstructorArray);
+    setInstructorsSelected(tempInstructorArray);
   }
 
   return (
@@ -147,19 +163,23 @@ const AssignHours = () => {
       <div className="assignHoursInputs">
         <div className="assignemntInputContainer">
           <form id="assessmentNameInput" noValidate autoComplete="off">
-            <TextField id="standard-basic" label="Assessment Name" onChange={(e) => setAssessmentName(e.target.value)} value={assessmentName}/>
+            <TextField id="standard-basic" 
+            label="Topic of OH" 
+            onChange={(e) => setTopic(e.target.value)} 
+            value={topic}
+            />
           </form>
         </div>
         <div className="calendarInputContainer">
-          <MuiPickersUtilsProvider utils={DateFnsUtils}>
+          <MuiPickersUtilsProvider utils={ DateFnsUtils }>
             <KeyboardDatePicker
                 id="calendar"
                 disableToolbar
                 variant="inline"
                 format="MM/dd/yyyy"
                 margin="normal"
-                label="Assessment Date"
-                value={assessmentDate}
+                label="Date of Assessment"
+                value={ assessmentDate }
                 onChange={(date) => setAssessmentDate(date)}
                 KeyboardButtonProps={{
                   'aria-label': 'change date',
@@ -196,7 +216,7 @@ const AssignHours = () => {
                 <Select
                   labelId="demo-simple-select-label"
                   id="assignHoursInstructorSelect"
-                  value={instructorSelected[index]}
+                  value={instructorsSelected[index]}
                   onChange={(e) => addInstructorToList(e, index)}
                 >
                   {instructors.map((el) => {
