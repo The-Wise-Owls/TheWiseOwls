@@ -101,16 +101,51 @@ a {
   width: 300px;
 }
 
+.assignRightSelectContainer {
+  display: flex;
+  flex-direction: row;
+  min-width: 50%;
+  justify-content: flex-start;
+  align-items: flex-end;
+  /* padding: 0 0 0 20px; */
+}
 
-#assignHoursInputs {
+.assignLeftSelectContainer {
+  display: flex;
+  flex-direction: row;
+  min-width: 50%;
+  justify-content: flex-end;
+  align-items: flex-end;
+  padding: 0 30px 0 0;
+}
+
+
+#assignHoursStudentSelect {
+  width: 150px;
+}
+#assignHoursInstructorSelect {
+  width: 150px;
+}
+
+.assignHoursInputs {
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
   margin: 0 0 20px 0;
 }
 
-#standard-basic-label {
+.cancelAssignment {
+  margin: 4px 10px;
   color: #EE882C;
+}
+
+.cancelAssignment:hover {
+  margin: 4px 10px;
+  color: #f4f4f5;
+}
+
+#standard-basic-label {
+
   font-size: 15px;
 }
 #standard-basic {
@@ -118,7 +153,7 @@ a {
   font-size: 20px;
 }
 
-#assignemntInputContainer {
+.assignemntInputContainer {
   display: flex;
   flex-direction: row;
   min-width: 50%;
@@ -131,7 +166,7 @@ a {
   margin: 0 20px 8px 0;
 }
 
-#calendarInputContainer {
+.calendarInputContainer {
   min-width: 50%;
   margin: 0 0 0 20px; 
 }

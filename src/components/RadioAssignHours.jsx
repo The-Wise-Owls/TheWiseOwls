@@ -3,19 +3,32 @@ import { withRouter, useHistory } from 'react-router-dom';
 import Axios from 'axios';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
-import MenuItem from '@material-ui/core/MenuItem';
 import Fab from '@material-ui/core/Fab';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import FormControl from '@material-ui/core/FormControl';
-import Select from '@material-ui/core/Select';
-import InputLabel from '@material-ui/core/InputLabel';
+import FormGroup from '@material-ui/core/FormGroup';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import Checkbox from '@material-ui/core/Checkbox';
+import RadioButtonUncheckedIcon from '@material-ui/icons/RadioButtonUnchecked';
+import RadioButtonCheckedIcon from '@material-ui/icons/RadioButtonChecked';
+import { withStyles } from "@material-ui/core/styles";
+import { amber } from "@material-ui/core/colors";
 import DateFnsUtils from '@date-io/date-fns';
 import { MuiPickersUtilsProvider, KeyboardDatePicker } from '@material-ui/pickers';
 import 'date-fns';
 import TextField from '@material-ui/core/TextField';
 import globalTheme from '../ThemeContext.js';
 import Menu from './Menu.jsx';
-import CancelIcon from '@material-ui/icons/Cancel';
+
+const OrangeCheckbox = withStyles({
+  root: {
+    color: amber[800],
+    "&$checked": {
+      color: amber[800]
+    }
+  },
+  checked: {}
+})(props => <Checkbox color="default" {...props} />);
 
 const AssignHours = () => {
   const [course, setCourse] = useState('');
@@ -25,7 +38,6 @@ const AssignHours = () => {
   const [loading, setLoading] = useState(false);
   const [assessmentName, setAssessmentName] = useState('');
   const [assessmentDate, setAssessmentDate] = useState(new Date());
-  const [studentSelected, setStudentSelected] = useState('');
   const theme = useContext(globalTheme);
   const history = useHistory();
   
@@ -36,6 +48,7 @@ const AssignHours = () => {
 
     Axios.get(`/admin/classes/${classID}/students`)
       .then(({ data }) => {
+        data.forEach(student => student.checked = false);
         setStudents(data);
       })
       .catch(err => console.log(err));
@@ -108,13 +121,13 @@ const AssignHours = () => {
         setOpen={() => setOpen(false)}
       />
 
-      <div className="assignHoursInputs">
-      <div className="assignemntInputContainer">
+    <div id="assignHoursInputs">
+      <div id="assignemntInputContainer">
         <form id="assessmentNameInput" noValidate autoComplete="off">
           <TextField id="standard-basic" label="Assessment Name" onChange={(e) => setAssessmentName(e.target.value)} value={assessmentName}/>
         </form>
       </div>
-      <div className="calendarInputContainer">
+      <div id="calendarInputContainer">
         <MuiPickersUtilsProvider utils={DateFnsUtils}>
           <KeyboardDatePicker
               id="calendar"
@@ -132,48 +145,30 @@ const AssignHours = () => {
         </MuiPickersUtilsProvider>
       </div>
     </div>
-
-      <div className="assignHoursInputs"> 
-        {/* <div className="assignLeftSelectContainer"> */}
-        <div className="assignemntInputContainer">
-          <CancelIcon className="cancelAssignment" onClick={() => console.log('click')}/>
-          <FormControl component="fieldset" className={theme.material_ui.formControl}>
-            <InputLabel id="demo-simple-select-label">Select Student</InputLabel>
-            <Select
-              labelId="demo-simple-select-label"
-              id="assignHoursStudentSelect"
-              value={studentSelected}
-              onChange={(e) => setStudentSelected(e.target.value)}
-            >
-              {students.map((el) => {
-                return (
-                  <MenuItem key={el.name} value={el}>{el.name}</MenuItem>
-                )
-              })}
-            </Select>
-          </FormControl>
-        </div>
-        {/* <div className="assignRightSelectContainer"> */}
-        <div className="calendarInputContainer">
-          <FormControl component="fieldset" className={theme.material_ui.formControl}>
-            <InputLabel id="demo-simple-select-label">Select Instructor</InputLabel>
-            <Select
-              labelId="demo-simple-select-label"
-              id="assignHoursInstructorSelect"
-              value={studentSelected}
-              onChange={(e) => setStudentSelected(e.target.value)}
-            >
-              {students.map((el) => {
-                return (
-                  <MenuItem key={el.name} value={el}>{el.name}</MenuItem>
-                )
-              })}
-            </Select>
-          </FormControl>
-        </div>
+      <div className="radioButtonContainer">
+        <FormControl component="fieldset" className={theme.material_ui.formControl}>
+          <FormGroup>
+            {students.map((student, index) => {
+              return (
+                <FormControlLabel
+                  className="assignHoursRadioLables"
+                  key={student.name}
+                  label={student.name}
+                  control={
+                    <OrangeCheckbox 
+                      icon={<RadioButtonUncheckedIcon fontSize="large" />} 
+                      checkedIcon={<RadioButtonCheckedIcon fontSize="large" />} 
+                      checked={student.checked} 
+                      onChange={() => handleCheck(index)} 
+                      value={student.name} 
+                    />
+                  }
+                />
+              );
+            })}
+          </FormGroup>
+        </FormControl>
       </div>
-
-
       <div className="buttonContainer">
         <Fab id="testScheduleButton" onClick={() => schedule()} variant="extended" aria-label="add" className={theme.material_ui.orangeButton}>
           {!loading ? 'Schedule' : <img id="scheduleLoading" src="./images/loadingTrans.gif"></img>}
