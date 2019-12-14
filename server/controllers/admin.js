@@ -1,4 +1,6 @@
+const moment = require('moment');
 const { getClassesByEmail, getStudentsByClassID } = require('../models/admin.js');
+const { getTentativeSchedule } = require('../utils');
 
 exports.getClasses = (req, res) => {
   const email = req.params.email;
@@ -49,4 +51,25 @@ exports.getStudents = (req, res) => {
       }
     })
     .catch(err => res.status(500).send('Error'));
+};
+
+exports.scheduleOfficeHours = async (req, res) => {
+  const classID = req.params.classID;
+  const dateAssigned = moment().format('YYYY-MM-DD HH:mm:ss');
+  const topic = req.params.topic;
+  const pairs = JSON.parse(req.params.pairs);
+  
+  let tentativeSchedule = {
+    classID: classID,
+    date: dateAssigned,
+    topic: topic,
+    staff: []
+  };
+
+  getTentativeSchedule(dateAssigned, pairs, tentativeSchedule)
+    .then(schedule => {
+      res.status(201).send(schedule);
+    })
+    // .catch(err => res.status(500).send('Error'));
+    .catch(err => console.log(err));
 };
