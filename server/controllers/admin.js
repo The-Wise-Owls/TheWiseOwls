@@ -70,6 +70,5 @@ exports.scheduleOfficeHours = async (req, res) => {
     .then(schedule => {
       res.status(201).send(schedule);
     })
-    // .catch(err => res.status(500).send('Error'));
-    .catch(err => console.log(err));
+    .catch(err => res.status(500).send('Error'));
 };
