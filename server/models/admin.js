@@ -15,3 +15,20 @@ exports.getStudentsByClassID = (classID) => {
     .then(results => results)
     .catch(err => console.log(`Error querying database for students: ${err}`));
 };
+
+exports.getAvailabilityByStaffID = (staffID) => {
+  const queryString = 'SELECT day, start, end FROM staff_availability WHERE staff_id = ?;'; // AND day >= (DAYOFWEEK(?) - 1);';
+
+  return db.query(queryString, staffID)
+    .then(results => results)
+    .catch(err => console.log(`Error querying database for availability: ${err}`));
+};
+
+exports.getScheduleByStaffID = (staffID) => {
+  // Make day of week 0 indexed to be consistent with Moment.js
+  const queryString = 'SELECT DAYOFWEEK(date_scheduled - 1) AS day, start, end FROM office_hours WHERE staff_id = ? AND date_scheduled >= CURDATE();';
+
+  return db.query(queryString, staffID)
+    .then(results => results)
+    .catch(err => console.log(`Error querying database for schedule: ${err}`));
+};
