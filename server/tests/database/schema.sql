@@ -41,7 +41,7 @@ CREATE TABLE students (
 
 CREATE TABLE staff_availability (
   avail_id INT AUTO_INCREMENT,
-  day VARCHAR(9) NOT NULL,
+  day INT NOT NULL,
   start TIME NOT NULL,
   end TIME NOT NULL,
   staff_id INT NOT NULL,
