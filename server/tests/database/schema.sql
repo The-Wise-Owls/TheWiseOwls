@@ -9,7 +9,7 @@ CREATE TABLE staff (
   fullName VARCHAR(30) NOT NULL,
   email VARCHAR(30) NOT NULL,
   active TINYINT DEFAULT 1,
-  instructor TINYINT NOT NULL
+  instructor TINYINT NOT NULL,
   PRIMARY KEY (staff_id)
 );
 
@@ -41,7 +41,7 @@ CREATE TABLE students (
 
 CREATE TABLE staff_availability (
   avail_id INT AUTO_INCREMENT,
-  day TINYINT NOT NULL,
+  day VARCHAR(9) NOT NULL,
   start TIME NOT NULL,
   end TIME NOT NULL,
   staff_id INT NOT NULL,
