@@ -54,6 +54,24 @@ describe('Admin Features', function() {
     });
   });
 
+  describe('View all staff associated with a course', function() {
+    it('When a valid class ID is provided, expect all staff associated with class to be shown', function(done) {
+      request(server)
+        .get('/admin/classes/1/staff')
+        .expect(200)
+        .expect('Content-Type', /json/)
+        .expect(
+          [{"id": 5, "name": "Arohan Dutt"}, {"id": 6, "name": "Keenan Johns"}, {"id": 7, "name": "Jonathan Keane"}, {"id": 8, "name": "Rob Peschke"}, {"id": 9, "name": "Taylor George"}, {"id": 10, "name": "Kim Kost"}, {"id": 11, "name": "Nik Mentakis"}, {"id": 12, "name": "Zubair Desai"}]
+        )
+        .end((err, res) => {
+          if (err) {
+            return done(err);
+          }
+          done();
+        });
+    });
+  });
+
   describe('View all students enrolled in a selected cohort', function() {
     it('When a valid class ID is provided, expect all students in cohort to be shown', function(done) {
       request(server)
