@@ -6,6 +6,7 @@ const port = 3000;
 const adminRouter = require('./routes/admin.js');
 
 app.use(express.static('dist'));
+app.use(express.json());
 app.use('/admin', adminRouter);
 
 app.get('/*', function (req, res) {

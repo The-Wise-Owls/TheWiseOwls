@@ -54,6 +54,54 @@ describe('Admin Features', function() {
     });
   });
 
+  describe('View active classes without any parameters', function() {
+    it('Expect all currently active courses to be shown', function(done) {
+      request(server)
+        .get('/admin/classes')
+        .expect(200)
+        .expect('Content-Type', /json/)
+        .expect({
+          "classes": [{"id": 1, "course": "HRATX 45"}, {"id": 2, "course": "HRATX 46"}, {"id": 3, "course": "MCSP 02"}, {"id": 4, "course": "MCSP 03"}]
+        })
+        .end((err, res) => {
+          if (err) {
+            return done(err);
+          }
+          done();
+        });
+    });
+  });
+
+  describe('View all staff associated with a course', function() {
+    it('When a valid class ID is provided, expect all staff associated with class to be shown', function(done) {
+      request(server)
+        .get('/admin/classes/1/staff')
+        .expect(200)
+        .expect('Content-Type', /json/)
+        .expect(
+          [{"id": 5, "name": "Arohan Dutt"}, {"id": 6, "name": "Keenan Johns"}, {"id": 7, "name": "Jonathan Keane"}, {"id": 8, "name": "Rob Peschke"}, {"id": 9, "name": "Taylor George"}, {"id": 10, "name": "Kim Kost"}, {"id": 11, "name": "Nik Mentakis"}, {"id": 12, "name": "Zubair Desai"}]
+        )
+        .end((err, res) => {
+          if (err) {
+            return done(err);
+          }
+          done();
+        });
+    });
+
+    it('When an invalid class ID is provided, expect an error', function(done) {
+      request(server)
+        .get('/admin/classes/5/staff')
+        .expect(404)
+        .end((err, res) => {
+          if (err) {
+            return done(err);
+          }
+          done();
+        });
+    });
+  });
+
   describe('View all students enrolled in a selected cohort', function() {
     it('When a valid class ID is provided, expect all students in cohort to be shown', function(done) {
       request(server)
