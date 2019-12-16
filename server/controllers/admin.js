@@ -1,5 +1,5 @@
 const moment = require('moment');
-const { getClassesByEmail, getStudentsByClassID } = require('../models/admin.js');
+const { getClassesByEmail, getStaffByClassID, getStudentsByClassID } = require('../models/admin.js');
 const { getTentativeSchedule } = require('../utils');
 
 exports.getClasses = (req, res) => {
@@ -25,6 +25,28 @@ exports.getClasses = (req, res) => {
           classes: classes
         };
         res.status(200).send(cohorts);
+      }
+    })
+    .catch(err => res.status(500).send('Error'));
+};
+
+exports.getStaff = async (req, res) => {
+  const classID = req.params.classID;
+
+  getStaffByClassID(classID)
+    .then(rows => {
+      if (rows.length === 0) {
+        res.status(404).send('Class ID not associated with any instructional staff members');
+      } else {
+        const staff = [];
+        rows.map(row => {
+          const instructor = {
+            id: row.staff_id,
+            name: row.fullName
+          };
+          staff.push(instructor);
+        });
+        res.status(200).send(staff);
       }
     })
     .catch(err => res.status(500).send('Error'));
@@ -61,7 +83,7 @@ exports.scheduleOfficeHours = async (req, res) => {
   
   let tentativeSchedule = {
     classID: classID,
-    date: dateAssigned,
+    date: moment().format('YYYY-MM-DD'),
     topic: topic,
     staff: []
   };
@@ -71,4 +93,8 @@ exports.scheduleOfficeHours = async (req, res) => {
       res.status(201).send(schedule);
     })
     .catch(err => res.status(500).send('Error'));
+};
+
+exports.confirmOfficeHours = async (req, res) => {
+  // To be implemented
 };
