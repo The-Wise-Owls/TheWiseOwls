@@ -8,6 +8,14 @@ exports.getClassesByEmail = (email) => {
     .catch(err => console.log(`Error querying database for classes: ${err}`));
 };
 
+exports.getStaffByClassID = (classID) => {
+  const queryString = 'SELECT s.staff_id, s.fullName FROM staff s INNER JOIN staff_programs sp USING (staff_id) INNER JOIN programs p USING (program_id) INNER JOIN classes c ON p.program_id = c.program WHERE c.class_id = ?;';
+
+  return db.query(queryString, classID)
+    .then(results => results)
+    .catch(err => console.log(`Error querying database for staff: ${err}`));
+};
+
 exports.getStudentsByClassID = (classID) => {
   const queryString = 'SELECT student_id, fullName FROM students WHERE class = ?;';
 
