@@ -54,6 +54,24 @@ describe('Admin Features', function() {
     });
   });
 
+  describe('View active classes without any parameters', function() {
+    it('Expect all currently active courses to be shown', function(done) {
+      request(server)
+        .get('/admin/classes')
+        .expect(200)
+        .expect('Content-Type', /json/)
+        .expect({
+          "classes": [{"id": 1, "course": "HRATX 45"}, {"id": 2, "course": "HRATX 46"}, {"id": 3, "course": "MCSP 02"}, {"id": 4, "course": "MCSP 03"}]
+        })
+        .end((err, res) => {
+          if (err) {
+            return done(err);
+          }
+          done();
+        });
+    });
+  });
+
   describe('View all staff associated with a course', function() {
     it('When a valid class ID is provided, expect all staff associated with class to be shown', function(done) {
       request(server)
