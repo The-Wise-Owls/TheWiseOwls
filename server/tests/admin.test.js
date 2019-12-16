@@ -70,6 +70,18 @@ describe('Admin Features', function() {
           done();
         });
     });
+
+    it('When an invalid class ID is provided, expect an error', function(done) {
+      request(server)
+        .get('/admin/classes/5/staff')
+        .expect(404)
+        .end((err, res) => {
+          if (err) {
+            return done(err);
+          }
+          done();
+        });
+    });
   });
 
   describe('View all students enrolled in a selected cohort', function() {
