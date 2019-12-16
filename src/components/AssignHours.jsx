@@ -67,15 +67,17 @@ const AssignHours = () => {
     let staffAssignments = {};
 
     for (let i = 0; i < studentSelected.length; i++) {
-      if (!staffAssignments[instructorsSelected[i].id]) {
-        staffAssignments[instructorsSelected[i].id] = [studentSelected[i].id];
+      if (instructorsSelected[i].name === '') {
+        continue;
+      } else if (!staffAssignments[instructorsSelected[i].id]) {
+        staffAssignments[instructorsSelected[i].id] = { id: instructorsSelected[i].id, name: instructorsSelected[i].name, pairs: [{ id: studentSelected[i].id, name: studentSelected[i].name}]};
       } else {
-        staffAssignments[instructorsSelected[i].id].push(studentSelected[i].id)
+        staffAssignments[instructorsSelected[i].id].pairs.push({ id: studentSelected[i].id, name: studentSelected[i].name });
       }
     }
 
     for (let staffID in staffAssignments) {
-      pairs.push({ staff: Number(staffID), students: staffAssignments[staffID]});
+      pairs.push({ staff: { id: staffAssignments[staffID].id, name: staffAssignments[staffID].name}, students: staffAssignments[staffID].pairs});
     }
 
     console.log(pairs);
@@ -112,13 +114,18 @@ const AssignHours = () => {
   };
 
   const addSelectComponent = () => {
-    let tempStudentArray = studentSelected.slice();
-    let tempInstructorArray = instructorsSelected.slice();
-    tempInstructorArray.push({ id: 0, name: '' });
-    tempStudentArray.push({ id: 0, name: '' });
-    
-    setStudentSelected(tempStudentArray);
-    setInstructorsSelected(tempInstructorArray);
+    if (studentSelected === '') {
+      setStudentSelected([{ id: 0, name: '' }]);
+      setInstructorsSelected([{ id: 0, name: '' }]);
+    } else {
+      let tempStudentArray = studentSelected.slice();
+      let tempInstructorArray = instructorsSelected.slice();
+      tempInstructorArray.push({ id: 0, name: '' });
+      tempStudentArray.push({ id: 0, name: '' });
+      
+      setStudentSelected(tempStudentArray);
+      setInstructorsSelected(tempInstructorArray);
+    }
   };
 
   const removeSelectComponent = (index) => {
@@ -164,7 +171,7 @@ const AssignHours = () => {
         <div className="assignemntInputContainer">
           <form id="assessmentNameInput" noValidate autoComplete="off">
             <TextField id="standard-basic" 
-            label="Topic of OH" 
+            label="Topic" 
             onChange={(e) => setTopic(e.target.value)} 
             value={topic}
             />
@@ -238,7 +245,12 @@ const AssignHours = () => {
         </div>
       </div>
       <div className="buttonContainer">
-        <Fab id="testScheduleButton" onClick={() => schedule()} variant="extended" aria-label="add" className={theme.material_ui.orangeButton}>
+        <Fab id="testScheduleButton" 
+          onClick={() => schedule()} 
+          variant="extended" 
+          aria-label="add" 
+          className={theme.material_ui.orangeButton}
+          >
           {!loading ? 'Schedule' : <img id="scheduleLoading" src="./images/loadingTrans.gif"></img>}
         </Fab>
       </div>

@@ -15,9 +15,24 @@ const AdminOptions = () => {
   const history = useHistory();
 
   useEffect(() => {
-    const newCourse = 'MCSP 02';
-    const newUser = 'Jeff';
-    //get course and name from cookie
+    let newCourse = '';
+    let newUser = '';
+    
+    let tempCookie = document.cookie.split('; ')
+
+    tempCookie.forEach(el => {
+      let keyPair = el.split('=');
+
+      if (keyPair[0] === 'courseName') {
+        newCourse = keyPair[1];
+      } 
+
+      if (keyPair[0] === 'username') {
+        newUser = keyPair[1];
+      }
+    })
+
+    
 
     setCourse(newCourse);
     setUsername(newUser);

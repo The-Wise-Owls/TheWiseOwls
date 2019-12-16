@@ -30,6 +30,7 @@ const AdminSplash = () => {
   const setCookie = (obj) => {
     document.cookie = `courseID=${obj.id};`
     document.cookie = `courseName=${obj.course};`
+    document.cookie = `username=${username}`
   };
 
   return (
