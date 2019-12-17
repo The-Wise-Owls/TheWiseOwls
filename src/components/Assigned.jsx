@@ -6,6 +6,7 @@ import Fab from '@material-ui/core/Fab';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import globalTheme from '../ThemeContext.js';
 import Menu from './Menu.jsx';
+import Axios from 'axios';
 
 const Assigned = () => {
   const [course, setCourse] = useState('');
@@ -45,6 +46,11 @@ const Assigned = () => {
   const dateStyle = (date) => {
     let dateNumbers = date.split('-');
     return dateNumbers[1] + '/' + dateNumbers[2] + '/' + dateNumbers[0];
+  }
+
+  const confirmOmniscience = () => {
+    Axios.post(`/admin/confirm/date/${postObj.date}/class/${postObj.classID}/topic/${postObj.topic}/${JSON.stringify(postObj.staff)}`)
+      .then();
   }
 
   return (
@@ -104,6 +110,13 @@ const Assigned = () => {
           })}
         </div>
       }
+      <div className="buttonContainer">
+        <NavLink to='/requestSubmitted'>
+          <Fab id="testScheduleButton" onClick={confirmOmniscience} variant="extended" aria-label="add" className={theme.material_ui.orangeButton}>
+            Confirm Omniscience
+          </Fab>
+        </NavLink>
+      </div>
     </>
   );
 };

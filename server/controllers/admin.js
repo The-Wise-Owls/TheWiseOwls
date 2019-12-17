@@ -122,4 +122,6 @@ exports.scheduleOfficeHours = async (req, res) => {
 
 exports.confirmOfficeHours = async (req, res) => {
   // To be implemented
+  console.log('scheduled');
+  res.status(201).end();
 };

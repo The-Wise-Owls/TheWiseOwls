@@ -245,7 +245,7 @@ const AssignHours = () => {
           aria-label="add" 
           className={theme.material_ui.orangeButton}
           >
-          {!loading ? 'Schedule' : <img id="scheduleLoading" src="./images/loadingTrans.gif"></img>}
+          {!loading ? 'Consult The Owls' : <img id="scheduleLoading" src="./images/loadingTrans.gif"></img>}
         </Fab>
       </div>
     </>
