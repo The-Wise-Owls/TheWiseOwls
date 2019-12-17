@@ -205,3 +205,61 @@ a {
   border-bottom: 2px solid #F4F4F5 !important;
 }
 
+.assignContainer {
+  display: flex;
+  justify-content: center;
+  width: 100vw;
+  flex-direction: column;
+}
+
+#assignTopic {
+  position: relative;
+  width: 100vw;
+  margin: 0 0 20px 0;
+  height: 40px;
+  text-align: center;
+  font-size: 30px;
+}
+
+.assignStaffNames {
+  width: 100vw;
+  margin: 20px 0 10px 0;
+  height: 40px;
+  vertical-align: center;
+  text-align: center;
+  color: #f4f4f5;
+  font-size: 30px;
+  font-weight: bold;
+}
+
+.assignStudentData {
+  display: flex;
+  flex-direction: row;
+}
+
+.assignStudentStyle {
+  width: 33%;
+  margin: 10px 0;
+  color: #f4f4f5;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.assignTitleStyle {
+  width: 33%;
+  margin: 0;
+  color: #EE882C;
+  font-size: 18px;
+}
+
+.assignLeft {
+  text-align: right;
+}
+
+.assignCenter {
+  text-align: center;
+}
+
+.assignRight {
+  text-align: left;
+}

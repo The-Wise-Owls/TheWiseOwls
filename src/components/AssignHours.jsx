@@ -80,17 +80,11 @@ const AssignHours = () => {
       pairs.push({ staff: { id: staffAssignments[staffID].id, name: staffAssignments[staffID].name}, students: staffAssignments[staffID].pairs});
     }
 
-    console.log(pairs);
-
-    Axios.get('/assigned', {
-      params: {
-        topic: topic,
-        assessmentDate: assessmentDate,
-        classID: classID, 
-        pairs: pairs
-      }
-    })
+    // need to add assessmentDate: assessmentDate,
+    Axios.get(`/admin/schedule/class/${classID}/topic/${topic}/${JSON.stringify(pairs)}`)
     .then(({data}) => {
+      // console.log(data)
+      document.cookie = `postObject=${JSON.stringify(data)}`
       //set data into local cookie
       //set students object in local cookie
     })
