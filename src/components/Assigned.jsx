@@ -111,7 +111,7 @@ const Assigned = () => {
         </div>
       }
       <div className="buttonContainer">
-        <NavLink to='/requestSubmitted'>
+        <NavLink to='/submitted'>
           <Fab id="testScheduleButton" onClick={confirmOmniscience} variant="extended" aria-label="add" className={theme.material_ui.orangeButton}>
             Confirm Omniscience
           </Fab>

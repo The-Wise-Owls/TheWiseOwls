@@ -263,3 +263,11 @@ a {
 .assignRight {
   text-align: left;
 }
+
+#hoot {
+  width: 100vw;
+  text-align: center;
+  margin: 0;
+  color: #EE882C;
+  font-size: 18px;
+}
