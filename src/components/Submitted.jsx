@@ -24,7 +24,7 @@ const Submitted = () => {
       </div>
       <div >
         <p className="assignStaffNames">Calendar Events Sent</p>
-        <p id="hoot">*Hoot*</p>
+        <p id="hoot">Hoot</p>
       </div>
       
       <div className="buttonContainer">

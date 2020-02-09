@@ -22,6 +22,7 @@ import TextField from '@material-ui/core/TextField';
 
 const AssignHours = () => {
   const [ course, setCourse ] = useState('');
+  const [ courseID, setCourseID ] = useState('');
   const [ username, setUsername ] = useState('');
   const [ students, setStudents ] = useState([])
   const [ studentSelected, setStudentSelected ] = useState([{ id: 1, name: 'Student Name' }]);
@@ -35,9 +36,29 @@ const AssignHours = () => {
   const history = useHistory();
   
   useEffect(() => {
-    const newCourse = 'MCSP 02';
-    const newUser = 'Jeff';
-    const classID = 3;
+    let newUsername = '';
+    let newCourseName = '';
+    let classID = '';
+
+    let cookies = document.cookie.split('; ');
+
+    cookies = cookies.map(cookieString => {
+      return cookieString.split('=');
+    })
+
+    cookies.forEach(cookieArray => {
+      if (cookieArray[0] === 'username') {
+        newUsername = cookieArray[1];
+      } else if (cookieArray[0] === 'courseName') {
+        newCourseName = cookieArray[1];
+      } else if (cookieArray[0] === 'courseID') {
+        classID = cookieArray[1];
+      }
+    })
+
+    setUsername(newUsername);
+    setCourse(newCourseName);
+    setCourseID(classID);
 
     Axios.get(`/admin/classes/${classID}/students`)
       .then(({ data }) => {
@@ -45,16 +66,10 @@ const AssignHours = () => {
       })
       .catch(err => console.log(err));
 
-    // Axios.get()
-    // .then(({data}) => {
-      let data = [{id: 1, name: 'Jeff Salinas'}, {id: 2, name: 'Julia Kim'}];
+    Axios.get(`admin/classes/${classID}/staff`)
+    .then(({data}) => {
       setInstructors(data);
-    // })
-
-    
-    //get course and name from cookie
-    setCourse(newCourse);
-    setUsername(newUser);
+    })
   }, []);
 
   const schedule = () => {
