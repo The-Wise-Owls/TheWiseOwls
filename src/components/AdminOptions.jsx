@@ -6,9 +6,6 @@ import Fab from '@material-ui/core/Fab';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import globalTheme from '../ThemeContext.js';
 import Menu from './Menu.jsx';
-import firebase from 'firebase/app';
-import 'firebase/auth';
-const auth = firebase.auth();
 
 const AdminOptions = () => {
   const [course, setCourse] = useState('');
@@ -16,14 +13,6 @@ const AdminOptions = () => {
   const [open, setOpen] = useState(false);
   const theme = useContext(globalTheme);
   const history = useHistory();
-
-  useEffect(() => {
-    return auth.onAuthStateChanged(user => {
-      if (!user) {
-        history.replace('/');
-      }
-    })
-  }, [])
 
   useEffect(() => {
     let newCourse = '';

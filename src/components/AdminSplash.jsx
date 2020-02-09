@@ -18,13 +18,13 @@ const AdminSplash = () => {
   const [username, setUsername] = useState(''); 
   window.testOpen = open;
 
-  useEffect(() => {
-    return auth.onAuthStateChanged(user => {
-      if (!user) {
-        history.replace('/');
-      }
-    })
-  }, [])
+  // useEffect(() => {
+  //   return auth.onAuthStateChanged(user => {
+  //     if (!user) {
+  //       history.replace('/');
+  //     }
+  //   })
+  // }, [])
 
   useEffect(() => {
     const userEmail = 'kk@galvanize.com'
