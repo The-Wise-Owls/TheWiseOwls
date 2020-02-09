@@ -1,18 +1,30 @@
 import React, { useState, useContext, useEffect } from 'react';
-import { withRouter, NavLink, useLocation } from 'react-router-dom';
+import { withRouter, NavLink, useHistory, useLocation } from 'react-router-dom';
 import Fab from '@material-ui/core/Fab';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import Axios from 'axios'
 import globalTheme from '../ThemeContext.js';
 import Menu from './Menu.jsx';
+import firebase from 'firebase/app';
+import 'firebase/auth';
+const auth = firebase.auth();
 
 const AdminSplash = () => {
+  const history = useHistory();
   const [classes, setClasses] = useState([]);
   const theme = useContext(globalTheme);
   const [open, setOpen] = useState(false);
   const [username, setUsername] = useState(''); 
   window.testOpen = open;
+
+  useEffect(() => {
+    return auth.onAuthStateChanged(user => {
+      if (!user) {
+        history.replace('/');
+      }
+    })
+  }, [])
 
   useEffect(() => {
     const userEmail = 'kk@galvanize.com'
