@@ -6,38 +6,21 @@ import TextField from '@material-ui/core/TextField';
 import firebase from 'firebase/app';
 import 'firebase/auth';
 import firebaseConfig from './firebaseConfig';
-import { CLIENT_ID, API_KEY } from './API_Config';
 const app = firebase.initializeApp(firebaseConfig);
 const auth = firebase.auth();
+import { CLIENT_ID, API_KEY } from './API_Config';
 
 const Login = (props) => {
   const theme = useContext(gobalTheme);
   const [isAuth, setAuth] = useState(false);
   const history = useHistory();
-  const [loginEmail, setLoginEmail] = useState('');
-  const [loginPassword, setLoginPassword] = useState('');
+  const [loginEmail, setLoginEmail] = useState('thewiseowls.galvanize@gmail.com');
+  const [loginPassword, setLoginPassword] = useState('jeffisawesome');
   const DISCOVERY_DOCS = ["https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest"];
   const SCOPES = "https://www.googleapis.com/auth/calendar https://www.googleapis.com/auth/calendar.events";
-
-  useEffect(() => {
-    listener();
-
-    return () => listener();
-  }, [])
-
   useEffect(() => {
     window.gapi.load('client:auth2', initClient)
   }, [])
-
-  const listener = () => {
-    auth.onAuthStateChanged(function (user) {
-      if (user) {
-        console.log('signed in')
-      } else {
-        console.log('signed out')
-      }
-    });
-  }
   
   useEffect(() =>{
     if (isAuth) history.replace({ pathname: "/adminSplash" })
@@ -47,7 +30,6 @@ const Login = (props) => {
     e.preventDefault();
     auth.signInWithEmailAndPassword(loginEmail, loginPassword)
     .then((data) => {
-      console.log('click');
       window.gapi.auth2.getAuthInstance().signIn()
         .then(() => {
           setAuth(true);
@@ -68,17 +50,9 @@ const Login = (props) => {
       discoveryDocs: DISCOVERY_DOCS,
       scope: SCOPES
     })
-      .then(() => {
-        if (window.gapi.auth2.getAuthInstance().currentUser.get().El) {
-          setAuth(true);
-        } else {
-          setAuth(false);
-          console.log('not signed in')
-        }
-      })
-      .catch(err => {
-        console.log(err)
-      })
+    .catch(err => {
+      console.log(err)
+    })
   }
 
   return (
@@ -103,7 +77,6 @@ const Login = (props) => {
           Login
         </Fab>
       </div>
-      <button onClick={() => auth.signOut()}>sign out</button>
     </>
   );
 };

@@ -1,5 +1,5 @@
-import React from 'react';
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import React, { useEffect, useState } from 'react';
+import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
 import Splash from './components/Splash.jsx';
 import Request from './components/Request.jsx';
 import Login from './components/Login.jsx';
@@ -17,28 +17,67 @@ import RequestForm from './components/RequestForm.jsx';
 import RequestSubmitted from './components/RequestSubmitted.jsx';
 import Submitted from './components/Submitted.jsx';
 import GlobalTheme from './GlobalTheme.jsx';
+import firebase from 'firebase/app';
+import 'firebase/auth';
+const auth = firebase.auth();
 
 const RouteManager = (props) => {
+  const [ isLoggedIn, setIsLoggedIn ] = useState(false);
+
+  useEffect(() => {
+  return auth.onAuthStateChanged(user => {
+    if (user) {
+      setIsLoggedIn(true);
+      console.log('onAuth Run')
+    }
+  })
+  }, [])
+
   return (
     <GlobalTheme>
       <Router>
         <Route exact path="/" component={Splash} />
         <Route exact path="/request" component={Request} />
         <Route exact path="/login" component={Login} />
-        <Route exact path="/adminSplash" component={AdminSplash} />
-        <Route exact path="/adminOptions" component={AdminOptions} />
-        <Route exact path="/availability" component={Availability} />
-        <Route exact path="/staff" component={Staff} />
-        <Route exact path="/students" component={Students} />
-        <Route exact path="/classes" component={Classes} />
-        <Route exact path="/history" component={History} />
-        <Route exact path="/classHistory" component={ClassHistory} />
-        <Route exact path="/assignHours" component={AssignHours} />
-        <Route exact path="/assigned" component={Assigned} />
-        <Route exact path="/submitted" component={Submitted} />
-        <Route exact path="/requestForm" component={RequestForm} />
-        <Route exact path="/requestSubmitted" component={RequestSubmitted} />
-
+        <Route exact path="/adminSplash">
+          {isLoggedIn ? <AdminSplash /> : <Redirect to={'/login'} />}
+        </Route>
+        <Route exact path="/adminOptions">
+          {isLoggedIn ? <AdminOptions /> : <Redirect to={'/login'} />}
+        </Route>
+        <Route exact path="/availability">
+          {isLoggedIn ? <Availability /> : <Redirect to={'/login'} />}
+        </Route>
+        <Route exact path="/staff">
+          {isLoggedIn ? <Staff /> : <Redirect to={'/login'} />}
+        </Route>
+        <Route exact path="/students">
+          {isLoggedIn ? <Students /> : <Redirect to={'/login'} />}
+        </Route>
+        <Route exact path="/classes">
+          {isLoggedIn ? <Classes /> : <Redirect to={'/login'} />}
+        </Route>
+        <Route exact path="/history">
+          {isLoggedIn ? <History /> : <Redirect to={'/login'} />}
+        </Route>
+        <Route exact path="/classHistory">
+          {isLoggedIn ? <ClassHistory /> : <Redirect to={'/login'} />}
+        </Route>
+        <Route exact path="/assignHours">
+          {isLoggedIn ? <AssignHours /> : <Redirect to={'/login'} />}
+        </Route>
+        <Route exact path="/assigned">
+          {isLoggedIn ? <Assigned /> : <Redirect to={'/login'} />}
+        </Route>
+        <Route exact path="/submitted">
+          {isLoggedIn ? <Submitted /> : <Redirect to={'/login'} />}
+        </Route>
+        <Route exact path="/requestForm">
+          {isLoggedIn ? <RequestForm /> : <Redirect to={'/login'} />}
+        </Route>
+        <Route exact path="/requestSubmitted">
+          {isLoggedIn ? <RequestSubmitted /> : <Redirect to={'/login'} />}
+        </Route>
       </Router>
     </GlobalTheme>
   );

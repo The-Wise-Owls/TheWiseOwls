@@ -32,8 +32,6 @@ const AdminOptions = () => {
       }
     })
 
-    
-
     setCourse(newCourse);
     setUsername(newUser);
   },[]);
