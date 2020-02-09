@@ -3,5 +3,8 @@ node_modules
 dist/bundle.js
 server/models/config.js
 server/tests/database/config.js
+server/controllers/googleConfig.js
 cypress/videos
 cypress/screenshots
+src/components/firebaseConfig.js
+src/components/API_Config.js

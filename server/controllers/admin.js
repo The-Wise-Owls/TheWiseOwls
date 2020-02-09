@@ -1,6 +1,7 @@
 const moment = require('moment');
 const { getActiveClasses, getClassesByEmail, getStaffByClassID, getStudentsByClassID } = require('../models/admin.js');
 const { getTentativeSchedule } = require('../utils');
+const oauth2Client = require('./oauth');
 
 exports.getActiveClasses = (req, res) => {
   getActiveClasses()
@@ -122,4 +123,23 @@ exports.scheduleOfficeHours = async (req, res) => {
 
 exports.confirmOfficeHours = async (req, res) => {
   // To be implemented
+
+  console.log('scheduled');
+  res.status(201).end();
 };
+
+
+//https://www.npmjs.com/package/googleapis#using-api-keys
+exports.getAuth = (req, res) => {
+  const scopes = [
+    'https://www.googleapis.com/auth/calendar',
+    'https://www.googleapis.com/auth/calendar.events'
+  ];
+
+  const url = oauth2Client.generateAuthUrl({
+    // 'online' (default) or 'offline' (gets refresh_token)
+    access_type: 'offline',
+    scope: scopes
+  });
+
+}

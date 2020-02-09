@@ -10,8 +10,8 @@ import Menu from './Menu.jsx';
 const AdminSplash = () => {
   const [classes, setClasses] = useState([]);
   const theme = useContext(globalTheme);
-  const [open, setOpen] = React.useState(false);
-  const [username, setUsername] = useState('Jeff'); 
+  const [open, setOpen] = useState(false);
+  const [username, setUsername] = useState(''); 
   window.testOpen = open;
 
   useEffect(() => {
@@ -19,14 +19,18 @@ const AdminSplash = () => {
 
     Axios.get(`/admin/${userEmail}/classes`)
       .then(({ data }) => {
+        let firstName = data.name.split(' ');
+        firstName = firstName[0]
+        setUsername(firstName);
         setClasses(data.classes);
       })
       .catch(err => console.log(err));
   }, []);
 
   const setCookie = (obj) => {
-    //set selected class object to cookie
-
+    document.cookie = `courseID=${obj.id};`
+    document.cookie = `courseName=${obj.course};`
+    document.cookie = `username=${username}`
   };
 
   return (

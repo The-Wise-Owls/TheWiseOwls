@@ -78,8 +78,196 @@ h2 {
   height: 50px;
 }
 
+.MuiTypography-body1 {
+  font-size: 20px !important ;
+  font-weight: bold !important;
+}
+
 a {
   text-decoration: none;
 }
 
+/* Assign Hours Inputs */
 
+.MuiFormLabel-root {
+  color:  #EE882C !important;
+}
+
+.MuiInputBase-input {
+  color: #f4f4f5 !important;
+}
+
+.RequestFormInput {
+  width: 300px;
+}
+
+
+#assignHoursStudentSelect {
+  width: 150px;
+}
+#assignHoursInstructorSelect {
+  width: 150px;
+}
+
+.assignHoursInputs {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  margin: 0 0 20px 0;
+}
+
+.cancelAssignment {
+  margin: 4px 10px;
+  color: #EE882C;
+}
+
+.cancelAssignment:hover {
+  margin: 4px 10px;
+  color: #f4f4f5;
+  cursor: pointer;
+}
+
+.addButtonColor {
+  display: flex;
+  flex-direction: row;
+    height:24px;
+  color: #f4f4f5;
+}
+
+.addButtonColor:hover {
+  color: #EE882C;
+  cursor: pointer;
+}
+
+.addAssignmentTitle {
+  height:24px;
+  margin: 0;
+}
+
+.addButton {
+  margin: 0 8px;
+}
+
+#standard-basic-label {
+  font-size: 15px;
+}
+#standard-basic {
+  color: #f4f4f5;
+  font-size: 20px;
+}
+
+.assignemntInputContainer {
+  display: flex;
+  flex-direction: row;
+  min-width: 50%;
+  justify-content: flex-end ;
+  align-items: flex-end;
+}
+
+#assessmentNameInput {
+  width: 165px;
+  margin: 0 20px 8px 0;
+}
+
+.calendarInputContainer {
+  min-width: 50%;
+  margin: 0 0 0 20px; 
+}
+
+/* Calendar */
+#calendar {
+  width: 109px;
+  color: #F4F4F5;  
+  font-size: 20px;
+}
+
+#calendar-label {
+  color: #EE882C;  
+}
+
+.assignHoursRadioLables {
+  color: #F4F4F5;
+}
+
+.MuiPickersDay-daySelected:hover {
+    background-color: #EE882C !important;
+}
+
+.MuiPickersDay-daySelected {
+    background-color: #EE882C !important;
+}
+
+.MuiPickersDay-current {
+  color: rgba(0, 0, 0, 0.87) !important;
+}
+
+.MuiInput-underline:after {
+  border-bottom: 2px solid #F4F4F5 !important;
+}
+
+.assignContainer {
+  display: flex;
+  justify-content: center;
+  width: 100vw;
+  flex-direction: column;
+}
+
+#assignTopic {
+  position: relative;
+  width: 100vw;
+  margin: 0 0 20px 0;
+  height: 40px;
+  text-align: center;
+  font-size: 30px;
+}
+
+.assignStaffNames {
+  width: 100vw;
+  margin: 20px 0 10px 0;
+  height: 40px;
+  vertical-align: center;
+  text-align: center;
+  color: #f4f4f5;
+  font-size: 30px;
+  font-weight: bold;
+}
+
+.assignStudentData {
+  display: flex;
+  flex-direction: row;
+}
+
+.assignStudentStyle {
+  width: 33%;
+  margin: 10px 0;
+  color: #f4f4f5;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.assignTitleStyle {
+  width: 33%;
+  margin: 0;
+  color: #EE882C;
+  font-size: 18px;
+}
+
+.assignLeft {
+  text-align: right;
+}
+
+.assignCenter {
+  text-align: center;
+}
+
+.assignRight {
+  text-align: left;
+}
+
+#hoot {
+  width: 100vw;
+  text-align: center;
+  margin: 0;
+  color: #EE882C;
+  font-size: 18px;
+}
