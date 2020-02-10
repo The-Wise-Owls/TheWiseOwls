@@ -59,7 +59,16 @@ exports.getScheduleByStaffID = (staffID) => {
 
 exports.addStaffAvailability = (day, start, end, staff_id) => {
   const queryString = 'INSERT INTO staff_availability(day, start, end, staff_id) VALUES(?, ?, ?, ?);';
-
+  
   return db.query(queryString, [day, start, end, staff_id])
-    .catch(err => console.log(`Error posting availability to database: ${err}`));
+    .then(results => results)
+    .catch(err => console.error(`Error posting availability to database: ${err}`));
+};
+
+exports.removeStaffAvailability = (staff_id) => {
+  const queryString = 'DELETE FROM staff_availability WHERE staff_id = ?;';
+
+  return db.query(queryString, staff_id)
+    .then(results => results)
+    .catch(err => console.error(`Error deleting old availability from database: ${err}`));
 };

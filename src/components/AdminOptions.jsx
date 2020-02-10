@@ -55,6 +55,14 @@ const AdminOptions = () => {
   const handleAssignHours = () => {
     Axios.get(`/admin/classes/${courseID}/staff`)
     .then(({data}) => {
+
+      data.forEach(el => {
+        Axios.delete(`admin/${el.id}/availability/remove`)
+        .catch(err => {
+          console.error(err);
+        })
+      });
+
       data.forEach(el => {
         getEvents(el.calendar_id)
         .then((events) => {
@@ -65,9 +73,6 @@ const AdminOptions = () => {
             let staff_id = el.id;
             
             Axios.post(`/admin/${day}/${start}/${end}/${staff_id}/availability`)
-            .then(() => {
-              console.log('posted')
-            })
           })
         })
       })
