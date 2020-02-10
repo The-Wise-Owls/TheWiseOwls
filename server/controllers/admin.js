@@ -158,3 +158,8 @@ exports.confirmOfficeHours = async (req, res) => {
   console.log('scheduled');
   res.status(201).end();
 };
+
+exports.postStaffAvailability = async (req, res) => {
+  console.log('post availability');
+  res.status(201).end();
+}

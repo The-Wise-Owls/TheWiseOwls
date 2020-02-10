@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
+import Axios from 'axios';
 import { withRouter, NavLink, useHistory } from 'react-router-dom';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
@@ -8,15 +9,17 @@ import globalTheme from '../ThemeContext.js';
 import Menu from './Menu.jsx';
 
 const AdminOptions = () => {
-  const [course, setCourse] = useState('');
-  const [username, setUsername] = useState('');
-  const [open, setOpen] = useState(false);
+  const [ course, setCourse ] = useState('');
+  const [ courseID, setCourseID ] = useState('');
+  const [ username, setUsername ] = useState('');
+  const [ open, setOpen ] = useState(false);
   const theme = useContext(globalTheme);
   const history = useHistory();
 
   useEffect(() => {
     let newCourse = '';
     let newUser = '';
+    let newCourseID = '';
     
     let tempCookie = document.cookie.split('; ')
 
@@ -30,11 +33,23 @@ const AdminOptions = () => {
       if (keyPair[0] === 'username') {
         newUser = keyPair[1];
       }
+
+      if (keyPair[0] === 'courseID') {
+        newCourseID = keyPair[1];
+      }
     })
 
     setCourse(newCourse);
     setUsername(newUser);
+    setCourseID(newCourseID);
   },[]);
+
+  const handleAssignHours = () => {
+    Axios.post(`admin/${1}/${'14:30'}/${'17:00'}/${1}/availability`)
+    .then(() => {
+      history.push('/assignHours');
+    })
+  };
 
   return (
     <>
@@ -68,11 +83,9 @@ const AdminOptions = () => {
       />
 
       <div className="buttonContainer">
-        <NavLink to='/assignHours'>
-          <Fab id="requestButton" variant="extended" aria-label="add" className={theme.material_ui.whiteButton}>
-            Assign Office Hours
-          </Fab>
-        </NavLink>
+        <Fab id="requestButton" variant="extended" aria-label="add" onClick={handleAssignHours} className={theme.material_ui.whiteButton}>
+          Assign Office Hours
+        </Fab>
       </div>
       <div className="buttonContainer">
         <NavLink to='/classHistory'>
