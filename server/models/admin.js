@@ -56,3 +56,10 @@ exports.getScheduleByStaffID = (staffID) => {
     .then(results => results)
     .catch(err => console.log(`Error querying database for schedule: ${err}`));
 };
+
+exports.addStaffAvailability = (day, start, end, staff_id) => {
+  const queryString = 'INSERT INTO staff_availability(day, start, end, staff_id) VALUES(?, ?, ?, ?);';
+
+  return db.query(queryString, [day, start, end, staff_id])
+    .catch(err => console.log(`Error posting availability to database: ${err}`));
+};

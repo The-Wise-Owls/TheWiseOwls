@@ -45,9 +45,17 @@ const AdminOptions = () => {
   },[]);
 
   const handleAssignHours = () => {
-    Axios.post(`admin/${1}/${'14:30'}/${'17:00'}/${1}/availability`)
+    let day = 2;
+    let start = "15:00";
+    let end = "15:30";
+    let staff_id = 2
+
+    Axios.post(`/admin/${day}/${start}/${end}/${staff_id}/availability`)
     .then(() => {
       history.push('/assignHours');
+    })
+    .catch(err => {
+      console.log(err);
     })
   };
 
