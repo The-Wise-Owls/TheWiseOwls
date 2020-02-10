@@ -1,5 +1,5 @@
 const moment = require('moment');
-const { getActiveClasses, getClassesByEmail, getStaffByClassID, getStudentsByClassID } = require('../models/admin.js');
+const { getActiveClasses, getClassesByEmail, getStaffByClassID, getStudentsByClassID, getAllCampusClassesByEmail } = require('../models/admin.js');
 const { getTentativeSchedule } = require('../utils');
 
 exports.getActiveClasses = (req, res) => {
@@ -19,6 +19,36 @@ exports.getActiveClasses = (req, res) => {
         });
         const cohorts = {
           name: rows[0].fullName,
+          classes: classes
+        };
+        res.status(200).send(cohorts);
+      }
+    })
+    .catch(err => res.status(500).send('Error'));
+};
+
+exports.getAllClasses = (req, res) => {
+  const email = req.params.email;
+  console.log(email)
+
+  getAllCampusClassesByEmail(email)
+    .then(rows => Promise.all(rows))
+    .then(rows => {
+      // console.log(rows)
+      if (rows.length === 0) {
+        res.status(403).send('Invalid email address');
+      } else {
+        const classes = [];
+        rows.map(row => {
+          // Add leading 0 for single-digit cohorts
+          row.cohort < 10 ? row.cohort = `0${row.cohort}` : row.cohort;
+          classes.push({
+            id: row.class_id,
+            course: `${row.name} ${row.cohort}`
+          });
+        });
+        const cohorts = {
+          name: rows[0].campus_name,
           classes: classes
         };
         res.status(200).send(cohorts);

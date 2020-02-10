@@ -21,7 +21,7 @@ const AdminSplash = () => {
   useEffect(() => {
     const userEmail = window.gapi.auth2.getAuthInstance().currentUser.get().w3.U3;
 
-    Axios.get(`/admin/${userEmail}/classes`)
+    Axios.get(`/admin/${userEmail}/allClasses`)
       .then(({ data }) => {
         let firstName = data.name.split(' ');
         firstName = firstName[0]
