@@ -25,7 +25,7 @@ exports.getClassesByEmail = (email) => {
 };
 
 exports.getStaffByClassID = (classID) => {
-  const queryString = 'SELECT s.staff_id, s.fullName FROM staff s INNER JOIN staff_programs sp USING (staff_id) INNER JOIN programs p USING (program_id) INNER JOIN classes c ON p.program_id = c.program WHERE c.class_id = ? AND s.active = 1;';
+  const queryString = 'SELECT s.staff_id, s.fullName, s.calendar_id FROM staff s INNER JOIN staff_programs sp USING (staff_id) INNER JOIN programs p USING (program_id) INNER JOIN classes c ON p.program_id = c.program WHERE c.class_id = ? AND s.active = 1;';
 
   return db.query(queryString, classID)
     .then(results => results)

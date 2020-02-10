@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
 import Axios from 'axios';
+import moment from 'moment';
 import { withRouter, NavLink, useHistory } from 'react-router-dom';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
@@ -7,8 +8,11 @@ import Fab from '@material-ui/core/Fab';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import globalTheme from '../ThemeContext.js';
 import Menu from './Menu.jsx';
+import { CLIENT_ID, API_KEY } from './API_Config';
 
 const AdminOptions = () => {
+  const DISCOVERY_DOCS = ["https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest"];
+  const SCOPES = "https://www.googleapis.com/auth/calendar https://www.googleapis.com/auth/calendar.events";
   const [ course, setCourse ] = useState('');
   const [ courseID, setCourseID ] = useState('');
   const [ username, setUsername ] = useState('');
@@ -17,11 +21,15 @@ const AdminOptions = () => {
   const history = useHistory();
 
   useEffect(() => {
+    window.gapi.load('client:auth2', initClient)
+  }, []);
+
+  useEffect(() => {
     let newCourse = '';
     let newUser = '';
     let newCourseID = '';
     
-    let tempCookie = document.cookie.split('; ')
+    let tempCookie = document.cookie.split('; ');
 
     tempCookie.forEach(el => {
       let keyPair = el.split('=');
@@ -45,17 +53,59 @@ const AdminOptions = () => {
   },[]);
 
   const handleAssignHours = () => {
-    let day = 2;
-    let start = "15:00";
-    let end = "15:30";
-    let staff_id = 2
-
-    Axios.post(`/admin/${day}/${start}/${end}/${staff_id}/availability`)
+    Axios.get(`/admin/classes/${courseID}/staff`)
+    .then(({data}) => {
+      data.forEach(el => {
+        getEvents(el.calendar_id)
+        .then((events) => {
+          events.forEach(event => {
+            let day = new Date(event.start.dateTime).getDay();
+            let start = moment(new Date(event.start.dateTime)).format("HH:mm");
+            let end = moment(new Date(event.end.dateTime)).format("HH:mm");
+            let staff_id = el.id;
+            
+            Axios.post(`/admin/${day}/${start}/${end}/${staff_id}/availability`)
+            .then(() => {
+              console.log('posted')
+            })
+          })
+        })
+      })
+    })
     .then(() => {
       history.push('/assignHours');
     })
     .catch(err => {
+      console.error(err);
+    })
+  };
+
+  const getEvents = (calendar_id) => {
+    return window.gapi.client.calendar.events.list({
+      calendarId: calendar_id,
+      timeMin: (new Date()).toISOString(),
+      showDeleted: false,
+      singleEvents: true,
+      maxResults: 10,
+      orderBy: 'startTime'
+    })
+      .then(response => {
+        return response.result.items
+      })
+    .catch(err => {
       console.log(err);
+    })
+  };
+
+  const initClient = () => {
+    window.gapi.client.init({
+      apiKey: API_KEY,
+      clientId: CLIENT_ID,
+      discoveryDocs: DISCOVERY_DOCS,
+      scope: SCOPES
+    })
+    .catch(err => {
+      console.error(err)
     })
   };
 

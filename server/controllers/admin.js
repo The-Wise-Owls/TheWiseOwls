@@ -98,7 +98,8 @@ exports.getStaff = async (req, res) => {
         rows.map(row => {
           const instructor = {
             id: row.staff_id,
-            name: row.fullName
+            name: row.fullName,
+            calendar_id: row.calendar_id
           };
           staff.push(instructor);
         });
