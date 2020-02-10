@@ -65,24 +65,24 @@ INSERT INTO students (fullName, email, class) VALUES ('Martin Ramos', 'ramosmart
 INSERT INTO students (fullName, email, class) VALUES ('Zach Yusuf', 'zachyusuf@aol.com', 4);
 
 -- Populate staff_availability table
-INSERT INTO staff_availability (day, start, end, staff_id) VALUES (1, '14:30', '17:00', 1);
-INSERT INTO staff_availability (day, start, end, staff_id) VALUES (2, '14:00', '17:00', 1);
-INSERT INTO staff_availability (day, start, end, staff_id) VALUES (3, '16:00', '17:00', 1);
-INSERT INTO staff_availability (day, start, end, staff_id) VALUES (4, '14:00', '17:00', 1);
-INSERT INTO staff_availability (day, start, end, staff_id) VALUES (1, '14:00', '17:00', 2);
-INSERT INTO staff_availability (day, start, end, staff_id) VALUES (2, '14:00', '17:00', 2);
-INSERT INTO staff_availability (day, start, end, staff_id) VALUES (3, '14:00', '17:00', 2);
-INSERT INTO staff_availability (day, start, end, staff_id) VALUES (4, '15:00', '17:00', 2);
-INSERT INTO staff_availability (day, start, end, staff_id) VALUES (1, '10:00', '12:30', 3);
-INSERT INTO staff_availability (day, start, end, staff_id) VALUES (2, '10:00', '12:30', 3);
-INSERT INTO staff_availability (day, start, end, staff_id) VALUES (3, '10:00', '12:30', 3);
-INSERT INTO staff_availability (day, start, end, staff_id) VALUES (4, '10:00', '12:30', 3);
-INSERT INTO staff_availability (day, start, end, staff_id) VALUES (4, '13:00', '14:30', 3);
-INSERT INTO staff_availability (day, start, end, staff_id) VALUES (1, '10:00', '12:30', 4);
-INSERT INTO staff_availability (day, start, end, staff_id) VALUES (2, '10:00', '12:30', 4);
-INSERT INTO staff_availability (day, start, end, staff_id) VALUES (3, '10:00', '12:30', 4);
-INSERT INTO staff_availability (day, start, end, staff_id) VALUES (4, '10:00', '12:30', 4);
-INSERT INTO staff_availability (day, start, end, staff_id) VALUES (4, '13:00', '14:30', 4);
+-- INSERT INTO staff_availability (day, start, end, staff_id) VALUES (1, '14:30', '17:00', 1);
+-- INSERT INTO staff_availability (day, start, end, staff_id) VALUES (2, '14:00', '17:00', 1);
+-- INSERT INTO staff_availability (day, start, end, staff_id) VALUES (3, '16:00', '17:00', 1);
+-- INSERT INTO staff_availability (day, start, end, staff_id) VALUES (4, '14:00', '17:00', 1);
+-- INSERT INTO staff_availability (day, start, end, staff_id) VALUES (1, '14:00', '17:00', 2);
+-- INSERT INTO staff_availability (day, start, end, staff_id) VALUES (2, '14:00', '17:00', 2);
+-- INSERT INTO staff_availability (day, start, end, staff_id) VALUES (3, '14:00', '17:00', 2);
+-- INSERT INTO staff_availability (day, start, end, staff_id) VALUES (4, '15:00', '17:00', 2);
+-- INSERT INTO staff_availability (day, start, end, staff_id) VALUES (1, '10:00', '12:30', 3);
+-- INSERT INTO staff_availability (day, start, end, staff_id) VALUES (2, '10:00', '12:30', 3);
+-- INSERT INTO staff_availability (day, start, end, staff_id) VALUES (3, '10:00', '12:30', 3);
+-- INSERT INTO staff_availability (day, start, end, staff_id) VALUES (4, '10:00', '12:30', 3);
+-- INSERT INTO staff_availability (day, start, end, staff_id) VALUES (4, '13:00', '14:30', 3);
+-- INSERT INTO staff_availability (day, start, end, staff_id) VALUES (1, '10:00', '12:30', 4);
+-- INSERT INTO staff_availability (day, start, end, staff_id) VALUES (2, '10:00', '12:30', 4);
+-- INSERT INTO staff_availability (day, start, end, staff_id) VALUES (3, '10:00', '12:30', 4);
+-- INSERT INTO staff_availability (day, start, end, staff_id) VALUES (4, '10:00', '12:30', 4);
+-- INSERT INTO staff_availability (day, start, end, staff_id) VALUES (4, '13:00', '14:30', 4);
 
 -- Populate staff_programs table
 INSERT INTO staff_programs (staff_id, program_id) VALUES (1, 1);

@@ -71,8 +71,15 @@ const AdminOptions = () => {
             let start = moment(new Date(event.start.dateTime)).format("HH:mm");
             let end = moment(new Date(event.end.dateTime)).format("HH:mm");
             let staff_id = el.id;
-            
-            Axios.post(`/admin/${day}/${start}/${end}/${staff_id}/availability`)
+            let title = event.summary;
+            let event_id = event.id;
+            let regTest = /^open/i
+            console.log(event);
+
+            //if event is available (open)
+            if (regTest.test(title)) {
+              Axios.post(`/admin/${day}/${start}/${end}/${staff_id}/${event_id}/availability`)
+            }
           })
         })
       })

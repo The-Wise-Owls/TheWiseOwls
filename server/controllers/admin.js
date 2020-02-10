@@ -164,8 +164,9 @@ exports.postStaffAvailability = async (req, res) => {
   const start = req.params.start;
   const end = req.params.end;
   const staff_id = req.params.staff_id;
+  const event_id = req.params.event_id;
 
-  addStaffAvailability(day, start, end, staff_id)
+  addStaffAvailability(day, start, end, staff_id, event_id)
   .then(() => {
     res.status(201).end();
   })
@@ -180,4 +181,4 @@ exports.deleteStaffAvailability = async (req, res) => {
     res.status(200).end();
   })
   .catch(err => res.status(500).send('Error'));
-}
+};
