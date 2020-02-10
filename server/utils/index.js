@@ -5,7 +5,7 @@ const { getAvailabilityByStaffID, getScheduleByStaffID } = require('../models/ad
 const getStaffAvailability = async (staffID, availability) => {
   await getAvailabilityByStaffID(staffID)
     .then(rows => {
-      rows.map(({ day, start, end }) => {
+      rows.map(({ day, start, end, event_id }) => {
         const format = 'HH:mm:ss';
 
         // Convert availability to 30 minute intervals
@@ -13,6 +13,7 @@ const getStaffAvailability = async (staffID, availability) => {
           availability.push({
             day: day,
             time: start,
+            event_id: event_id,
             isBooked: false
           });
           start = moment(start, format).add(30, 'm').format(format);
@@ -49,6 +50,7 @@ exports.getTentativeSchedule = async (dateAssigned, pairs, tentativeSchedule) =>
     const singleInstructor = {
       id: staffID,
       name: pairs[i].staff.name,
+      calendar_id: pairs[i].staff.calendar_id,
       assignments: []
     };
 
@@ -79,6 +81,7 @@ exports.getTentativeSchedule = async (dateAssigned, pairs, tentativeSchedule) =>
             singleInstructor.assignments.push({
               id: students[student].id,
               name: students[student].name,
+              event_id: staffAvailability[i].event_id,
               dateAssigned: (moment(dateAssigned, 'YYYY-MM-DD')).add(scheduledDate, 'd').format('YYYY-MM-DD'),
               timeAssigned: moment(time, 'h:mm a').format('h:mm a'),
               time24Hour: time,
@@ -111,6 +114,7 @@ exports.getTentativeSchedule = async (dateAssigned, pairs, tentativeSchedule) =>
             singleInstructor.assignments.push({
               id: students[student].id,
               name: students[student].name,
+              event_id: staffAvailability[i].event_id,
               dateAssigned: (moment(dateAssigned, 'YYYY-MM-DD')).add(scheduledDate, 'd').format('YYYY-MM-DD'),
               timeAssigned: moment(time, 'h:mm a').format('h:mm a'),
               time24Hour: time,

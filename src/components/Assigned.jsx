@@ -49,8 +49,12 @@ const Assigned = () => {
   }
 
   const confirmOmniscience = () => {
-    Axios.post(`/admin/confirm/date/${postObj.date}/class/${postObj.classID}/topic/${postObj.topic}/${JSON.stringify(postObj.staff)}`)
-      .then();
+
+    
+
+    //add to assigned in DB
+    // Axios.post(`/admin/confirm/date/${postObj.date}/class/${postObj.classID}/topic/${postObj.topic}/${JSON.stringify(postObj.staff)}`)
+    //   .then();
   }
 
   return (

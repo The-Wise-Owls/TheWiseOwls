@@ -41,7 +41,7 @@ exports.getStudentsByClassID = (classID) => {
 };
 
 exports.getAvailabilityByStaffID = (staffID) => {
-  const queryString = 'SELECT day, start, end FROM staff_availability WHERE staff_id = ?;'; // AND day >= (DAYOFWEEK(?) - 1);';
+  const queryString = 'SELECT day, start, end, event_id FROM staff_availability WHERE staff_id = ?;'; // AND day >= (DAYOFWEEK(?) - 1);';
 
   return db.query(queryString, staffID)
     .then(results => results)

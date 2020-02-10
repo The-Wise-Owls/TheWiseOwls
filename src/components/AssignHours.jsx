@@ -27,7 +27,7 @@ const AssignHours = () => {
   const [ students, setStudents ] = useState([])
   const [ studentSelected, setStudentSelected ] = useState([{ id: 1, name: 'Student Name' }]);
   const [ instructors, setInstructors ] = useState([])
-  const [ instructorsSelected, setInstructorsSelected ] = useState([{ id: 1, name: 'Instructor Name' }]);
+  const [ instructorsSelected, setInstructorsSelected ] = useState([{ id: 1, name: 'Instructor Name', calendar_id: '' }]);
   const [ open, setOpen ] = useState(false);
   const [ loading, setLoading ] = useState(false);
   const [ topic, setTopic ] = useState('');
@@ -85,14 +85,15 @@ const AssignHours = () => {
       if (instructorsSelected[i].name === '') {
         continue;
       } else if (!staffAssignments[instructorsSelected[i].id]) {
-        staffAssignments[instructorsSelected[i].id] = { id: instructorsSelected[i].id, name: instructorsSelected[i].name, pairs: [{ id: studentSelected[i].id, name: studentSelected[i].name}]};
+        staffAssignments[instructorsSelected[i].id] = { id: instructorsSelected[i].id, name: instructorsSelected[i].name, calendar_id: instructorsSelected[i].calendar_id, pairs: [{ id: studentSelected[i].id, name: studentSelected[i].name}]};
       } else {
         staffAssignments[instructorsSelected[i].id].pairs.push({ id: studentSelected[i].id, name: studentSelected[i].name });
       }
     }
 
+    console.log(staffAssignments)
     for (let staffID in staffAssignments) {
-      pairs.push({ staff: { id: staffAssignments[staffID].id, name: staffAssignments[staffID].name}, students: staffAssignments[staffID].pairs});
+      pairs.push({ staff: { id: staffAssignments[staffID].id, name: staffAssignments[staffID].name, calendar_id: staffAssignments[staffID].calendar_id}, students: staffAssignments[staffID].pairs});
     }
 
     // need to add assessmentDate: assessmentDate,
