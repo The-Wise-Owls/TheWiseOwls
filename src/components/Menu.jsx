@@ -19,7 +19,6 @@ const Menu = (props) => {
   const history = useHistory();
   const location = useLocation();
   const theme = useContext(gobalTheme);
-  // const [test, setTest] = useState(false)
   const menuListObj = [
     {
       name: 'Home',
@@ -73,11 +72,6 @@ const Menu = (props) => {
     window.gapi.load('client:auth2', initClient)
   }, []);
 
-
-  // if (test) {
-  //   return <Redirect to="/" />
-  // }
-
   return (
     <Drawer
       id="testDrawer"
@@ -93,7 +87,7 @@ const Menu = (props) => {
         <IconButton>
           <MenuOpenIcon style={{ margin: '0 20 0 0 0', padding: '0' }} className={theme.material_ui.menuIcon} />
         </IconButton>
-        <p>{`Hello, ${props.username}!`}</p>
+        <p>{`Campus: ${props.username}`}</p>
       </div>
       <Divider />
 

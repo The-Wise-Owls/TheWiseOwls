@@ -1,22 +1,24 @@
 USE thewiseowls;
 
 -- Populate staff table
-INSERT INTO staff (fullName, email, instructor) VALUES ('Julia Kim', 'julia.kim@galvanize.com', 0);
-INSERT INTO staff (fullName, email, instructor) VALUES ('Jeff Salinas', 'jeff.salinas@galvanize.com', 0);
-INSERT INTO staff (fullName, email, instructor) VALUES ('Mario Morales', 'mario.morales@galvanize.com', 0);
-INSERT INTO staff (fullName, email, instructor) VALUES ('Tye Macon', 'tye.macon@galvanize.com', 0);
-INSERT INTO staff (fullName, email, instructor) VALUES ('Arohan Dutt', 'ad@galvanize.com', 0);
-INSERT INTO staff (fullName, email, instructor) VALUES ('Keenan Johns', 'keenan.johns@galvanize.com', 0);
-INSERT INTO staff (fullName, email, instructor) VALUES ('Jonathan Keane', 'jonathan.keane@galvanize.com', 0);
-INSERT INTO staff (fullName, email, instructor) VALUES ('Rob Peschke', 'robert.peschke@galvanize.com', 0);
-INSERT INTO staff (fullName, email, instructor) VALUES ('Taylor George', 'taylor.george@galvanize.com', 0);
-INSERT INTO staff (fullName, email, instructor) VALUES ('Kim Kost', 'kk@galvanize.com', 1);
-INSERT INTO staff (fullName, email, instructor) VALUES ('Nik Mentakis', 'nm@galvanize.com', 1);
-INSERT INTO staff (fullName, email, instructor) VALUES ('Zubair Desai', 'zd@galvanize.com', 1);
+INSERT INTO staff (fullName, email, calendar_id) VALUES ('Kim Kost', 'kk@galvanize.com', 'vqvu790o8mi8pv8p1l7ktuqri0@group.calendar.google.com');
+INSERT INTO staff (fullName, email, calendar_id) VALUES ('Nik Mentakis', 'nm@galvanize.com', 'ihfri81hb0rqmv1251e5d9p6fo@group.calendar.google.com');
+INSERT INTO staff (fullName, email, calendar_id) VALUES ('Zubair Desai', 'zd@galvanize.com', '960gkrepu7kl87kk7se2mmq5sk@group.calendar.google.com');
+INSERT INTO staff (fullName, email, calendar_id) VALUES ('Emily Hilliard', 'emily.hilliard@galvanize.com', 'vlj0rl3jglul44v7bpav6ahdrc@group.calendar.google.com');
+INSERT INTO staff (fullName, email, calendar_id) VALUES ('Linden Kueck', 'linden.kueck@galvanize.com', 'bro4uc85jalbmboebp5o5tfl54@group.calendar.google.com');
+-- INSERT INTO staff (fullName, email, calendar_id) VALUES ('Mario Morales', 'mario.morales@galvanize.com', '');
+-- INSERT INTO staff (fullName, email, calendar_id) VALUES ('Tye Macon', 'tye.macon@galvanize.com', '');
+-- INSERT INTO staff (fullName, email, calendar_id) VALUES ('Keenan Johns', 'keenan.johns@galvanize.com', '');
+-- INSERT INTO staff (fullName, email, calendar_id) VALUES ('Jonathan Keane', 'jonathan.keane@galvanize.com', '');
+-- INSERT INTO staff (fullName, email, calendar_id) VALUES ('Rob Peschke', 'robert.peschke@galvanize.com', '');
+-- INSERT INTO staff (fullName, email, calendar_id) VALUES ('Taylor George', 'taylor.george@galvanize.com', '');
+
+-- Populate campuses
+INSERT INTO campuses (campus_name, email, calendar_id) VALUES ('ATX', 'thewiseowls.galvanize@gmail.com', 'primary');
 
 -- Populate programs table
-INSERT INTO programs (name) VALUES ('HRATX');
-INSERT INTO programs (name) VALUES ('MCSP');
+INSERT INTO programs (name, campus) VALUES ('HRATX', 1);
+INSERT INTO programs (name, campus) VALUES ('MCSP', 1);
 
 -- Populate classes table
 INSERT INTO classes (program, cohort) VALUES (1, 45);
@@ -83,21 +85,16 @@ INSERT INTO staff_availability (day, start, end, staff_id) VALUES (4, '10:00', '
 INSERT INTO staff_availability (day, start, end, staff_id) VALUES (4, '13:00', '14:30', 4);
 
 -- Populate staff_programs table
+INSERT INTO staff_programs (staff_id, program_id) VALUES (1, 1);
 INSERT INTO staff_programs (staff_id, program_id) VALUES (1, 2);
+INSERT INTO staff_programs (staff_id, program_id) VALUES (2, 1);
 INSERT INTO staff_programs (staff_id, program_id) VALUES (2, 2);
+INSERT INTO staff_programs (staff_id, program_id) VALUES (3, 1);
 INSERT INTO staff_programs (staff_id, program_id) VALUES (3, 2);
+INSERT INTO staff_programs (staff_id, program_id) VALUES (4, 1);
 INSERT INTO staff_programs (staff_id, program_id) VALUES (4, 2);
 INSERT INTO staff_programs (staff_id, program_id) VALUES (5, 1);
-INSERT INTO staff_programs (staff_id, program_id) VALUES (6, 1);
-INSERT INTO staff_programs (staff_id, program_id) VALUES (7, 1);
-INSERT INTO staff_programs (staff_id, program_id) VALUES (8, 1);
-INSERT INTO staff_programs (staff_id, program_id) VALUES (9, 1);
-INSERT INTO staff_programs (staff_id, program_id) VALUES (10, 1);
-INSERT INTO staff_programs (staff_id, program_id) VALUES (10, 2);
-INSERT INTO staff_programs (staff_id, program_id) VALUES (11, 1);
-INSERT INTO staff_programs (staff_id, program_id) VALUES (11, 2);
-INSERT INTO staff_programs (staff_id, program_id) VALUES (12, 1);
-INSERT INTO staff_programs (staff_id, program_id) VALUES (12, 2);
+INSERT INTO staff_programs (staff_id, program_id) VALUES (5, 2);
 
 -- Populate office_hours table
 INSERT INTO office_hours (staff_id, student_id, date_assigned, date_scheduled, start, end, topic, requested, completed) VALUES (1, 29, '2019-12-16', '2019-12-17', '14:30:00', '15:00:00', 'this', 0, 1);

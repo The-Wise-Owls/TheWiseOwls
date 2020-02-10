@@ -19,7 +19,7 @@ const AdminSplash = () => {
   window.testOpen = open;
 
   useEffect(() => {
-    const userEmail = 'kk@galvanize.com'
+    const userEmail = window.gapi.auth2.getAuthInstance().currentUser.get().w3.U3;
 
     Axios.get(`/admin/${userEmail}/classes`)
       .then(({ data }) => {

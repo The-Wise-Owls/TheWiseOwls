@@ -25,13 +25,10 @@ const RouteManager = (props) => {
   const [ isLoggedIn, setIsLoggedIn ] = useState(false);
 
   useEffect(() => {
-  return auth.onAuthStateChanged(user => {
-    if (user) {
-      setIsLoggedIn(true);
-      console.log('onAuth Run')
-    }
-  })
-  }, [])
+    return auth.onAuthStateChanged(user => {
+      if (user) setIsLoggedIn(true);
+    })
+  }, []);
 
   return (
     <GlobalTheme>

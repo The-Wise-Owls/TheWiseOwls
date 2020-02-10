@@ -6,17 +6,28 @@ USE thewiseowls;
 
 CREATE TABLE staff (
   staff_id INT AUTO_INCREMENT,
-  fullName VARCHAR(30) NOT NULL,
-  email VARCHAR(30) NOT NULL,
+  fullName VARCHAR(40) NOT NULL,
+  email VARCHAR(40) NOT NULL,
   active TINYINT DEFAULT 1,
-  instructor TINYINT NOT NULL,
+  calendar_id VARCHAR(75) NOT NULL,
   PRIMARY KEY (staff_id)
+);
+
+CREATE TABLE campuses (
+  campus_id INT AUTO_INCREMENT,
+  campus_name VARCHAR(20) NOT NULL,
+  email VARCHAR (40) NOT NULL,
+  calendar_id VARCHAR(75) NOT NULL,
+  PRIMARY KEY (campus_id)
 );
 
 CREATE TABLE programs (
   program_id INT AUTO_INCREMENT,
   name VARCHAR(12) NOT NULL,
-  PRIMARY KEY (program_id)
+  campus INT NOT NULL,
+  PRIMARY KEY (program_id),
+  FOREIGN KEY (campus)
+    REFERENCES campuses (campus_id)
 );
 
 CREATE TABLE classes (

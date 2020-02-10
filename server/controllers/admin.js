@@ -29,10 +29,12 @@ exports.getActiveClasses = (req, res) => {
 
 exports.getClasses = (req, res) => {
   const email = req.params.email;
+  // console.log(email)
 
   getClassesByEmail(email)
     .then(rows => Promise.all(rows))
     .then(rows => {
+      // console.log(rows)
       if (rows.length === 0) {
         res.status(403).send('Invalid email address');
       } else {
