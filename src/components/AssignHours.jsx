@@ -76,8 +76,7 @@ const AssignHours = () => {
     let pairs = [];
 
     setLoading(true);
-    //grab class id from cookie
-
+    
     let staffAssignments = {};
 
     for (let i = 0; i < studentSelected.length; i++) {

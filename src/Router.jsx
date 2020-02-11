@@ -70,10 +70,10 @@ const RouteManager = (props) => {
           {isLoggedIn ? <Submitted /> : <Redirect to={'/login'} />}
         </Route>
         <Route exact path="/requestForm">
-          {isLoggedIn ? <RequestForm /> : <Redirect to={'/login'} />}
+          <RequestForm />
         </Route>
         <Route exact path="/requestSubmitted">
-          {isLoggedIn ? <RequestSubmitted /> : <Redirect to={'/login'} />}
+          <RequestSubmitted />
         </Route>
       </Router>
     </GlobalTheme>

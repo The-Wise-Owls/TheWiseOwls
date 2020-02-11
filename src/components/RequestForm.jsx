@@ -1,5 +1,6 @@
 import React, { useState, useContext, useEffect } from 'react';
-import { withRouter, NavLink, useLocation, useHistory } from 'react-router-dom';
+import { withRouter, NavLink, useHistory } from 'react-router-dom';
+import moment from 'moment';
 import Fab from '@material-ui/core/Fab';
 import IconButton from '@material-ui/core/IconButton';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
@@ -10,8 +11,12 @@ import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import TextField from '@material-ui/core/TextField';
+import { CLIENT_ID, API_KEY } from './API_Config';
+
 
 const RequestForm = () => {
+  const DISCOVERY_DOCS = ["https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest"];
+  const SCOPES = "https://www.googleapis.com/auth/calendar https://www.googleapis.com/auth/calendar.events";
   const theme = useContext(globalTheme);
   const [students, setStudents] = useState([]);
   const [student, setStudent] = useState('');
@@ -19,14 +24,31 @@ const RequestForm = () => {
   const [staff, setStaff] = useState('');
   const [topic, setTopic] = useState('');
   const [details, setDetails] = useState('');
+  const [courseName, setCourseName] = useState('');
   const [cohortId, setCohortId] = useState('');
   const history = useHistory();
 
   useEffect(() => {
-    let cookie = document.cookie;
-    cookie = cookie.split('=');
-    let cookieId = cookie[1];
-    setCohortId(cookieId);
+    window.gapi.load('client:auth2', initClient)
+  }, []);
+
+  useEffect(() => {
+    let cookieId = '';
+    let cookies = document.cookie.split('; ');
+
+    cookies = cookies.map(cookieString => {
+      return cookieString.split('=');
+    })
+
+    cookies.forEach(cookieArray => {
+      if (cookieArray[0] === 'id') {
+        cookieId = cookieArray[1];
+        setCohortId(cookieId);
+      } 
+      if (cookieArray[0] === 'courseName') {
+        setCourseName(cookieArray[1]);
+      } 
+    })
 
     Axios.get(`/admin/classes/${cookieId}/students`)
       .then(({ data }) => {
@@ -34,24 +56,68 @@ const RequestForm = () => {
       })
       .catch(err => console.log(err));
 
-    // Axios.get()
-    // .then(({data}) => {
-      setAllStaff([{id: 0, name: ''}, {id: 2, name: 'Jeff Salinas'}]);
-
-    // });
+    Axios.get(`/admin/classes/${cookieId}/staff`)
+      .then(({data}) => {
+        setAllStaff(data);
+      });
   }, []);
 
-  const submitForm = () => {
-    console.log('click')
-    // Axios.post('', {
-    //   studentId: student.id,
-    //   staffId: staff.id === '' ? -1 : staff.id,
-    //   date: new Date(),
-    //   cohortId: cohortId,
-    //   topic: topic,
-    //   details: details
-    // })
+  const schedule = () => {
+    let pairs = [{ 
+      staff: { 
+        id: staff.id, 
+        name: staff.name, 
+        calendar_id: staff.calendar_id }, 
+      students: [{
+        id: student.id,
+        name: student.name,
+        email: student.email
+      }] 
+    }];
+
+    Axios.get(`/admin/schedule/class/${courseName}/class_id/${cohortId}/topic/${topic}/${JSON.stringify(pairs)}`)
+      .then(({ data }) => {
+        submitForm(data);
+      })
+  };
+
+  const submitForm = (eventObject) => {
+    console.log(eventObject);
+
+    const event = {
+      summary: `[**${student.name} ${courseName}**] - Office Hours`,
+      location: 'TBD',
+      description: topic + ' - ' + details,
+      attendees: [
+        { 'email': student.email }
+      ]
+    };
+
+    const request = window.gapi.client.calendar.events.patch({
+      calendarId: staff.calendar_id,
+      eventId: eventObject.staff[0].assignments[0].event_id,
+      resource: event,
+      sendUpdates: 'all'
+    });
+
+    request.execute(function (newEvent) {
+      console.log('Event created: ' + newEvent.htmlLink);
+    });
+
+    Axios.post(`/admin/confirm/${Number(cohortId)}/${staff.id}/${student.id}/${moment(new Date()).format("YYYY-MM-DD")}/${moment(new Date()).format("YYYY-MM-DD")}/${eventObject.staff[0].assignments[0].time24Hour}/${eventObject.staff[0].assignments[0].timeEnd}/${topic}/1`);
   }
+
+  const initClient = () => {
+    window.gapi.client.init({
+      apiKey: API_KEY,
+      clientId: CLIENT_ID,
+      discoveryDocs: DISCOVERY_DOCS,
+      scope: SCOPES
+    })
+      .catch(err => {
+        console.error(err)
+      })
+  };
 
   return (
     <>
@@ -121,7 +187,7 @@ const RequestForm = () => {
 
       <div className="buttonContainer">
         <NavLink to='/requestSubmitted'>
-          <Fab id="testScheduleButton" onClick={submitForm} variant="extended" aria-label="add" className={theme.material_ui.orangeButton}>
+          <Fab id="testScheduleButton" onClick={schedule} variant="extended" aria-label="add" className={theme.material_ui.orangeButton}>
           Consult The Owls
           </Fab>
         </NavLink>
