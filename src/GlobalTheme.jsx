@@ -17,6 +17,12 @@ const useStyles = makeStyles({
     fontFamily: 'Helvetica',
     textTransform: "none"
   },
+  login_input:{
+    color: 'black !important'
+  },
+  assign_input:{
+    color: '#f4f4f5 !important'
+  },
   orangeButton: {
     background: '#EA882C',
     border: 0,

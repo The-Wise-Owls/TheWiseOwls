@@ -93,14 +93,9 @@ a {
   color:  #EE882C !important;
 }
 
-.MuiInputBase-input {
-  color: #f4f4f5 !important;
-}
-
 .RequestFormInput {
   width: 300px;
 }
-
 
 #assignHoursStudentSelect {
   width: 150px;
@@ -270,4 +265,21 @@ a {
   margin: 0;
   color: #EE882C;
   font-size: 18px;
+}
+
+#login_page_container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100vw;
+}
+
+#login_container{
+  width: 340px;
+  height: 490px;
+  background-color: #ffffff;
+  border-radius: 25px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }

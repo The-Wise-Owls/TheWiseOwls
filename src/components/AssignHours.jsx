@@ -175,10 +175,12 @@ const AssignHours = () => {
       <div className="assignHoursInputs">
         <div className="assignemntInputContainer">
           <form id="assessmentNameInput" noValidate autoComplete="off">
-            <TextField id="standard-basic" 
-            label="Topic" 
-            onChange={(e) => setTopic(e.target.value)} 
-            value={topic}
+            <TextField 
+              id="standard-basic" 
+              className={theme.material_ui.assign_input}
+              label="Topic" 
+              onChange={(e) => setTopic(e.target.value)} 
+              value={topic}
             />
           </form>
         </div>
@@ -211,6 +213,7 @@ const AssignHours = () => {
                 <Select
                   labelId="demo-simple-select-label"
                   id="assignHoursStudentSelect"
+                  className={theme.material_ui.assign_input}
                   value={studentSelected[index]}
                   onChange={(e) => addStudentToList(e, index)}
                 >
@@ -228,6 +231,7 @@ const AssignHours = () => {
                 <Select
                   labelId="demo-simple-select-label"
                   id="assignHoursInstructorSelect"
+                  className={theme.material_ui.assign_input}
                   value={instructorsSelected[index]}
                   onChange={(e) => addInstructorToList(e, index)}
                 >

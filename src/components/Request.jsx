@@ -26,7 +26,7 @@ const Request = () => {
       <div className="menuContainer">
         <IconButton
           id="testBackAdminOptions"
-          aria-label="open drawer"
+          aria-label="back"
           onClick={() => history.goBack()}
           edge="start"
           className={`${theme.material_ui.menuButton} leftMenuIconButton`}
