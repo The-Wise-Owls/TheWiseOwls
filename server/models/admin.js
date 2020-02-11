@@ -72,3 +72,11 @@ exports.removeStaffAvailability = (staff_id) => {
     .then(results => results)
     .catch(err => console.error(`Error deleting old availability from database: ${err}`));
 };
+
+exports.postOfficeHours = (class_id, staff_id, student_id, date_assigned, date_scheduled, start, end, topic, requested) => {
+  const queryString = 'INSERT INTO office_hours (class_id, staff_id, student_id, date_assigned, date_scheduled, start, end, topic, requested) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);';
+
+  return db.query(queryString, [class_id, staff_id, student_id, date_assigned, date_scheduled, start, end, topic, requested])
+    .then(results => results)
+    .catch(err => console.error(`Error posting OH to database: ${err}`));
+}

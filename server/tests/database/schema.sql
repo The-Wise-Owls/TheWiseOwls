@@ -75,6 +75,7 @@ CREATE TABLE staff_programs (
 
 CREATE TABLE office_hours (
   oh_id INT AUTO_INCREMENT,
+  class_id int NOT NULL,
   staff_id INT,
   student_id INT NOT NULL,
   date_assigned DATE NOT NULL,
@@ -83,10 +84,11 @@ CREATE TABLE office_hours (
   end TIME NOT NULL,
   topic VARCHAR(255) NOT NULL,
   requested TINYINT DEFAULT 0,
-  completed TINYINT DEFAULT 0,
   PRIMARY KEY (oh_id),
   FOREIGN KEY (student_id)
     REFERENCES students (student_id),
   FOREIGN KEY (staff_id)
-    REFERENCES staff (staff_id)
+    REFERENCES staff (staff_id),
+  FOREIGN KEY (class_id)
+    REFERENCES classes (class_id)
 );

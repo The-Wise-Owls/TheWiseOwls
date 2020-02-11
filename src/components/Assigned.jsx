@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { withRouter, NavLink, useHistory } from 'react-router-dom';
+import moment from 'moment';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import Fab from '@material-ui/core/Fab';
@@ -44,7 +45,6 @@ const Assigned = () => {
       }
     })
 
-    console.log(postObj);
     setPostObj(postObj);
     setCourse(newCourseName);
     setUsername(newUsername);
@@ -57,7 +57,6 @@ const Assigned = () => {
 
   const confirmOmniscience = () => {
     postObj.staff.forEach(staff => {
-      console.log(staff);
       staff.assignments.forEach(student => {
         const event = {
           summary: `[**${student.name} ${postObj.class_name}**] - Office Hours`,
@@ -67,7 +66,6 @@ const Assigned = () => {
             { 'email': student.email }
           ]
         };
-        console.log(student);
         var request = window.gapi.client.calendar.events.patch({
           calendarId: staff.calendar_id,
           eventId: student.event_id,
@@ -78,12 +76,10 @@ const Assigned = () => {
         request.execute(function (newEvent) {
           console.log('Event created: ' + newEvent.htmlLink);
         });
+
+        Axios.post(`/admin/confirm/${Number(postObj.class_id)}/${staff.id}/${student.id}/${student.dateAssigned}/${moment(new Date()).format("YYYY-MM-DD")}/${student.time24Hour}/${student.timeEnd}/${postObj.topic}/0`)
       });
     });
-
-    //add to assigned in DB
-    // Axios.post(`/admin/confirm/date/${postObj.date}/class/${postObj.classID}/topic/${postObj.topic}/${JSON.stringify(postObj.staff)}`)
-    //   .then();
   };
 
   const initClient = () => {

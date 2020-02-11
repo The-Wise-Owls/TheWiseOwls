@@ -1,5 +1,5 @@
 const moment = require('moment');
-const { getActiveClasses, getClassesByEmail, getStaffByClassID, getStudentsByClassID, getAllCampusClassesByEmail, addStaffAvailability, removeStaffAvailability } = require('../models/admin.js');
+const { getActiveClasses, getClassesByEmail, getStaffByClassID, getStudentsByClassID, getAllCampusClassesByEmail, addStaffAvailability, removeStaffAvailability, postOfficeHours } = require('../models/admin.js');
 const { getTentativeSchedule } = require('../utils');
 
 exports.getActiveClasses = (req, res) => {
@@ -134,12 +134,14 @@ exports.getStudents = (req, res) => {
 };
 
 exports.scheduleOfficeHours = async (req, res) => {
+  const class_id = req.params.class_id;
   const class_name = req.params.class_name;
   const dateAssigned = moment().format('YYYY-MM-DD HH:mm:ss');
   const topic = req.params.topic;
   const pairs = JSON.parse(req.params.pairs);
 
   let tentativeSchedule = {
+    class_id: class_id,
     class_name: class_name,
     date: moment().format('YYYY-MM-DD'),
     topic: topic,
@@ -154,10 +156,22 @@ exports.scheduleOfficeHours = async (req, res) => {
 };
 
 exports.confirmOfficeHours = async (req, res) => {
-  // To be implemented
+  const class_id = req.params.class_id;
+  const staff_id = req.params.staff_id;
+  const student_id = req.params.student_id;
+  const date_assigned = req.params.date_assigned;
+  const date_scheduled = req.params.date_scheduled;
+  const start = req.params.start;
+  const end = req.params.end;
+  const topic = req.params.topic;
+  const requested = req.params.requested;
 
-  console.log('scheduled');
-  res.status(201).end();
+  postOfficeHours(class_id, staff_id, student_id, date_assigned, date_scheduled, start, end, topic, requested)
+  .then(() => {
+    console.log('scheduled');
+    res.status(201).end();
+  })
+  .catch(err => res.status(500).send('Error'));
 };
 
 exports.postStaffAvailability = async (req, res) => {

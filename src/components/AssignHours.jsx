@@ -73,7 +73,6 @@ const AssignHours = () => {
   }, []);
 
   const schedule = () => {
-    let classID = 1 //fill
     let pairs = [];
 
     setLoading(true);
@@ -91,18 +90,14 @@ const AssignHours = () => {
       }
     }
 
-    console.log(staffAssignments)
     for (let staffID in staffAssignments) {
       pairs.push({ staff: { id: staffAssignments[staffID].id, name: staffAssignments[staffID].name, calendar_id: staffAssignments[staffID].calendar_id}, students: staffAssignments[staffID].pairs});
     }
 
     // need to add assessmentDate: assessmentDate,
-    Axios.get(`/admin/schedule/class/${course}/topic/${topic}/${JSON.stringify(pairs)}`)
+    Axios.get(`/admin/schedule/class/${course}/class_id/${courseID}/topic/${topic}/${JSON.stringify(pairs)}`)
     .then(({data}) => {
-      // console.log(data)
       document.cookie = `postObject=${JSON.stringify(data)}`
-      //set data into local cookie
-      //set students object in local cookie
     })
     .then(() => {
       history.push('/assigned');
