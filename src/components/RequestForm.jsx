@@ -54,13 +54,22 @@ const RequestForm = () => {
       .then(({ data }) => {
         setStudents(data);
       })
-      .catch(err => console.log(err));
+      .catch(err => console.error(err));
 
     Axios.get(`/admin/classes/${cookieId}/staff`)
       .then(({data}) => {
         setAllStaff(data);
       });
   }, []);
+
+  const checkFields = () => {
+    if (staff === '' || student === '' || topic === '' || details === '') {
+      alert('Please Complete All Fields.');
+      return;
+    } else {
+      schedule();
+    }
+  };
 
   const schedule = () => {
     let pairs = [{ 
@@ -82,8 +91,6 @@ const RequestForm = () => {
   };
 
   const submitForm = (eventObject) => {
-    console.log(eventObject);
-
     const event = {
       summary: `[**${student.name} ${courseName}**] - Office Hours`,
       location: 'TBD',
@@ -104,7 +111,10 @@ const RequestForm = () => {
       console.log('Event created: ' + newEvent.htmlLink);
     });
 
-    Axios.post(`/admin/confirm/${Number(cohortId)}/${staff.id}/${student.id}/${moment(new Date()).format("YYYY-MM-DD")}/${moment(new Date()).format("YYYY-MM-DD")}/${eventObject.staff[0].assignments[0].time24Hour}/${eventObject.staff[0].assignments[0].timeEnd}/${topic}/1`);
+    Axios.post(`/admin/confirm/${Number(cohortId)}/${staff.id}/${student.id}/${moment(new Date()).format("YYYY-MM-DD")}/${moment(new Date()).format("YYYY-MM-DD")}/${eventObject.staff[0].assignments[0].time24Hour}/${eventObject.staff[0].assignments[0].timeEnd}/${topic}/1`)
+    .then(() => {
+      history.push('/requestSubmitted');
+    })
   }
 
   const initClient = () => {
@@ -134,7 +144,7 @@ const RequestForm = () => {
         <h2>Request Form</h2>
       </div>
       <FormControl >
-        <InputLabel id="demo-simple-select-label">Select Student</InputLabel>
+        <InputLabel id="demo-simple-select-label">Select Student *</InputLabel>
         <Select
           labelId="demo-simple-select-label"
           id="requestStudentSelect"
@@ -152,7 +162,7 @@ const RequestForm = () => {
       <form className="RequestFormInput" noValidate autoComplete="off">
         <TextField 
           id="requestTopicInput" 
-          label="General Topic" 
+          label="General Topic *" 
           multiline={true} 
           onChange={(e) => setTopic(e.target.value)} 
           value={topic} 
@@ -162,7 +172,7 @@ const RequestForm = () => {
       <form noValidate autoComplete="off">
         <TextField 
           id="requestDetailsInput" 
-          label="Additional Details" 
+          label="Additional Details *" 
           multiline={true} 
           onChange={(e) => setDetails(e.target.value)} 
           value={details} 
@@ -170,7 +180,7 @@ const RequestForm = () => {
       </form>
 
       <FormControl >
-        <InputLabel id="demo-simple-select-label">Staff Preference</InputLabel>
+        <InputLabel id="demo-simple-select-label">Staff Preference *</InputLabel>
         <Select
           labelId="demo-simple-select-label"
           id="demo-simple-select"
@@ -186,11 +196,9 @@ const RequestForm = () => {
       </FormControl>
 
       <div className="buttonContainer">
-        <NavLink to='/requestSubmitted'>
-          <Fab id="testScheduleButton" onClick={schedule} variant="extended" aria-label="add" className={theme.material_ui.orangeButton}>
-          Consult The Owls
-          </Fab>
-        </NavLink>
+        <Fab id="testScheduleButton" onClick={checkFields} variant="extended" aria-label="add" className={theme.material_ui.orangeButton}>
+        Consult The Owls
+        </Fab>
       </div>
     </>
   );
