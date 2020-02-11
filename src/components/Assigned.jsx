@@ -56,40 +56,35 @@ const Assigned = () => {
   }
 
   const confirmOmniscience = () => {
-    // postObj.staff.forEach(staff => {
-    //   staff.assignments.forEach(student => {
-    //     const event = {
-    //       summary: '[Jeff Salinas HRATX] - Office Hours',
-    //       location: 'TBD',
-    //       description: postObj.topic,
-    //       attendees: [
-    //         { 'email': 'jeff.salinas.music@gmail.com' }
-    //       ]
-    //     };
+    postObj.staff.forEach(staff => {
+      console.log(staff);
+      staff.assignments.forEach(student => {
+        const event = {
+          summary: `[**${student.name} ${postObj.class_name}**] - Office Hours`,
+          location: 'TBD',
+          description: postObj.topic,
+          attendees: [
+            { 'email': student.email }
+          ]
+        };
+        console.log(student);
+        var request = window.gapi.client.calendar.events.patch({
+          calendarId: staff.calendar_id,
+          eventId: student.event_id,
+          resource: event,
+          sendUpdates: 'all'
+        });
     
-    //     var request = window.gapi.client.calendar.events.patch({
-    //       calendarId: staff.calendarId,
-    //       eventId: '57rjdif3c8rkhjd3jtl5mgmk4o',
-    //       resource: event,
-    //       sendUpdates: 'all'
-    //     });
-    
-    //     request.execute(function (newEvent) {
-    //       console.log('Event created: ' + newEvent.htmlLink);
-    //     });
-
-
-
-
-    //   })
-    // })
-
-
+        request.execute(function (newEvent) {
+          console.log('Event created: ' + newEvent.htmlLink);
+        });
+      });
+    });
 
     //add to assigned in DB
     // Axios.post(`/admin/confirm/date/${postObj.date}/class/${postObj.classID}/topic/${postObj.topic}/${JSON.stringify(postObj.staff)}`)
     //   .then();
-  }
+  };
 
   const initClient = () => {
     window.gapi.client.init({

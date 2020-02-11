@@ -134,13 +134,13 @@ exports.getStudents = (req, res) => {
 };
 
 exports.scheduleOfficeHours = async (req, res) => {
-  const classID = req.params.classID;
+  const class_name = req.params.class_name;
   const dateAssigned = moment().format('YYYY-MM-DD HH:mm:ss');
   const topic = req.params.topic;
   const pairs = JSON.parse(req.params.pairs);
 
   let tentativeSchedule = {
-    classID: classID,
+    class_name: class_name,
     date: moment().format('YYYY-MM-DD'),
     topic: topic,
     staff: []

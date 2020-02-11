@@ -97,7 +97,7 @@ const AssignHours = () => {
     }
 
     // need to add assessmentDate: assessmentDate,
-    Axios.get(`/admin/schedule/class/${classID}/topic/${topic}/${JSON.stringify(pairs)}`)
+    Axios.get(`/admin/schedule/class/${course}/topic/${topic}/${JSON.stringify(pairs)}`)
     .then(({data}) => {
       // console.log(data)
       document.cookie = `postObject=${JSON.stringify(data)}`
