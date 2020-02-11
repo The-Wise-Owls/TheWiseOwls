@@ -33,7 +33,7 @@ exports.getStaffByClassID = (classID) => {
 };
 
 exports.getStudentsByClassID = (classID) => {
-  const queryString = 'SELECT student_id, fullName FROM students WHERE class = ?;';
+  const queryString = 'SELECT student_id, fullName, email FROM students WHERE class = ?;';
 
   return db.query(queryString, classID)
     .then(results => results)

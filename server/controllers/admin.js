@@ -122,7 +122,8 @@ exports.getStudents = (req, res) => {
         rows.map(row => {
           const student = {
             id: row.student_id,
-            name: row.fullName
+            name: row.fullName,
+            email: row.email
           };
           students.push(student);
         });

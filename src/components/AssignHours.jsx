@@ -25,7 +25,7 @@ const AssignHours = () => {
   const [ courseID, setCourseID ] = useState('');
   const [ username, setUsername ] = useState('');
   const [ students, setStudents ] = useState([])
-  const [ studentSelected, setStudentSelected ] = useState([{ id: 1, name: 'Student Name' }]);
+  const [ studentSelected, setStudentSelected ] = useState([{ id: 1, name: 'Student Name', email:'' }]);
   const [ instructors, setInstructors ] = useState([])
   const [ instructorsSelected, setInstructorsSelected ] = useState([{ id: 1, name: 'Instructor Name', calendar_id: '' }]);
   const [ open, setOpen ] = useState(false);
@@ -85,9 +85,9 @@ const AssignHours = () => {
       if (instructorsSelected[i].name === '') {
         continue;
       } else if (!staffAssignments[instructorsSelected[i].id]) {
-        staffAssignments[instructorsSelected[i].id] = { id: instructorsSelected[i].id, name: instructorsSelected[i].name, calendar_id: instructorsSelected[i].calendar_id, pairs: [{ id: studentSelected[i].id, name: studentSelected[i].name}]};
+        staffAssignments[instructorsSelected[i].id] = { id: instructorsSelected[i].id, name: instructorsSelected[i].name, calendar_id: instructorsSelected[i].calendar_id, pairs: [{ id: studentSelected[i].id, name: studentSelected[i].name, email: studentSelected[i].email}]};
       } else {
-        staffAssignments[instructorsSelected[i].id].pairs.push({ id: studentSelected[i].id, name: studentSelected[i].name });
+        staffAssignments[instructorsSelected[i].id].pairs.push({ id: studentSelected[i].id, name: studentSelected[i].name, email: studentSelected[i].email });
       }
     }
 

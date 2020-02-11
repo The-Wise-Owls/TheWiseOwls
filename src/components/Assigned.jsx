@@ -7,14 +7,21 @@ import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import globalTheme from '../ThemeContext.js';
 import Menu from './Menu.jsx';
 import Axios from 'axios';
+import { CLIENT_ID, API_KEY } from './API_Config';
 
 const Assigned = () => {
+  const DISCOVERY_DOCS = ["https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest"];
+  const SCOPES = "https://www.googleapis.com/auth/calendar https://www.googleapis.com/auth/calendar.events";
   const [course, setCourse] = useState('');
   const [username, setUsername] = useState('');
   const [postObj, setPostObj] = useState('');
   const [open, setOpen] = useState(false);
   const theme = useContext(globalTheme);
   const history = useHistory();
+
+  useEffect(() => {
+    window.gapi.load('client:auth2', initClient)
+  }, []);
 
   useEffect(() => {
     let newUsername = '';
@@ -49,13 +56,52 @@ const Assigned = () => {
   }
 
   const confirmOmniscience = () => {
-
+    // postObj.staff.forEach(staff => {
+    //   staff.assignments.forEach(student => {
+    //     const event = {
+    //       summary: '[Jeff Salinas HRATX] - Office Hours',
+    //       location: 'TBD',
+    //       description: postObj.topic,
+    //       attendees: [
+    //         { 'email': 'jeff.salinas.music@gmail.com' }
+    //       ]
+    //     };
     
+    //     var request = window.gapi.client.calendar.events.patch({
+    //       calendarId: staff.calendarId,
+    //       eventId: '57rjdif3c8rkhjd3jtl5mgmk4o',
+    //       resource: event,
+    //       sendUpdates: 'all'
+    //     });
+    
+    //     request.execute(function (newEvent) {
+    //       console.log('Event created: ' + newEvent.htmlLink);
+    //     });
+
+
+
+
+    //   })
+    // })
+
+
 
     //add to assigned in DB
     // Axios.post(`/admin/confirm/date/${postObj.date}/class/${postObj.classID}/topic/${postObj.topic}/${JSON.stringify(postObj.staff)}`)
     //   .then();
   }
+
+  const initClient = () => {
+    window.gapi.client.init({
+      apiKey: API_KEY,
+      clientId: CLIENT_ID,
+      discoveryDocs: DISCOVERY_DOCS,
+      scope: SCOPES
+    })
+      .catch(err => {
+        console.error(err)
+      })
+  };
 
   return (
     <>

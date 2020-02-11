@@ -81,6 +81,7 @@ exports.getTentativeSchedule = async (dateAssigned, pairs, tentativeSchedule) =>
             singleInstructor.assignments.push({
               id: students[student].id,
               name: students[student].name,
+              email: students[student].email,
               event_id: staffAvailability[i].event_id,
               dateAssigned: (moment(dateAssigned, 'YYYY-MM-DD')).add(scheduledDate, 'd').format('YYYY-MM-DD'),
               timeAssigned: moment(time, 'h:mm a').format('h:mm a'),
@@ -114,6 +115,7 @@ exports.getTentativeSchedule = async (dateAssigned, pairs, tentativeSchedule) =>
             singleInstructor.assignments.push({
               id: students[student].id,
               name: students[student].name,
+              email: students[student].email,
               event_id: staffAvailability[i].event_id,
               dateAssigned: (moment(dateAssigned, 'YYYY-MM-DD')).add(scheduledDate, 'd').format('YYYY-MM-DD'),
               timeAssigned: moment(time, 'h:mm a').format('h:mm a'),
