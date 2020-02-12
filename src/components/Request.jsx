@@ -95,7 +95,7 @@ const Request = () => {
         return response.result.items
       })
       .catch(err => {
-        console.log(err);
+        console.error(err);
       })
   };
 

@@ -25,9 +25,9 @@ const AssignHours = () => {
   const [ courseID, setCourseID ] = useState('');
   const [ username, setUsername ] = useState('');
   const [ students, setStudents ] = useState([])
-  const [ studentSelected, setStudentSelected ] = useState([{ id: 1, name: 'Student Name', email:'' }]);
+  const [ studentSelected, setStudentSelected ] = useState([{ id: 1, name: '', email:'' }]);
   const [ instructors, setInstructors ] = useState([])
-  const [ instructorsSelected, setInstructorsSelected ] = useState([{ id: 1, name: 'Instructor Name', calendar_id: '' }]);
+  const [ instructorsSelected, setInstructorsSelected ] = useState([{ id: 1, name: '', calendar_id: '' }]);
   const [ open, setOpen ] = useState(false);
   const [ loading, setLoading ] = useState(false);
   const [ topic, setTopic ] = useState('');
@@ -72,11 +72,20 @@ const AssignHours = () => {
     })
   }, []);
 
+  const checkFields = () => {
+    if (topic === '' || studentSelected[0].name === '' || instructorsSelected[0].name === '') {
+      alert('Please Complete All Fields.');
+      return;
+    } else {
+      schedule();
+    }
+  };
+
   const schedule = () => {
     let pairs = [];
 
     setLoading(true);
-    
+
     let staffAssignments = {};
 
     for (let i = 0; i < studentSelected.length; i++) {
@@ -254,7 +263,7 @@ const AssignHours = () => {
       </div>
       <div className="buttonContainer">
         <Fab id="testScheduleButton" 
-          onClick={() => schedule()} 
+          onClick={() => checkFields()} 
           variant="extended" 
           aria-label="add" 
           className={theme.material_ui.orangeButton}

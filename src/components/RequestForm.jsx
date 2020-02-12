@@ -108,7 +108,7 @@ const RequestForm = () => {
     });
 
     request.execute(function (newEvent) {
-      console.log('Event created: ' + newEvent.htmlLink);
+      // console.log('Event created: ' + newEvent.htmlLink);
     });
 
     Axios.post(`/admin/confirm/${Number(cohortId)}/${staff.id}/${student.id}/${moment(new Date()).format("YYYY-MM-DD")}/${moment(new Date()).format("YYYY-MM-DD")}/${eventObject.staff[0].assignments[0].time24Hour}/${eventObject.staff[0].assignments[0].timeEnd}/${topic}/1`)

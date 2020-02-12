@@ -74,7 +74,6 @@ const AdminOptions = () => {
             let title = event.summary;
             let event_id = event.id;
             let regTest = /^open/i
-            console.log(event);
 
             //if event is available (open)
             if (regTest.test(title)) {
@@ -105,7 +104,7 @@ const AdminOptions = () => {
         return response.result.items
       })
     .catch(err => {
-      console.log(err);
+      console.error(err);
     })
   };
 
