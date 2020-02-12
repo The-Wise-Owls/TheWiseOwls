@@ -2,6 +2,7 @@ import React, { useState, useContext, useEffect } from 'react';
 import { withRouter, NavLink, useHistory, useLocation } from 'react-router-dom';
 import Fab from '@material-ui/core/Fab';
 import IconButton from '@material-ui/core/IconButton';
+import EventIcon from '@material-ui/icons/Event';
 import MenuIcon from '@material-ui/icons/Menu';
 import Axios from 'axios'
 import globalTheme from '../ThemeContext.js';
@@ -50,6 +51,16 @@ const AdminSplash = () => {
         <MenuIcon className={`${theme.material_ui.menuIcon} menuIcon`} />
       </IconButton>
       <h2>Select Class</h2>
+        <IconButton
+          style={{ marginLeft: 'auto', marginRight: '0px' }}
+          id="testCalendarRedirect"
+          aria-label="redirect to google calendar"
+          onClick={() => window.open("https://calendar.google.com/calendar/r", "_blank")}
+          edge="start"
+          className={`${theme.material_ui.menuButton} leftMenuIconButton`}
+        >
+          <EventIcon style={{ margin: '0' }} className={`${theme.material_ui.menuIcon} menuIcon`} />
+        </IconButton>
     </div>
     <Menu 
       open={open}

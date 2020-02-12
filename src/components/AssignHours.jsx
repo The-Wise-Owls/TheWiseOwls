@@ -19,6 +19,7 @@ import MenuIcon from '@material-ui/icons/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
 import TextField from '@material-ui/core/TextField';
+import EventIcon from '@material-ui/icons/Event';
 
 const AssignHours = () => {
   const [ course, setCourse ] = useState('');
@@ -173,6 +174,16 @@ const AssignHours = () => {
           <MenuIcon className={`${theme.material_ui.menuIcon} menuIcon`} />
         </IconButton>
         <h2>{course}</h2>
+        <IconButton
+          style={{marginLeft: 'auto', marginRight: '0px'}}
+          id="testCalendarRedirect"
+          aria-label="redirect to google calendar"
+          onClick={() => window.open("https://calendar.google.com/calendar/r", "_blank")}
+          edge="start"
+          className={`${theme.material_ui.menuButton} leftMenuIconButton`}
+        >
+          <EventIcon style={{ margin: '0' }} className={`${theme.material_ui.menuIcon} menuIcon`}/>
+        </IconButton>
       </div>
       <Menu
         open={open}

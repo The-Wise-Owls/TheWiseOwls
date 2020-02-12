@@ -3,6 +3,7 @@ import Axios from 'axios';
 import moment from 'moment';
 import { withRouter, NavLink, useHistory } from 'react-router-dom';
 import IconButton from '@material-ui/core/IconButton';
+import EventIcon from '@material-ui/icons/Event';
 import MenuIcon from '@material-ui/icons/Menu';
 import Fab from '@material-ui/core/Fab';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
@@ -144,6 +145,16 @@ const AdminOptions = () => {
         </IconButton>
 
         <h2>{course}</h2>
+        <IconButton
+          style={{ marginLeft: 'auto', marginRight: '0px' }}
+          id="testCalendarRedirect"
+          aria-label="redirect to google calendar"
+          onClick={() => window.open("https://calendar.google.com/calendar/r", "_blank")}
+          edge="start"
+          className={`${theme.material_ui.menuButton} leftMenuIconButton`}
+        >
+          <EventIcon style={{ margin: '0' }} className={`${theme.material_ui.menuIcon} menuIcon`} />
+        </IconButton>
       </div>
       <Menu
         open={open}
