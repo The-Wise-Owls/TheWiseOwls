@@ -10,6 +10,7 @@ import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
+import Input from '@material-ui/core/Input';
 import TextField from '@material-ui/core/TextField';
 import { CLIENT_ID, API_KEY } from './API_Config';
 
@@ -130,7 +131,7 @@ const RequestForm = () => {
   };
 
   return (
-    <>
+    <div id="requestForm_container">
       <div className="menuContainer">
         <IconButton
           id="testRequestForm"
@@ -143,11 +144,13 @@ const RequestForm = () => {
         </IconButton>
         <h2>Request Form</h2>
       </div>
-      <FormControl >
+
+      <FormControl style={{ margin: '10px 0' }} >
         <InputLabel id="demo-simple-select-label">Select Student *</InputLabel>
         <Select
-          labelId="demo-simple-select-label"
           id="requestStudentSelect"
+          className={theme.material_ui.requestForm_input}
+          labelId="demo-simple-select-label"
           value={student}
           onChange={(e) => setStudent(e.target.value)}
         >
@@ -159,31 +162,32 @@ const RequestForm = () => {
         </Select>
       </FormControl>
 
-      <form className="RequestFormInput" noValidate autoComplete="off">
         <TextField 
-          id="requestTopicInput" 
+          style={{ margin: '10px 0' }} 
+          id="input-form-topic"
+          className={theme.material_ui.requestForm_input}
           label="General Topic *" 
           multiline={true} 
           onChange={(e) => setTopic(e.target.value)} 
           value={topic} 
         />
-      </form>
-      
-      <form noValidate autoComplete="off">
+
         <TextField 
-          id="requestDetailsInput" 
+          style={{ margin: '10px 0' }} 
+          id="input-form-details"
+          className={theme.material_ui.requestForm_input}
           label="Additional Details *" 
           multiline={true} 
           onChange={(e) => setDetails(e.target.value)} 
           value={details} 
         />
-      </form>
 
-      <FormControl >
+      <FormControl style={{ margin: '10px 0' }} >
         <InputLabel id="demo-simple-select-label">Staff Preference *</InputLabel>
         <Select
           labelId="demo-simple-select-label"
           id="demo-simple-select"
+          className={theme.material_ui.requestForm_input}
           value={staff}
           onChange={(e) => setStaff(e.target.value)}
         >
@@ -200,7 +204,7 @@ const RequestForm = () => {
         Consult The Owls
         </Fab>
       </div>
-    </>
+    </div>
   );
 };
 

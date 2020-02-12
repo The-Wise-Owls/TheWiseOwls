@@ -11,15 +11,6 @@ const Request = () => {
   const theme = useContext(globalTheme);
   const history = useHistory();
 
-  useEffect(() => {
-
-  }, []);
-
-  const setCookie = (obj) => {
-    //set selected class object to cookie
-    document.cookie = `id=${obj.id}`;
-  };
-
   return (
     <>
       <div className="menuContainer">
@@ -32,11 +23,9 @@ const Request = () => {
         >
           <ChevronLeftIcon style={{ margin: '0' }} className={`${theme.material_ui.menuIcon} menuIcon`} />
         </IconButton>
+        <h2>Submitted!</h2>
       </div>
-      <div >
-        <p>Request Submitted</p>
-        <p>You should receive an email shortly with a Google Calendar Invitation</p>
-      </div>
+      <p id="submitted_request">**You will receive an email shortly with a Google Calendar Invitation</p>
       <div className="buttonContainer">
           <Fab id="requestButton" onClick={() => history.goBack()} variant="extended" aria-label="add" className={theme.material_ui.whiteButton}>
             Additional Hours
@@ -45,7 +34,7 @@ const Request = () => {
       
       <div className="buttonContainer">
         <NavLink to='/'>
-          <Fab id="requestButton" variant="extended" aria-label="add" className={theme.material_ui.whiteButton}>
+          <Fab id="requestButton" variant="extended" aria-label="add" className={theme.material_ui.orangeButton}>
             Home
           </Fab>
         </NavLink>

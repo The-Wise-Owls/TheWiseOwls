@@ -20,6 +20,10 @@ const useStyles = makeStyles({
   login_input:{
     color: 'black !important'
   },
+  requestForm_input:{
+    color: '#f4f4f5 !important',
+    width: '250px'
+  },
   assign_input:{
     color: '#f4f4f5 !important'
   },
