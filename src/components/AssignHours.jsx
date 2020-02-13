@@ -25,9 +25,9 @@ const AssignHours = () => {
   const [ course, setCourse ] = useState('');
   const [ courseID, setCourseID ] = useState('');
   const [ username, setUsername ] = useState('');
-  const [ students, setStudents ] = useState([])
+  const [ students, setStudents ] = useState([]);
   const [ studentSelected, setStudentSelected ] = useState([{ id: 1, name: '', email:'' }]);
-  const [ instructors, setInstructors ] = useState([])
+  const [ instructors, setInstructors ] = useState([]);
   const [ instructorsSelected, setInstructorsSelected ] = useState([{ id: 1, name: '', calendar_id: '' }]);
   const [ open, setOpen ] = useState(false);
   const [ loading, setLoading ] = useState(false);

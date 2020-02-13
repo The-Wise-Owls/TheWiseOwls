@@ -68,6 +68,7 @@ const AdminOptions = () => {
         getEvents(el.calendar_id)
         .then((events) => {
           events.forEach(event => {
+            console.log(event)
             let day = new Date(event.start.dateTime).getDay();
             let start = moment(new Date(event.start.dateTime)).format("HH:mm");
             let end = moment(new Date(event.end.dateTime)).format("HH:mm");

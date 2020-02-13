@@ -49,7 +49,13 @@ const Menu = (props) => {
   const handleLogout = () => {
     auth.signOut()
     .then(() => {
-      history.push('/');
+      window.gapi.auth2.getAuthInstance().signOut()
+      .then(() => {
+        history.push('/');
+      })
+      .catch((err) => {
+      console.log(err)
+      })
     })
     .catch((err) => {
       console.log(err)

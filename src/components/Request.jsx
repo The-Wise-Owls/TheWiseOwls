@@ -101,19 +101,22 @@ const Request = () => {
 
   return (
     <>
-      <div className="menuContainer">
-        <IconButton
-          id="testBackAdminOptions"
-          aria-label="back"
-          onClick={() => history.goBack()}
-          edge="start"
-          className={`${theme.material_ui.menuButton} leftMenuIconButton`}
-        >
-          <ChevronLeftIcon style={{ margin: '0' }} className={`${theme.material_ui.menuIcon} menuIcon`} />
-        </IconButton>
-        <h2>Select Class</h2>
-      </div>
-
+    <div className="menuContainer">
+      <IconButton
+        id="testBackAdminOptions"
+        aria-label="back"
+        onClick={() => history.push('/')}
+        edge="start"
+        className={`${theme.material_ui.menuButton} leftMenuIconButton`}
+      >
+        <ChevronLeftIcon style={{ margin: '0' }} className={`${theme.material_ui.menuIcon} menuIcon`} />
+      </IconButton>
+      <h2>Complete Form</h2>
+    </div>
+    <div style={{display: 'flex', justifyContent: 'center'}}>
+      <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSd8v2NgbMFB_LvhcS4q_yFj2hs3QNbtAHhFTcd_1yQbrgXOdA/viewform?embedded=true" width="640" height="941" frameBorder="0" marginHeight="0" marginWidth="0">Loading…</iframe>
+    </div>
+      {/* 
       {classes.map((classObj, index) => {
         return (
           <div key={index} className="buttonContainer">
@@ -122,7 +125,7 @@ const Request = () => {
             </Fab>
           </div>
         )
-      })}
+      })} */}
     </>
   );
 };

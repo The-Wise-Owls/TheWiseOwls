@@ -56,7 +56,7 @@ CREATE TABLE staff_availability (
   start TIME NOT NULL,
   end TIME NOT NULL,
   staff_id INT NOT NULL,
-  event_id VARCHAR (40) NOT NULL,
+  event_id VARCHAR (75) NOT NULL,
   PRIMARY KEY (avail_id),
   FOREIGN KEY (staff_id)
     REFERENCES staff (staff_id)

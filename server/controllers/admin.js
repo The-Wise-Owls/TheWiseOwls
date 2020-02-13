@@ -1,5 +1,5 @@
 const moment = require('moment');
-const { getActiveClasses, getClassesByEmail, getStaffByClassID, getStudentsByClassID, getAllCampusClassesByEmail, addStaffAvailability, removeStaffAvailability, postOfficeHours } = require('../models/admin.js');
+const { getActiveClasses, getClassesByEmail, getStaffByClassID, getStudentsByClassID, getAllCampusClassesByEmail, addStaffAvailability, removeStaffAvailability, postOfficeHours, getProgramsByEmail } = require('../models/admin.js');
 const { getTentativeSchedule } = require('../utils');
 
 exports.getActiveClasses = (req, res) => {
@@ -197,3 +197,13 @@ exports.deleteStaffAvailability = async (req, res) => {
   })
   .catch(err => res.status(500).send('Error'));
 };
+
+exports.getAllPrograms = async (req, res) => {
+  const email = req.params.email;
+
+  getProgramsByEmail(email)
+  .then((data) => {
+    res.status(201).send(data);
+  })
+  .catch(err => res.status(500).send('Error'))
+}

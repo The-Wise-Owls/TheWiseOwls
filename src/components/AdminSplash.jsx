@@ -20,7 +20,8 @@ const AdminSplash = () => {
   window.testOpen = open;
 
   useEffect(() => {
-    const userEmail = window.gapi.auth2.getAuthInstance().currentUser.get().w3.U3;
+    const userEmail = window.gapi.auth2.getAuthInstance().currentUser.get().Qt.zu;
+    document.cookie = `campus=${userEmail};`;
 
     Axios.get(`/admin/${userEmail}/allClasses`)
       .then(({ data }) => {
