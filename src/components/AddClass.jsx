@@ -87,7 +87,7 @@ const AddClasses = () => {
   };
 
   const addToDB = () => {
-    console.log('click');
+    Axios.post(`/admin/classes/${programSelected.program_id}/${cohortNumber}/`)
   };
 
   return (

@@ -79,12 +79,20 @@ exports.postOfficeHours = (class_id, staff_id, student_id, date_assigned, date_s
   return db.query(queryString, [class_id, staff_id, student_id, date_assigned, date_scheduled, start, end, topic, requested])
     .then(results => results)
     .catch(err => console.error(`Error posting OH to database: ${err}`));
-}
+};
 
 exports.getProgramsByEmail = (email) => {
   const queryString = 'SELECT p.program_id, p.name FROM programs p JOIN campuses c ON c.campus_id WHERE c.email = ?;';
 
   return db.query(queryString, email)
     .then(results => results)
-    .catch(err => console.error(`Error posting OH to database: ${err}`));
-}
+    .catch(err => console.error(`Error fetching programs from database: ${err}`));
+};
+
+exports.addClass = (program, cohort) => {
+  const queryString = 'INSERT INTO classes (program, cohort) VALUES (?, ?);';
+
+  return db.query(queryString, [program, cohort])
+    .then(results => results)
+    .catch(err => console.error(`Error posting new class to database: ${err}`));
+};
