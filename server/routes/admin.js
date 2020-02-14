@@ -13,6 +13,7 @@ router.get('/schedule/class/:class_name/class_id/:class_id/topic/:topic/:pairs',
 router.post('/:day/:start/:end/:staff_id/:event_id/availability', adminController.postStaffAvailability)
 router.post('/confirm/:class_id/:staff_id/:student_id/:date_assigned/:date_scheduled/:start/:end/:topic/:requested', adminController.confirmOfficeHours);
 router.post('/classes/:program/:cohort', adminController.addClass);
+router.post('/student/:name/:email/:class_id', adminController.addStudent);
 router.delete('/:staff_id/availability/remove', adminController.deleteStaffAvailability)
 
 module.exports = router;

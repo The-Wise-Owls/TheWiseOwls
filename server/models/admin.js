@@ -96,3 +96,11 @@ exports.addClass = (program, cohort) => {
     .then(results => results)
     .catch(err => console.error(`Error posting new class to database: ${err}`));
 };
+
+exports.addStudentToClass = (name, email, class_id) => {
+  const queryString = 'INSERT INTO students (fullName, email, class) VALUES (?, ?, ?);';
+
+  return db.query(queryString, [name, email, class_id])
+    .then(results => results)
+    .catch(err => console.error(`Error posting student to new class in database: ${err}`));
+}

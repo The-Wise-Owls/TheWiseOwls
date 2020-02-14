@@ -86,8 +86,23 @@ const AddClasses = () => {
     setStudents(newData);
   };
 
+  const checkFields = () => {
+    if (cohortNumber === '' || programSelected[0] === '') {
+      alert('Please Complete All Fields.');
+      return;
+    } else {
+      addToDB();
+    }
+  };
+
   const addToDB = () => {
     Axios.post(`/admin/classes/${programSelected.program_id}/${cohortNumber}/`)
+    .then(({data}) => {
+      students.forEach(obj => {
+        Axios.post(`/admin/student/${obj.name}/${obj.email}/${data.insertId}`)
+      });
+      history.push('/class-added')
+    })
   };
 
   return (
@@ -167,6 +182,7 @@ const AddClasses = () => {
               <p style={{margin: '0 5px 7px 0', color: 'white', fontSize: '18px'}}>{(index + 1) + '. '}</p>
                 <Input
                   id="standard-basic"
+                  autoComplete="off"
                   className={theme.material_ui.assign_input}
                   aria-label="Student Name"
                   placeholder="Student Name"
@@ -177,6 +193,7 @@ const AddClasses = () => {
             <div className="calendarInputContainer">
               <Input
                 id="standard-basic"
+                autoComplete="off"
                 className={theme.material_ui.assign_input}
                 aria-label="Student Email"
                 placeholder="Student Email"
@@ -196,7 +213,7 @@ const AddClasses = () => {
       </div>
 
       <div className="buttonContainer">
-          <Fab id="testScheduleButton" onClick={addToDB} variant="extended" aria-label="add" className={theme.material_ui.orangeButton}>
+        <Fab id="testScheduleButton" onClick={checkFields} variant="extended" aria-label="add" className={theme.material_ui.orangeButton}>
             Save Class
           </Fab>
       </div>

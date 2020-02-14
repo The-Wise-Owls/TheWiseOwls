@@ -1,5 +1,5 @@
 const moment = require('moment');
-const { getActiveClasses, getClassesByEmail, getStaffByClassID, getStudentsByClassID, getAllCampusClassesByEmail, addStaffAvailability, removeStaffAvailability, postOfficeHours, getProgramsByEmail, addClass } = require('../models/admin.js');
+const { getActiveClasses, getClassesByEmail, getStaffByClassID, getStudentsByClassID, getAllCampusClassesByEmail, addStaffAvailability, removeStaffAvailability, postOfficeHours, getProgramsByEmail, addClass, addStudentToClass } = require('../models/admin.js');
 const { getTentativeSchedule } = require('../utils');
 
 exports.getActiveClasses = (req, res) => {
@@ -213,8 +213,20 @@ exports.addClass = async (req, res) => {
   const cohort = req.params.cohort;
 
   addClass(program, cohort)
-    .then(() => {
-      res.status(200).end();
+    .then((data) => {
+      res.status(200).send(data);
+    })
+    .catch(err => res.status(500).send('Error'))
+}
+
+exports.addStudent = async (req, res) => {
+  const name = req.params.name;
+  const email = req.params.email;
+  const class_id = req.params.class_id;
+
+  addStudentToClass(name, email, class_id)
+    .then((data) => {
+      res.status(201).end();
     })
     .catch(err => res.status(500).send('Error'))
 }

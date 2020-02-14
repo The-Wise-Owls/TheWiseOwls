@@ -17,6 +17,7 @@ import RequestForm from './components/RequestForm.jsx';
 import RequestSubmitted from './components/RequestSubmitted.jsx';
 import Submitted from './components/Submitted.jsx';
 import AddClass from './components/AddClass.jsx';
+import ClassAdded from './components/ClassAdded.jsx';
 import GlobalTheme from './GlobalTheme.jsx';
 import firebase from 'firebase/app';
 import 'firebase/auth';
@@ -58,6 +59,10 @@ const RouteManager = (props) => {
         </Route>
         <Route exact path="/add-class">
           <AddClass />
+          {/* {isLoggedIn ? <AddClass /> : <Redirect to={'/login'} />} */}
+        </Route>
+        <Route exact path="/class-added">
+          <ClassAdded />
           {/* {isLoggedIn ? <AddClass /> : <Redirect to={'/login'} />} */}
         </Route>
         <Route exact path="/history">
