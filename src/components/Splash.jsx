@@ -8,12 +8,19 @@ const Splash = (props) => {
 
   return (
     <>
-      <div id="splashHeader">
-        <h1>The<br/>
+      <div id="splashHeaderContainer">
+        <h1 id="splashTitle">The<br/>
             Wise<br/>
             Owls
         </h1>
+        <div id="splashParContainer">
+          <p className="splashPar splashParText">of</p>
+          <div id="logoContainer">
+            <img src="./images/hack-reactor-logo.png" id="hack-reactor-logo" alt="Hack Reactor logo"></img>
+          </div>
+        </div>
       </div>
+      <p className="splashParText" style={{margin: '0 auto 80px auto'}}>A Calendar Management Service</p>
       <div className="buttonContainer">
         <NavLink to='/request'>
           <Fab id="testRequestButton" variant="extended" aria-label="add" className={theme.material_ui.whiteButton}>
@@ -23,7 +30,7 @@ const Splash = (props) => {
       </div>
       <div className="buttonContainer">
         <NavLink to='/login'>
-          <Fab id="testLoginButton" variant="extended" aria-label="add" className={theme.material_ui.whiteButton}>
+          <Fab id="testLoginButton" variant="extended" aria-label="add" className={theme.material_ui.orangeButton}>
             Staff Login
           </Fab>
         </NavLink>

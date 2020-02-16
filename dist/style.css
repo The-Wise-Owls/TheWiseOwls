@@ -53,10 +53,50 @@ h2 {
   }
 }
 
-#splashHeader {
+#splashHeaderContainer {
   align-self: center;
-  justify-content: flex-start;
+  display: flex;
+  flex-direction: row;
   width: 345px;
+}
+
+#splashTitle {
+  width: 160px;
+  margin-right: 0;
+  margin-bottom: 40px;
+}
+
+#splashParContainer{
+  display: flex;
+  align-items: flex-end;
+  width: 190px;
+}
+
+#logoContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color: #f4f4f5;
+  border-radius: 7px;
+  width: 155px;
+  height: 50px;
+  margin-left: 12px;
+  margin-bottom: 50px;
+}
+
+#hack-reactor-logo {
+  height: 45px;
+  object-fit: scale-down;
+}
+
+.splashPar {
+  width: 20px;
+  margin-bottom: 60px;
+}
+
+.splashParText {
+  color: #F4F4F5;
+  font-size: 18px;
 }
 
 .buttonContainer {
