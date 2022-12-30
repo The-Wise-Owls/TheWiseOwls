@@ -21,7 +21,7 @@
     "babel-loader": "^8.0.6",
     "chai": "^4.2.0",
     "cypress": "^3.6.1",
-    "mocha": "^6.2.2",
+    "mocha": "^10.2.0",
     "react": "^16.8.6",
     "supertest": "^4.0.2",
     "webpack": "^4.38.0",
